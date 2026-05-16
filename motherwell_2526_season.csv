@@ -132,35 +132,37 @@ P007,OPP_IHE,2025-10-05,Scottish Premiership,Matchday 7,Celtic,Motherwell,3,2,"C
 P007,OPP_NYG,2025-10-05,Scottish Premiership,Matchday 7,Celtic,Motherwell,3,2,"Celtic Park, Glasgow",,Benjamin Nygren,SWE,Celtic,MID,1,,1,,0,0,,,Goal: 69'
 P007,OPP_MAE,2025-10-05,Scottish Premiership,Matchday 7,Celtic,Motherwell,3,2,"Celtic Park, Glasgow",,Daizen Maeda,JPN,Celtic,FWD,1,,1,,0,0,,,Goal: 90+2'
 P008,P001,2025-10-18,Scottish Premiership,Matchday 8,Motherwell,Falkirk,1,2,"Fir Park, Motherwell",,Calum Ward,SCO,Motherwell,GK,1,90,0,,0,0,,,
-P008,P002,2025-10-18,Scottish Premiership,Matchday 8,Motherwell,Falkirk,1,2,"Fir Park, Motherwell",,Johnny Koutroumbis,GRE,Motherwell,DEF,1,,0,,0,0,,,Substituted off (minute unconfirmed)
+P008,P002,2025-10-18,Scottish Premiership,Matchday 8,Motherwell,Falkirk,1,2,"Fir Park, Motherwell",,Johnny Koutroumbis,GRE,Motherwell,DEF,1,84,0,,0,0,,84,Substituted off 84'
 P008,P018,2025-10-18,Scottish Premiership,Matchday 8,Motherwell,Falkirk,1,2,"Fir Park, Motherwell",,Stephen Welsh,SCO,Motherwell,DEF,1,90,0,,0,0,,,
 P008,P004,2025-10-18,Scottish Premiership,Matchday 8,Motherwell,Falkirk,1,2,"Fir Park, Motherwell",,Paul McGinn,SCO,Motherwell,DEF,1,90,0,,0,0,,,
-P008,P005,2025-10-18,Scottish Premiership,Matchday 8,Motherwell,Falkirk,1,2,"Fir Park, Motherwell",,Emmanuel Longelo,ENG,Motherwell,DEF,1,,0,,0,0,,,"Substituted off (injury, minute unconfirmed)"
-P008,P006,2025-10-18,Scottish Premiership,Matchday 8,Motherwell,Falkirk,1,2,"Fir Park, Motherwell",,Lukas Fadinger,AUT,Motherwell,MID,1,,0,,0,0,,,Substituted off (minute unconfirmed)
+P008,P005,2025-10-18,Scottish Premiership,Matchday 8,Motherwell,Falkirk,1,2,"Fir Park, Motherwell",,Emmanuel Longelo,ENG,Motherwell,DEF,1,64,0,,0,0,,64,Substituted off 64' (injury)
+P008,P006,2025-10-18,Scottish Premiership,Matchday 8,Motherwell,Falkirk,1,2,"Fir Park, Motherwell",,Lukas Fadinger,AUT,Motherwell,MID,1,84,0,,0,0,,84,Substituted off 84'
 P008,P007,2025-10-18,Scottish Premiership,Matchday 8,Motherwell,Falkirk,1,2,"Fir Park, Motherwell",,Elliot Watt,SCO,Motherwell,MID,1,90,0,,0,0,,,
 P008,P014,2025-10-18,Scottish Premiership,Matchday 8,Motherwell,Falkirk,1,2,"Fir Park, Motherwell",,Ibrahim Sa'id,GHA,Motherwell,MID,1,90,0,,0,0,,,
-P008,P010,2025-10-18,Scottish Premiership,Matchday 8,Motherwell,Falkirk,1,2,"Fir Park, Motherwell",,Elijah Just,SCO,Motherwell,MID,1,,0,,0,0,,,Substituted off (minute unconfirmed)
+P008,P010,2025-10-18,Scottish Premiership,Matchday 8,Motherwell,Falkirk,1,2,"Fir Park, Motherwell",,Elijah Just,SCO,Motherwell,MID,1,64,0,,0,0,,64,Substituted off 64'
 P008,P008,2025-10-18,Scottish Premiership,Matchday 8,Motherwell,Falkirk,1,2,"Fir Park, Motherwell",,Tawanda Maswanhise,ZIM,Motherwell,FWD,1,90,1,,0,0,,,Goal: 22'
-P008,P017,2025-10-18,Scottish Premiership,Matchday 8,Motherwell,Falkirk,1,2,"Fir Park, Motherwell",,Callum Hendry,SCO,Motherwell,FWD,1,90,0,,0,0,,,First Premiership start
-P008,P012,2025-10-18,Scottish Premiership,Matchday 8,Motherwell,Falkirk,1,2,"Fir Park, Motherwell",,Stephen O'Donnell,SCO,Motherwell,DEF,0,,0,,0,0,,,On for Longelo (injury)
-P008,P016,2025-10-18,Scottish Premiership,Matchday 8,Motherwell,Falkirk,1,2,"Fir Park, Motherwell",,Regan Charles-Cook,ENG,Motherwell,MID,0,,0,,0,0,,,On for Just
-P008,P015,2025-10-18,Scottish Premiership,Matchday 8,Motherwell,Falkirk,1,2,"Fir Park, Motherwell",,Oscar Priestman,ENG,Motherwell,MID,0,,0,,0,0,,,On for Fadinger
-P008,P013,2025-10-18,Scottish Premiership,Matchday 8,Motherwell,Falkirk,1,2,"Fir Park, Motherwell",,Tom Sparrow,ENG,Motherwell,DEF,0,,0,,0,0,,,On for Koutroumbis
+P008,P017,2025-10-18,Scottish Premiership,Matchday 8,Motherwell,Falkirk,1,2,"Fir Park, Motherwell",,Callum Hendry,SCO,Motherwell,FWD,1,63,0,,0,0,,63,First Premiership start; substituted off 63'
+P008,P012,2025-10-18,Scottish Premiership,Matchday 8,Motherwell,Falkirk,1,2,"Fir Park, Motherwell",,Stephen O'Donnell,SCO,Motherwell,DEF,0,26,0,,0,0,64,,On for Longelo 64' (injury)
+P008,P016,2025-10-18,Scottish Premiership,Matchday 8,Motherwell,Falkirk,1,2,"Fir Park, Motherwell",,Regan Charles-Cook,ENG,Motherwell,MID,0,26,0,,0,0,64,,On for Just 64'
+P008,P015,2025-10-18,Scottish Premiership,Matchday 8,Motherwell,Falkirk,1,2,"Fir Park, Motherwell",,Oscar Priestman,ENG,Motherwell,MID,0,6,0,,0,0,84,,On for Fadinger 84'
+P008,P013,2025-10-18,Scottish Premiership,Matchday 8,Motherwell,Falkirk,1,2,"Fir Park, Motherwell",,Tom Sparrow,ENG,Motherwell,DEF,0,6,0,,0,0,84,,On for Koutroumbis 84'
+P008,P011,2025-10-18,Scottish Premiership,Matchday 8,Motherwell,Falkirk,1,2,"Fir Park, Motherwell",,Apostolos Stamatelopoulos,GRE,Motherwell,FWD,0,27,0,,0,0,63,,On for Hendry 63'
 P008,OPP_CAL,2025-10-18,Scottish Premiership,Matchday 8,Motherwell,Falkirk,1,2,"Fir Park, Motherwell",,Calvin Miller,SCO,Falkirk,MID,1,,1,,0,0,,,Goal: 57'
 P008,OPP_ARS,2025-10-18,Scottish Premiership,Matchday 8,Motherwell,Falkirk,1,2,"Fir Park, Motherwell",,Scott Arfield,SCO,Falkirk,MID,0,,1,,0,0,,,Goal: 79' (as substitute)
 P009,P001,2025-10-25,Scottish Premiership,Matchday 9,Livingston,Motherwell,1,2,"Almondvale, Livingston",,Calum Ward,SCO,Motherwell,GK,1,90,0,,0,0,,,
 P009,P012,2025-10-25,Scottish Premiership,Matchday 9,Livingston,Motherwell,1,2,"Almondvale, Livingston",,Stephen O'Donnell,SCO,Motherwell,DEF,1,90,0,,0,0,,,
-P009,P003,2025-10-25,Scottish Premiership,Matchday 9,Livingston,Motherwell,1,2,"Almondvale, Livingston",,Liam Gordon,SCO,Motherwell,DEF,1,90,0,,0,0,,,
+P009,P003,2025-10-25,Scottish Premiership,Matchday 9,Livingston,Motherwell,1,2,"Almondvale, Livingston",,Liam Gordon,SCO,Motherwell,DEF,1,60,0,,0,0,,60,Substituted off ~60' for McGinn
 P009,P018,2025-10-25,Scottish Premiership,Matchday 9,Livingston,Motherwell,1,2,"Almondvale, Livingston",,Stephen Welsh,SCO,Motherwell,DEF,1,90,0,,0,0,,,
 P009,P005,2025-10-25,Scottish Premiership,Matchday 9,Livingston,Motherwell,1,2,"Almondvale, Livingston",,Emmanuel Longelo,ENG,Motherwell,DEF,1,90,0,,0,0,,,
 P009,P006,2025-10-25,Scottish Premiership,Matchday 9,Livingston,Motherwell,1,2,"Almondvale, Livingston",,Lukas Fadinger,AUT,Motherwell,MID,1,90,0,,0,0,,,
 P009,P007,2025-10-25,Scottish Premiership,Matchday 9,Livingston,Motherwell,1,2,"Almondvale, Livingston",,Elliot Watt,SCO,Motherwell,MID,1,90,0,,0,0,,,
-P009,P008,2025-10-25,Scottish Premiership,Matchday 9,Livingston,Motherwell,1,2,"Almondvale, Livingston",,Tawanda Maswanhise,ZIM,Motherwell,FWD,1,90,0,,0,0,,,
-P009,P010,2025-10-25,Scottish Premiership,Matchday 9,Livingston,Motherwell,1,2,"Almondvale, Livingston",,Elijah Just,SCO,Motherwell,MID,1,90,1,,0,0,,,Goal: 90+2' (assisted by Slattery – as sub)
+P009,P008,2025-10-25,Scottish Premiership,Matchday 9,Livingston,Motherwell,1,2,"Almondvale, Livingston",,Tawanda Maswanhise,ZIM,Motherwell,FWD,1,60,0,,0,0,,60,Substituted off ~60' for Slattery
+P009,P010,2025-10-25,Scottish Premiership,Matchday 9,Livingston,Motherwell,1,2,"Almondvale, Livingston",,Elijah Just,SCO,Motherwell,MID,1,90,1,,0,0,,,Goal: 90+3' (assisted by Slattery – as sub)
 P009,P014,2025-10-25,Scottish Premiership,Matchday 9,Livingston,Motherwell,1,2,"Almondvale, Livingston",,Ibrahim Sa'id,GHA,Motherwell,MID,1,90,0,,0,0,,,
-P009,P011,2025-10-25,Scottish Premiership,Matchday 9,Livingston,Motherwell,1,2,"Almondvale, Livingston",,Apostolos Stamatelopoulos,GRE,Motherwell,FWD,1,90,1,,0,0,,,Goal: 4' (penalty)
-P009,P009,2025-10-25,Scottish Premiership,Matchday 9,Livingston,Motherwell,1,2,"Almondvale, Livingston",,Callum Slattery,SCO,Motherwell,MID,0,,0,1,0,0,,,Came on as sub; assist on Just 90+2'
-P009,OPP_BOK,2025-10-25,Scottish Premiership,Matchday 9,Livingston,Motherwell,1,2,"Almondvale, Livingston",,Bokila,,Livingston,FWD,1,,1,,0,0,,,Goal: 3' (penalty)
+P009,P011,2025-10-25,Scottish Premiership,Matchday 9,Livingston,Motherwell,1,2,"Almondvale, Livingston",,Apostolos Stamatelopoulos,GRE,Motherwell,FWD,1,90,1,,0,0,,,Goal: 59' (penalty)
+P009,P009,2025-10-25,Scottish Premiership,Matchday 9,Livingston,Motherwell,1,2,"Almondvale, Livingston",,Callum Slattery,SCO,Motherwell,MID,0,30,0,1,0,0,60,,Came on ~60' for Maswanhise; assist on Just 90+3'
+P009,P004,2025-10-25,Scottish Premiership,Matchday 9,Livingston,Motherwell,1,2,"Almondvale, Livingston",,Paul McGinn,SCO,Motherwell,DEF,0,30,0,,0,0,60,,On for Gordon ~60'
+P009,OPP_BOK,2025-10-25,Scottish Premiership,Matchday 9,Livingston,Motherwell,1,2,"Almondvale, Livingston",,Bokila,,Livingston,FWD,1,,1,,0,0,,,Goal: 26' (penalty)
 P010,P001,2025-10-29,Scottish Premiership,Matchday 10,Motherwell,Dundee United,2,0,"Fir Park, Motherwell",,Calum Ward,SCO,Motherwell,GK,1,90,0,,0,0,,,
 P010,P012,2025-10-29,Scottish Premiership,Matchday 10,Motherwell,Dundee United,2,0,"Fir Park, Motherwell",,Stephen O'Donnell,SCO,Motherwell,DEF,1,37,0,,0,0,,37,Substituted off 37' (injury)
 P010,P004,2025-10-29,Scottish Premiership,Matchday 10,Motherwell,Dundee United,2,0,"Fir Park, Motherwell",,Paul McGinn,SCO,Motherwell,DEF,1,90,0,,0,0,,,
@@ -284,19 +286,21 @@ P018,P011,2025-12-20,Scottish Premiership,Matchday 18,Motherwell,Dundee,1,0,"Fir
 P018,P015,2025-12-20,Scottish Premiership,Matchday 18,Motherwell,Dundee,1,0,"Fir Park, Motherwell",,Oscar Priestman,ENG,Motherwell,MID,0,4,0,,0,0,86,,On for Slattery 86'
 P018,P012,2025-12-20,Scottish Premiership,Matchday 18,Motherwell,Dundee,1,0,"Fir Park, Motherwell",,Stephen O'Donnell,SCO,Motherwell,DEF,0,4,0,,0,0,86,,On for Longelo 86'
 P019,P001,2025-12-27,Scottish Premiership,Matchday 19,Rangers,Motherwell,1,0,"Ibrox, Glasgow",50828,Calum Ward,SCO,Motherwell,GK,1,90,0,,0,0,,,
-P019,P002,2025-12-27,Scottish Premiership,Matchday 19,Rangers,Motherwell,1,0,"Ibrox, Glasgow",50828,Johnny Koutroumbis,GRE,Motherwell,DEF,1,,0,,0,0,,,Substituted off (minute unconfirmed)
+P019,P002,2025-12-27,Scottish Premiership,Matchday 19,Rangers,Motherwell,1,0,"Ibrox, Glasgow",50828,Johnny Koutroumbis,GRE,Motherwell,DEF,1,69,0,,0,0,,69,Triple sub 69'; O'Donnell on
 P019,P004,2025-12-27,Scottish Premiership,Matchday 19,Rangers,Motherwell,1,0,"Ibrox, Glasgow",50828,Paul McGinn,SCO,Motherwell,DEF,1,90,0,,0,0,,,
 P019,P018,2025-12-27,Scottish Premiership,Matchday 19,Rangers,Motherwell,1,0,"Ibrox, Glasgow",50828,Stephen Welsh,SCO,Motherwell,DEF,1,90,0,,0,0,,,
 P019,P005,2025-12-27,Scottish Premiership,Matchday 19,Rangers,Motherwell,1,0,"Ibrox, Glasgow",50828,Emmanuel Longelo,ENG,Motherwell,DEF,1,90,0,,0,0,,,
-P019,P013,2025-12-27,Scottish Premiership,Matchday 19,Rangers,Motherwell,1,0,"Ibrox, Glasgow",50828,Tom Sparrow,ENG,Motherwell,DEF,1,90,0,,0,0,,,
-P019,P007,2025-12-27,Scottish Premiership,Matchday 19,Rangers,Motherwell,1,0,"Ibrox, Glasgow",50828,Elliot Watt,SCO,Motherwell,MID,1,90,0,,0,0,,,
+P019,P013,2025-12-27,Scottish Premiership,Matchday 19,Rangers,Motherwell,1,0,"Ibrox, Glasgow",50828,Tom Sparrow,ENG,Motherwell,DEF,1,84,0,,0,0,,84,Substituted off 84'
+P019,P007,2025-12-27,Scottish Premiership,Matchday 19,Rangers,Motherwell,1,0,"Ibrox, Glasgow",50828,Elliot Watt,SCO,Motherwell,MID,1,91,0,,0,0,,91,Substituted off 90+1'
 P019,P006,2025-12-27,Scottish Premiership,Matchday 19,Rangers,Motherwell,1,0,"Ibrox, Glasgow",50828,Lukas Fadinger,AUT,Motherwell,MID,1,90,0,,0,0,,,
-P019,P010,2025-12-27,Scottish Premiership,Matchday 19,Rangers,Motherwell,1,0,"Ibrox, Glasgow",50828,Elijah Just,SCO,Motherwell,MID,1,,0,,0,0,,,Substituted off (minute unconfirmed)
+P019,P010,2025-12-27,Scottish Premiership,Matchday 19,Rangers,Motherwell,1,0,"Ibrox, Glasgow",50828,Elijah Just,SCO,Motherwell,MID,1,69,0,,0,0,,69,Triple sub 69'; Slattery on
 P019,P014,2025-12-27,Scottish Premiership,Matchday 19,Rangers,Motherwell,1,0,"Ibrox, Glasgow",50828,Ibrahim Sa'id,GHA,Motherwell,MID,1,90,0,,0,0,,,
-P019,P017,2025-12-27,Scottish Premiership,Matchday 19,Rangers,Motherwell,1,0,"Ibrox, Glasgow",50828,Callum Hendry,SCO,Motherwell,FWD,1,,0,,0,0,,,Substituted off (minute unconfirmed)
-P019,P009,2025-12-27,Scottish Premiership,Matchday 19,Rangers,Motherwell,1,0,"Ibrox, Glasgow",50828,Callum Slattery,SCO,Motherwell,MID,0,,0,,0,0,,,On for Just
-P019,P011,2025-12-27,Scottish Premiership,Matchday 19,Rangers,Motherwell,1,0,"Ibrox, Glasgow",50828,Apostolos Stamatelopoulos,GRE,Motherwell,FWD,0,,0,,0,0,,,On for Hendry
-P019,P012,2025-12-27,Scottish Premiership,Matchday 19,Rangers,Motherwell,1,0,"Ibrox, Glasgow",50828,Stephen O'Donnell,SCO,Motherwell,DEF,0,,0,,0,0,,,On for Koutroumbis
+P019,P017,2025-12-27,Scottish Premiership,Matchday 19,Rangers,Motherwell,1,0,"Ibrox, Glasgow",50828,Callum Hendry,SCO,Motherwell,FWD,1,69,0,,0,0,,69,Triple sub 69'; Stamatelopoulos on
+P019,P009,2025-12-27,Scottish Premiership,Matchday 19,Rangers,Motherwell,1,0,"Ibrox, Glasgow",50828,Callum Slattery,SCO,Motherwell,MID,0,21,0,,0,0,69,,On for Just 69' (triple sub)
+P019,P011,2025-12-27,Scottish Premiership,Matchday 19,Rangers,Motherwell,1,0,"Ibrox, Glasgow",50828,Apostolos Stamatelopoulos,GRE,Motherwell,FWD,0,21,0,,0,0,69,,On for Hendry 69' (triple sub)
+P019,P012,2025-12-27,Scottish Premiership,Matchday 19,Rangers,Motherwell,1,0,"Ibrox, Glasgow",50828,Stephen O'Donnell,SCO,Motherwell,DEF,0,21,0,,0,0,69,,On for Koutroumbis 69' (triple sub)
+P019,P023,2025-12-27,Scottish Premiership,Matchday 19,Rangers,Motherwell,1,0,"Ibrox, Glasgow",50828,Esapa Osong,ENG,Motherwell,FWD,0,6,0,,0,0,84,,On for Sparrow 84'
+P019,P015,2025-12-27,Scottish Premiership,Matchday 19,Rangers,Motherwell,1,0,"Ibrox, Glasgow",50828,Oscar Priestman,ENG,Motherwell,MID,0,2,0,,0,0,91,,On for Watt 90+1'
 P019,OPP_AAS,2025-12-27,Scottish Premiership,Matchday 19,Rangers,Motherwell,1,0,"Ibrox, Glasgow",50828,Thelo Aasgaard,NOR,Rangers,MID,1,,1,,0,0,,,Goal: 67'
 P020,P001,2025-12-30,Scottish Premiership,Matchday 20,Motherwell,Celtic,2,0,"Fir Park, Motherwell",11435,Calum Ward,SCO,Motherwell,GK,1,90,0,,0,0,,,
 P020,P002,2025-12-30,Scottish Premiership,Matchday 20,Motherwell,Celtic,2,0,"Fir Park, Motherwell",11435,Johnny Koutroumbis,GRE,Motherwell,DEF,1,90,0,,0,0,,,
@@ -314,17 +318,17 @@ P021,P012,2026-01-03,Scottish Premiership,Matchday 21,Motherwell,St Mirren,2,0,"
 P021,P004,2026-01-03,Scottish Premiership,Matchday 21,Motherwell,St Mirren,2,0,"Fir Park, Motherwell",,Paul McGinn,SCO,Motherwell,DEF,1,90,0,,0,0,,,
 P021,P018,2026-01-03,Scottish Premiership,Matchday 21,Motherwell,St Mirren,2,0,"Fir Park, Motherwell",,Stephen Welsh,SCO,Motherwell,DEF,1,90,0,,0,0,,,
 P021,P005,2026-01-03,Scottish Premiership,Matchday 21,Motherwell,St Mirren,2,0,"Fir Park, Motherwell",,Emmanuel Longelo,ENG,Motherwell,DEF,1,90,0,,0,0,,,
-P021,P007,2026-01-03,Scottish Premiership,Matchday 21,Motherwell,St Mirren,2,0,"Fir Park, Motherwell",,Elliot Watt,SCO,Motherwell,MID,1,,1,,0,0,,,Goal (minute unconfirmed); subbed off (injury)
+P021,P007,2026-01-03,Scottish Premiership,Matchday 21,Motherwell,St Mirren,2,0,"Fir Park, Motherwell",,Elliot Watt,SCO,Motherwell,MID,1,73,1,,0,0,,73,Goal: 57'; subbed off 73' (injury)
 P021,P010,2026-01-03,Scottish Premiership,Matchday 21,Motherwell,St Mirren,2,0,"Fir Park, Motherwell",,Elijah Just,SCO,Motherwell,MID,1,90,0,,0,0,,,
-P021,P009,2026-01-03,Scottish Premiership,Matchday 21,Motherwell,St Mirren,2,0,"Fir Park, Motherwell",,Callum Slattery,SCO,Motherwell,MID,1,,0,,0,0,,,Substituted off (minute unconfirmed)
+P021,P009,2026-01-03,Scottish Premiership,Matchday 21,Motherwell,St Mirren,2,0,"Fir Park, Motherwell",,Callum Slattery,SCO,Motherwell,MID,1,90,0,,0,0,,90,Substituted off 90'
 P021,P006,2026-01-03,Scottish Premiership,Matchday 21,Motherwell,St Mirren,2,0,"Fir Park, Motherwell",,Lukas Fadinger,AUT,Motherwell,MID,1,90,0,,0,0,,,
-P021,P008,2026-01-03,Scottish Premiership,Matchday 21,Motherwell,St Mirren,2,0,"Fir Park, Motherwell",,Tawanda Maswanhise,ZIM,Motherwell,FWD,1,,1,,0,0,,,Goal (minute unconfirmed); substituted off
+P021,P008,2026-01-03,Scottish Premiership,Matchday 21,Motherwell,St Mirren,2,0,"Fir Park, Motherwell",,Tawanda Maswanhise,ZIM,Motherwell,FWD,1,73,1,,0,0,,73,Goal: ~35'; substituted off 73'
 P021,P014,2026-01-03,Scottish Premiership,Matchday 21,Motherwell,St Mirren,2,0,"Fir Park, Motherwell",,Ibrahim Sa'id,GHA,Motherwell,FWD,1,90,0,,0,0,,,
-P021,P015,2026-01-03,Scottish Premiership,Matchday 21,Motherwell,St Mirren,2,0,"Fir Park, Motherwell",,Oscar Priestman,ENG,Motherwell,MID,0,,0,,0,0,,,On for Watt (injury)
-P021,P013,2026-01-03,Scottish Premiership,Matchday 21,Motherwell,St Mirren,2,0,"Fir Park, Motherwell",,Tom Sparrow,ENG,Motherwell,DEF,0,,0,,0,0,,,On for Maswanhise
-P021,P025,2026-01-03,Scottish Premiership,Matchday 21,Motherwell,St Mirren,2,0,"Fir Park, Motherwell",,Zander McAllister,SCO,Motherwell,MID,0,,0,,0,0,,,On for Slattery
+P021,P015,2026-01-03,Scottish Premiership,Matchday 21,Motherwell,St Mirren,2,0,"Fir Park, Motherwell",,Oscar Priestman,ENG,Motherwell,MID,0,17,0,,0,0,73,,On for Watt 73' (injury)
+P021,P013,2026-01-03,Scottish Premiership,Matchday 21,Motherwell,St Mirren,2,0,"Fir Park, Motherwell",,Tom Sparrow,ENG,Motherwell,DEF,0,17,0,,0,0,73,,On for Maswanhise 73'
+P021,P025,2026-01-03,Scottish Premiership,Matchday 21,Motherwell,St Mirren,2,0,"Fir Park, Motherwell",,Zander McAllister,SCO,Motherwell,MID,0,0,0,,0,0,90,,On for Slattery 90'
 P022,P001,2026-01-10,Scottish Premiership,Matchday 22,Hibernian,Motherwell,1,1,"Easter Road, Edinburgh",,Calum Ward,SCO,Motherwell,GK,1,90,0,,0,0,,,
-P022,P012,2026-01-10,Scottish Premiership,Matchday 22,Hibernian,Motherwell,1,1,"Easter Road, Edinburgh",,Stephen O'Donnell,SCO,Motherwell,DEF,1,,0,,0,0,,,"Substituted off (injury, minute unconfirmed)"
+P022,P012,2026-01-10,Scottish Premiership,Matchday 22,Hibernian,Motherwell,1,1,"Easter Road, Edinburgh",,Stephen O'Donnell,SCO,Motherwell,DEF,1,20,0,,0,0,,20,Substituted off 20' (injury)
 P022,P004,2026-01-10,Scottish Premiership,Matchday 22,Hibernian,Motherwell,1,1,"Easter Road, Edinburgh",,Paul McGinn,SCO,Motherwell,DEF,1,90,0,,0,0,,,
 P022,P018,2026-01-10,Scottish Premiership,Matchday 22,Hibernian,Motherwell,1,1,"Easter Road, Edinburgh",,Stephen Welsh,SCO,Motherwell,DEF,1,,0,,0,0,,,Substituted off (minute unconfirmed)
 P022,P005,2026-01-10,Scottish Premiership,Matchday 22,Hibernian,Motherwell,1,1,"Easter Road, Edinburgh",,Emmanuel Longelo,ENG,Motherwell,DEF,1,90,0,,0,0,,,
@@ -334,7 +338,7 @@ P022,P009,2026-01-10,Scottish Premiership,Matchday 22,Hibernian,Motherwell,1,1,"
 P022,P010,2026-01-10,Scottish Premiership,Matchday 22,Hibernian,Motherwell,1,1,"Easter Road, Edinburgh",,Elijah Just,SCO,Motherwell,MID,1,,0,,0,0,,,Substituted off (minute unconfirmed)
 P022,P014,2026-01-10,Scottish Premiership,Matchday 22,Hibernian,Motherwell,1,1,"Easter Road, Edinburgh",,Ibrahim Sa'id,GHA,Motherwell,MID,1,90,0,,0,0,,,
 P022,P008,2026-01-10,Scottish Premiership,Matchday 22,Hibernian,Motherwell,1,1,"Easter Road, Edinburgh",,Tawanda Maswanhise,ZIM,Motherwell,FWD,1,90,1,,0,0,,,Goal: 52' (assisted by Just)
-P022,P002,2026-01-10,Scottish Premiership,Matchday 22,Hibernian,Motherwell,1,1,"Easter Road, Edinburgh",,Johnny Koutroumbis,GRE,Motherwell,DEF,0,,0,,0,0,,,On for O'Donnell (injury)
+P022,P002,2026-01-10,Scottish Premiership,Matchday 22,Hibernian,Motherwell,1,1,"Easter Road, Edinburgh",,Johnny Koutroumbis,GRE,Motherwell,DEF,0,70,0,,0,0,20,,On for O'Donnell 20' (injury)
 P022,P024,2026-01-10,Scottish Premiership,Matchday 22,Hibernian,Motherwell,1,1,"Easter Road, Edinburgh",,Jordan McGhee,SCO,Motherwell,DEF,0,,0,,0,0,,,On for Just
 P022,P003,2026-01-10,Scottish Premiership,Matchday 22,Hibernian,Motherwell,1,1,"Easter Road, Edinburgh",,Liam Gordon,SCO,Motherwell,DEF,0,,0,,0,0,,,On for Welsh
 P022,OPP_BOW,2026-01-10,Scottish Premiership,Matchday 22,Hibernian,Motherwell,1,1,"Easter Road, Edinburgh",,Kieron Bowie,SCO,Hibernian,FWD,1,,1,,0,0,,,Goal: 69'
@@ -362,18 +366,18 @@ P024,P015,2026-01-31,Scottish Premiership,Matchday 24,Livingston,Motherwell,0,2,
 P024,P010,2026-01-31,Scottish Premiership,Matchday 24,Livingston,Motherwell,0,2,"Almondvale, Livingston",,Elijah Just,SCO,Motherwell,MID,1,90,0,,0,0,,,
 P024,P008,2026-01-31,Scottish Premiership,Matchday 24,Livingston,Motherwell,0,2,"Almondvale, Livingston",,Tawanda Maswanhise,ZIM,Motherwell,FWD,1,90,2,,0,0,,,Goals: 5' and 28' (both in first half)
 P025,P001,2026-02-11,Scottish Premiership,Matchday 25,Motherwell,Rangers,1,1,"Fir Park, Motherwell",,Calum Ward,SCO,Motherwell,GK,1,90,0,,0,0,,,
-P025,P012,2026-02-11,Scottish Premiership,Matchday 25,Motherwell,Rangers,1,1,"Fir Park, Motherwell",,Stephen O'Donnell,SCO,Motherwell,DEF,1,,0,,0,0,,,Substituted off (minute unconfirmed)
+P025,P012,2026-02-11,Scottish Premiership,Matchday 25,Motherwell,Rangers,1,1,"Fir Park, Motherwell",,Stephen O'Donnell,SCO,Motherwell,DEF,1,68,0,,0,0,,68,Substituted off 68'
 P025,P004,2026-02-11,Scottish Premiership,Matchday 25,Motherwell,Rangers,1,1,"Fir Park, Motherwell",,Paul McGinn,SCO,Motherwell,DEF,1,90,0,,0,0,,,
 P025,P018,2026-02-11,Scottish Premiership,Matchday 25,Motherwell,Rangers,1,1,"Fir Park, Motherwell",,Stephen Welsh,SCO,Motherwell,DEF,1,90,1,,0,0,,,Goal: 89' (headed in from Bjorgolfsson flick-on)
 P025,P005,2026-02-11,Scottish Premiership,Matchday 25,Motherwell,Rangers,1,1,"Fir Park, Motherwell",,Emmanuel Longelo,ENG,Motherwell,DEF,1,90,0,,0,0,,,
 P025,P006,2026-02-11,Scottish Premiership,Matchday 25,Motherwell,Rangers,1,1,"Fir Park, Motherwell",,Lukas Fadinger,AUT,Motherwell,MID,1,78,0,,0,1,,,"Red card 78' (yellow upgraded to red by VAR, foul on Mikey Moore); dismissed"
 P025,P007,2026-02-11,Scottish Premiership,Matchday 25,Motherwell,Rangers,1,1,"Fir Park, Motherwell",,Elliot Watt,SCO,Motherwell,MID,1,90,0,,0,0,,,
 P025,P009,2026-02-11,Scottish Premiership,Matchday 25,Motherwell,Rangers,1,1,"Fir Park, Motherwell",,Callum Slattery,SCO,Motherwell,MID,1,90,0,,0,0,,,
-P025,P014,2026-02-11,Scottish Premiership,Matchday 25,Motherwell,Rangers,1,1,"Fir Park, Motherwell",,Ibrahim Sa'id,GHA,Motherwell,MID,1,,0,,0,0,,,Substituted off (minute unconfirmed)
+P025,P014,2026-02-11,Scottish Premiership,Matchday 25,Motherwell,Rangers,1,1,"Fir Park, Motherwell",,Ibrahim Sa'id,GHA,Motherwell,MID,1,68,0,,0,0,,68,Substituted off 68'
 P025,P010,2026-02-11,Scottish Premiership,Matchday 25,Motherwell,Rangers,1,1,"Fir Park, Motherwell",,Elijah Just,SCO,Motherwell,MID,1,90,0,,0,0,,,
 P025,P008,2026-02-11,Scottish Premiership,Matchday 25,Motherwell,Rangers,1,1,"Fir Park, Motherwell",,Tawanda Maswanhise,ZIM,Motherwell,FWD,1,90,0,,0,0,,,
-P025,P013,2026-02-11,Scottish Premiership,Matchday 25,Motherwell,Rangers,1,1,"Fir Park, Motherwell",,Tom Sparrow,ENG,Motherwell,DEF,0,,0,,0,0,,,On for O'Donnell
-P025,P019,2026-02-11,Scottish Premiership,Matchday 25,Motherwell,Rangers,1,1,"Fir Park, Motherwell",,Eythor Bjorgolfsson,ISL,Motherwell,MID,0,,0,1,0,0,,,On for Sa'id; flick-on assisted Welsh's equaliser
+P025,P013,2026-02-11,Scottish Premiership,Matchday 25,Motherwell,Rangers,1,1,"Fir Park, Motherwell",,Tom Sparrow,ENG,Motherwell,DEF,0,22,0,,0,0,68,,On for O'Donnell 68'
+P025,P019,2026-02-11,Scottish Premiership,Matchday 25,Motherwell,Rangers,1,1,"Fir Park, Motherwell",,Eythor Bjorgolfsson,ISL,Motherwell,MID,0,22,0,1,0,0,68,,On for Sa'id 68'; flick-on assisted Welsh's equaliser
 P025,OPP_RAS,2026-02-11,Scottish Premiership,Matchday 25,Motherwell,Rangers,1,1,"Fir Park, Motherwell",,Nicolas Raskin,BEL,Rangers,MID,1,,1,,0,0,,,Goal: 6'
 P026,P001,2026-02-15,Scottish Premiership,Matchday 26,Motherwell,Aberdeen,2,0,"Fir Park, Motherwell",,Calum Ward,SCO,Motherwell,GK,1,90,0,,0,0,,,
 P026,P013,2026-02-15,Scottish Premiership,Matchday 26,Motherwell,Aberdeen,2,0,"Fir Park, Motherwell",,Tom Sparrow,ENG,Motherwell,DEF,1,90,0,,0,0,,,
@@ -391,16 +395,16 @@ SC003,OPP_NIS,2026-02-18,Scottish Cup,Round 5,Aberdeen,Motherwell,2,0,"Pittodrie
 SC003,OPP_SHI,2026-02-18,Scottish Cup,Round 5,Aberdeen,Motherwell,2,0,"Pittodrie, Aberdeen",,Graeme Shinnie,SCO,Aberdeen,MID,1,,1,,0,0,,,Goal (minute unconfirmed)
 P027,P001,2026-02-21,Scottish Premiership,Matchday 27,St Mirren,Motherwell,0,5,"SMISA Stadium, Paisley",,Calum Ward,SCO,Motherwell,GK,1,90,0,,0,0,,,
 P027,P012,2026-02-21,Scottish Premiership,Matchday 27,St Mirren,Motherwell,0,5,"SMISA Stadium, Paisley",,Stephen O'Donnell,SCO,Motherwell,DEF,1,90,0,,0,0,,,Captain
-P027,P004,2026-02-21,Scottish Premiership,Matchday 27,St Mirren,Motherwell,0,5,"SMISA Stadium, Paisley",,Paul McGinn,SCO,Motherwell,DEF,1,90,0,,0,0,,,
+P027,P004,2026-02-21,Scottish Premiership,Matchday 27,St Mirren,Motherwell,0,5,"SMISA Stadium, Paisley",,Paul McGinn,SCO,Motherwell,DEF,1,62,0,,0,0,,62,Substituted off 62'
 P027,P018,2026-02-21,Scottish Premiership,Matchday 27,St Mirren,Motherwell,0,5,"SMISA Stadium, Paisley",,Stephen Welsh,SCO,Motherwell,DEF,1,90,0,,0,0,,,
-P027,P005,2026-02-21,Scottish Premiership,Matchday 27,St Mirren,Motherwell,0,5,"SMISA Stadium, Paisley",,Emmanuel Longelo,ENG,Motherwell,DEF,1,90,1,,0,0,,,Goal (4th of the match)
+P027,P005,2026-02-21,Scottish Premiership,Matchday 27,St Mirren,Motherwell,0,5,"SMISA Stadium, Paisley",,Emmanuel Longelo,ENG,Motherwell,DEF,1,90,1,,0,0,,,Goal: 58' (4th of the match)
 P027,P015,2026-02-21,Scottish Premiership,Matchday 27,St Mirren,Motherwell,0,5,"SMISA Stadium, Paisley",,Oscar Priestman,ENG,Motherwell,MID,1,90,0,,0,0,,,
 P027,P007,2026-02-21,Scottish Premiership,Matchday 27,St Mirren,Motherwell,0,5,"SMISA Stadium, Paisley",,Elliot Watt,SCO,Motherwell,MID,1,90,0,,0,0,,,
 P027,P009,2026-02-21,Scottish Premiership,Matchday 27,St Mirren,Motherwell,0,5,"SMISA Stadium, Paisley",,Callum Slattery,SCO,Motherwell,MID,1,90,0,,0,0,,,
-P027,P010,2026-02-21,Scottish Premiership,Matchday 27,St Mirren,Motherwell,0,5,"SMISA Stadium, Paisley",,Elijah Just,SCO,Motherwell,MID,1,90,1,,0,0,,,Goal: inside 15'
-P027,P014,2026-02-21,Scottish Premiership,Matchday 27,St Mirren,Motherwell,0,5,"SMISA Stadium, Paisley",,Ibrahim Sa'id,GHA,Motherwell,MID,1,90,1,,0,0,,,Goal: ~49'
-P027,P008,2026-02-21,Scottish Premiership,Matchday 27,St Mirren,Motherwell,0,5,"SMISA Stadium, Paisley",,Tawanda Maswanhise,ZIM,Motherwell,FWD,1,90,1,,0,0,,,Goal: penalty before half-time
-P027,P019,2026-02-21,Scottish Premiership,Matchday 27,St Mirren,Motherwell,0,5,"SMISA Stadium, Paisley",,Eythor Bjorgolfsson,ISL,Motherwell,MID,0,,1,,0,0,,,On as sub; scored 5th goal
+P027,P010,2026-02-21,Scottish Premiership,Matchday 27,St Mirren,Motherwell,0,5,"SMISA Stadium, Paisley",,Elijah Just,SCO,Motherwell,MID,1,90,1,,0,0,,,Goal: 14'
+P027,P014,2026-02-21,Scottish Premiership,Matchday 27,St Mirren,Motherwell,0,5,"SMISA Stadium, Paisley",,Ibrahim Sa'id,GHA,Motherwell,MID,1,90,1,,0,0,,,Goal: 49'
+P027,P008,2026-02-21,Scottish Premiership,Matchday 27,St Mirren,Motherwell,0,5,"SMISA Stadium, Paisley",,Tawanda Maswanhise,ZIM,Motherwell,FWD,1,90,1,,0,0,,,Goal: 30' (pen)
+P027,P019,2026-02-21,Scottish Premiership,Matchday 27,St Mirren,Motherwell,0,5,"SMISA Stadium, Paisley",,Eythor Bjorgolfsson,ISL,Motherwell,MID,0,28,1,,0,0,62,,On for McGinn 62'; scored 5th goal at 65'
 P028,P001,2026-02-28,Scottish Premiership,Matchday 28,Motherwell,Dundee United,2,0,"Fir Park, Motherwell",8054,Calum Ward,SCO,Motherwell,GK,1,90,0,,0,0,,,
 P028,P012,2026-02-28,Scottish Premiership,Matchday 28,Motherwell,Dundee United,2,0,"Fir Park, Motherwell",8054,Stephen O'Donnell,SCO,Motherwell,DEF,1,90,0,,0,0,,,
 P028,P004,2026-02-28,Scottish Premiership,Matchday 28,Motherwell,Dundee United,2,0,"Fir Park, Motherwell",8054,Paul McGinn,SCO,Motherwell,DEF,1,90,0,,0,0,,,
@@ -448,8 +452,8 @@ P031,P007,2026-03-21,Scottish Premiership,Matchday 31,Motherwell,Hibernian,0,0,"
 P031,P009,2026-03-21,Scottish Premiership,Matchday 31,Motherwell,Hibernian,0,0,"Fir Park, Motherwell",,Callum Slattery,SCO,Motherwell,MID,1,90,0,,0,0,,,
 P031,P014,2026-03-21,Scottish Premiership,Matchday 31,Motherwell,Hibernian,0,0,"Fir Park, Motherwell",,Ibrahim Sa'id,GHA,Motherwell,MID,1,90,0,,0,0,,,
 P031,P008,2026-03-21,Scottish Premiership,Matchday 31,Motherwell,Hibernian,0,0,"Fir Park, Motherwell",,Tawanda Maswanhise,ZIM,Motherwell,FWD,1,90,0,,0,0,,,
-P031,P010,2026-03-21,Scottish Premiership,Matchday 31,Motherwell,Hibernian,0,0,"Fir Park, Motherwell",,Elijah Just,SCO,Motherwell,MID,1,,0,,0,0,,,"Came off (injury, minute unconfirmed); goal disallowed VAR"
-P031,P019,2026-03-21,Scottish Premiership,Matchday 31,Motherwell,Hibernian,0,0,"Fir Park, Motherwell",,Eythor Bjorgolfsson,ISL,Motherwell,MID,0,,0,,0,0,,,On for Just
+P031,P010,2026-03-21,Scottish Premiership,Matchday 31,Motherwell,Hibernian,0,0,"Fir Park, Motherwell",,Elijah Just,SCO,Motherwell,MID,1,85,0,,0,0,,85,Came off ~85' (injury); goal disallowed VAR
+P031,P019,2026-03-21,Scottish Premiership,Matchday 31,Motherwell,Hibernian,0,0,"Fir Park, Motherwell",,Eythor Bjorgolfsson,ISL,Motherwell,MID,0,5,0,,0,0,85,,On for Just ~85'
 P032,P001,2026-04-04,Scottish Premiership,Matchday 32,Motherwell,Falkirk,2,3,"Fir Park, Motherwell",,Calum Ward,SCO,Motherwell,GK,1,90,0,,0,0,,,
 P032,P012,2026-04-04,Scottish Premiership,Matchday 32,Motherwell,Falkirk,2,3,"Fir Park, Motherwell",,Stephen O'Donnell,SCO,Motherwell,DEF,1,90,0,,0,0,,,
 P032,P004,2026-04-04,Scottish Premiership,Matchday 32,Motherwell,Falkirk,2,3,"Fir Park, Motherwell",,Paul McGinn,SCO,Motherwell,DEF,1,90,0,,0,0,,,
@@ -508,10 +512,10 @@ P035,P008,2026-05-02,Scottish Premiership,Championship Group – Matchday 35,Fal
 P035,P009,2026-05-02,Scottish Premiership,Championship Group – Matchday 35,Falkirk,Motherwell,1,0,"Falkirk Stadium, Falkirk",,Callum Slattery,SCO,Motherwell,MID,1,90,0,,0,0,,,
 P035,P005,2026-05-02,Scottish Premiership,Championship Group – Matchday 35,Falkirk,Motherwell,1,0,"Falkirk Stadium, Falkirk",,Emmanuel Longelo,ENG,Motherwell,DEF,1,90,0,,0,0,,,
 P035,P010,2026-05-02,Scottish Premiership,Championship Group – Matchday 35,Falkirk,Motherwell,1,0,"Falkirk Stadium, Falkirk",,Elijah Just,SCO,Motherwell,MID,1,90,0,,0,0,,,
-P035,P026,2026-05-02,Scottish Premiership,Championship Group – Matchday 35,Falkirk,Motherwell,1,0,"Falkirk Stadium, Falkirk",,Sam Nicholson,SCO,Motherwell,MID,0,,0,,0,0,,,Late sub (chasing game)
-P035,P017,2026-05-02,Scottish Premiership,Championship Group – Matchday 35,Falkirk,Motherwell,1,0,"Falkirk Stadium, Falkirk",,Callum Hendry,SCO,Motherwell,FWD,0,,0,,0,0,,,Late sub
-P035,P014,2026-05-02,Scottish Premiership,Championship Group – Matchday 35,Falkirk,Motherwell,1,0,"Falkirk Stadium, Falkirk",,Ibrahim Sa'id,GHA,Motherwell,MID,0,,0,,0,0,,,Late sub
-P035,P016,2026-05-02,Scottish Premiership,Championship Group – Matchday 35,Falkirk,Motherwell,1,0,"Falkirk Stadium, Falkirk",,Regan Charles-Cook,ENG,Motherwell,MID,0,,0,,0,0,,,Late sub
+P035,P026,2026-05-02,Scottish Premiership,Championship Group – Matchday 35,Falkirk,Motherwell,1,0,"Falkirk Stadium, Falkirk",,Sam Nicholson,SCO,Motherwell,MID,0,28,0,,0,0,62,,On ~62' (chasing game)
+P035,P017,2026-05-02,Scottish Premiership,Championship Group – Matchday 35,Falkirk,Motherwell,1,0,"Falkirk Stadium, Falkirk",,Callum Hendry,SCO,Motherwell,FWD,0,14,0,,0,0,76,,On ~76'
+P035,P014,2026-05-02,Scottish Premiership,Championship Group – Matchday 35,Falkirk,Motherwell,1,0,"Falkirk Stadium, Falkirk",,Ibrahim Sa'id,GHA,Motherwell,MID,0,28,0,,0,0,62,,On ~62'
+P035,P016,2026-05-02,Scottish Premiership,Championship Group – Matchday 35,Falkirk,Motherwell,1,0,"Falkirk Stadium, Falkirk",,Regan Charles-Cook,ENG,Motherwell,MID,0,14,0,,0,0,76,,On ~76'
 P035,OPP_CAR,2026-05-02,Scottish Premiership,Championship Group – Matchday 35,Falkirk,Motherwell,1,0,"Falkirk Stadium, Falkirk",,Henry Cartwright,ENG,Falkirk,FWD,0,,1,,0,0,,,Goal: 63' (as substitute; assist Broggio)
 P036,P001,2026-05-09,Scottish Premiership,Championship Group – Matchday 36,Motherwell,Heart of Midlothian,1,1,"Fir Park, Motherwell",12306,Calum Ward,SCO,Motherwell,GK,1,90,0,,0,0,,,
 P036,P012,2026-05-09,Scottish Premiership,Championship Group – Matchday 36,Motherwell,Heart of Midlothian,1,1,"Fir Park, Motherwell",12306,Stephen O'Donnell,SCO,Motherwell,DEF,1,90,0,,0,0,,,
