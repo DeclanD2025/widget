@@ -1,0 +1,159 @@
+match_id,player_id,date,competition,round,home_team,away_team,home_score,away_score,venue,attendance,player_name,player_nationality,team,position,started,minutes_played,goals,assists,yellow_cards,red_cards,sub_on_min,sub_off_min,notes
+LC001,P008,2025-07-12,Scottish League Cup,Group Stage – Group G,Clyde,Motherwell,2,2,"New Douglas Park, Hamilton",1931,Tawanda Maswanhise,ZIM,Motherwell,FWD,1,90,2,,0,0,,,Goals at 21' and 48'. Penalty shootout goals not counted.
+LC001,OPP_HIL,2025-07-12,Scottish League Cup,Group Stage – Group G,Clyde,Motherwell,2,2,"New Douglas Park, Hamilton",1931,James Hilton,SCO,Clyde,MID,1,,1,,0,0,,,Goal: 16'
+LC001,OPP_SCU,2025-07-12,Scottish League Cup,Group Stage – Group G,Clyde,Motherwell,2,2,"New Douglas Park, Hamilton",1931,Liam Scullion,SCO,Clyde,FWD,1,,1,,0,0,,,Goal: 53'
+LC002,P021,2025-07-15,Scottish League Cup,Group Stage – Group G,Motherwell,Peterhead,2,1,"Fir Park, Motherwell",2657,Connolly,SCO,Motherwell,GK,1,90,0,,0,0,,,GK for early LC; full name unconfirmed
+LC002,P005,2025-07-15,Scottish League Cup,Group Stage – Group G,Motherwell,Peterhead,2,1,"Fir Park, Motherwell",2657,Emmanuel Longelo,ENG,Motherwell,DEF,1,,1,,0,0,,,Goal: 28'
+LC002,P003,2025-07-15,Scottish League Cup,Group Stage – Group G,Motherwell,Peterhead,2,1,"Fir Park, Motherwell",2657,Liam Gordon,SCO,Motherwell,DEF,1,90,0,,0,0,,,
+LC002,P004,2025-07-15,Scottish League Cup,Group Stage – Group G,Motherwell,Peterhead,2,1,"Fir Park, Motherwell",2657,Paul McGinn,SCO,Motherwell,DEF,1,90,0,,0,0,,,
+LC002,P002,2025-07-15,Scottish League Cup,Group Stage – Group G,Motherwell,Peterhead,2,1,"Fir Park, Motherwell",2657,Johnny Koutroumbis,GRE,Motherwell,DEF,1,90,0,,0,0,,,
+LC002,P007,2025-07-15,Scottish League Cup,Group Stage – Group G,Motherwell,Peterhead,2,1,"Fir Park, Motherwell",2657,Elliot Watt,SCO,Motherwell,MID,1,90,0,,0,0,,,
+LC002,P013,2025-07-15,Scottish League Cup,Group Stage – Group G,Motherwell,Peterhead,2,1,"Fir Park, Motherwell",2657,Tom Sparrow,ENG,Motherwell,MID,1,,0,,0,0,,,
+LC002,P006,2025-07-15,Scottish League Cup,Group Stage – Group G,Motherwell,Peterhead,2,1,"Fir Park, Motherwell",2657,Lukas Fadinger,AUT,Motherwell,MID,1,,1,,0,0,,,Goal: 90+1'
+LC002,P009,2025-07-15,Scottish League Cup,Group Stage – Group G,Motherwell,Peterhead,2,1,"Fir Park, Motherwell",2657,Callum Slattery,SCO,Motherwell,MID,1,90,0,,0,0,,,
+LC002,P010,2025-07-15,Scottish League Cup,Group Stage – Group G,Motherwell,Peterhead,2,1,"Fir Park, Motherwell",2657,Elijah Just,SCO,Motherwell,MID,1,90,0,,0,0,,,
+LC002,P020,2025-07-15,Scottish League Cup,Group Stage – Group G,Motherwell,Peterhead,2,1,"Fir Park, Motherwell",2657,Akinola Sule,ENG,Motherwell,FWD,1,,0,,0,0,,,
+LC003,P012,2025-07-19,Scottish League Cup,Group Stage – Group G,Stenhousemuir,Motherwell,0,1,"Ochilview Park, Stenhousemuir",,Stephen O'Donnell,SCO,Motherwell,DEF,1,,1,,0,0,,,Goal: first half (exact minute unconfirmed). Captain.
+LC004,P011,2025-07-22,Scottish League Cup,Group Stage – Group G,Motherwell,Greenock Morton,3,0,"Fir Park, Motherwell",,Apostolos Stamatelopoulos,GRE,Motherwell,FWD,1,,1,,0,0,,,Opening goal
+LC004,P008,2025-07-22,Scottish League Cup,Group Stage – Group G,Motherwell,Greenock Morton,3,0,"Fir Park, Motherwell",,Tawanda Maswanhise,ZIM,Motherwell,FWD,1,,2,,0,0,,,Brace. Described as 'magnificent double'
+LC004,P003,2025-07-22,Scottish League Cup,Group Stage – Group G,Motherwell,Greenock Morton,3,0,"Fir Park, Motherwell",,Liam Gordon,SCO,Motherwell,DEF,1,,0,1,0,0,,,1 confirmed assist
+P001,P001,2025-08-02,Scottish Premiership,Matchday 1,Motherwell,Rangers,1,1,"Fir Park, Motherwell",8500,Calum Ward,SCO,Motherwell,GK,1,90,0,,0,0,,,
+P001,P002,2025-08-02,Scottish Premiership,Matchday 1,Motherwell,Rangers,1,1,"Fir Park, Motherwell",8500,Johnny Koutroumbis,GRE,Motherwell,DEF,1,90,0,,0,0,,,
+P001,P003,2025-08-02,Scottish Premiership,Matchday 1,Motherwell,Rangers,1,1,"Fir Park, Motherwell",8500,Liam Gordon,SCO,Motherwell,DEF,1,90,0,,0,0,,,
+P001,P004,2025-08-02,Scottish Premiership,Matchday 1,Motherwell,Rangers,1,1,"Fir Park, Motherwell",8500,Paul McGinn,SCO,Motherwell,DEF,1,90,0,,0,0,,,
+P001,P005,2025-08-02,Scottish Premiership,Matchday 1,Motherwell,Rangers,1,1,"Fir Park, Motherwell",8500,Emmanuel Longelo,ENG,Motherwell,DEF,1,90,1,,0,0,,,Goal: 87'
+P001,P006,2025-08-02,Scottish Premiership,Matchday 1,Motherwell,Rangers,1,1,"Fir Park, Motherwell",8500,Lukas Fadinger,AUT,Motherwell,MID,1,90,0,,0,0,,,
+P001,P007,2025-08-02,Scottish Premiership,Matchday 1,Motherwell,Rangers,1,1,"Fir Park, Motherwell",8500,Elliot Watt,SCO,Motherwell,MID,1,90,0,,0,0,,,
+P001,P008,2025-08-02,Scottish Premiership,Matchday 1,Motherwell,Rangers,1,1,"Fir Park, Motherwell",8500,Tawanda Maswanhise,ZIM,Motherwell,FWD,1,90,0,,0,0,,,
+P001,P009,2025-08-02,Scottish Premiership,Matchday 1,Motherwell,Rangers,1,1,"Fir Park, Motherwell",8500,Callum Slattery,SCO,Motherwell,MID,1,90,0,,0,0,,,
+P001,P010,2025-08-02,Scottish Premiership,Matchday 1,Motherwell,Rangers,1,1,"Fir Park, Motherwell",8500,Elijah Just,SCO,Motherwell,MID,1,90,0,,0,0,,,
+P001,P011,2025-08-02,Scottish Premiership,Matchday 1,Motherwell,Rangers,1,1,"Fir Park, Motherwell",8500,Apostolos Stamatelopoulos,GRE,Motherwell,FWD,1,90,0,,0,0,,,
+P001,OPP_TAV,2025-08-02,Scottish Premiership,Matchday 1,Motherwell,Rangers,1,1,"Fir Park, Motherwell",8500,James Tavernier,ENG,Rangers,DEF,1,,1,,0,0,,,"Goal: header (first half, minute unconfirmed)"
+P002,,2025-08-09,Scottish Premiership,Matchday 2,St Mirren,Motherwell,0,0,"SMISA Stadium, Paisley",6735,,,,,,,,,,,,,No confirmed player-level data for this match
+LC005,P006,2025-08-16,Scottish League Cup,Last 16,St Johnstone,Motherwell,0,1,"McDiarmid Park, Perth",,Lukas Fadinger,AUT,Motherwell,MID,1,120,1,,0,0,,,Goal in extra time
+P003,P009,2025-08-23,Scottish Premiership,Matchday 3,Heart of Midlothian,Motherwell,3,3,"Tynecastle, Edinburgh",,Callum Slattery,SCO,Motherwell,MID,1,,1,,0,0,,,Goal: 21'
+P003,P008,2025-08-23,Scottish Premiership,Matchday 3,Heart of Midlothian,Motherwell,3,3,"Tynecastle, Edinburgh",,Tawanda Maswanhise,ZIM,Motherwell,FWD,1,,1,,0,0,,,Goal: 49'
+P003,P005,2025-08-23,Scottish Premiership,Matchday 3,Heart of Midlothian,Motherwell,3,3,"Tynecastle, Edinburgh",,Emmanuel Longelo,ENG,Motherwell,DEF,1,,1,,0,0,,,Goal: 62'
+P003,OPP_MIL,2025-08-23,Scottish Premiership,Matchday 3,Heart of Midlothian,Motherwell,3,3,"Tynecastle, Edinburgh",,Harry Milne,SCO,Heart of Midlothian,MID,1,,1,,0,0,,,Goal: 65'
+P003,OPP_BRA,2025-08-23,Scottish Premiership,Matchday 3,Heart of Midlothian,Motherwell,3,3,"Tynecastle, Edinburgh",,Claudio Braga,POR,Heart of Midlothian,MID,1,,2,,0,0,,,Goals: 74' and 83'
+P004,P008,2025-08-30,Scottish Premiership,Matchday 4,Motherwell,Kilmarnock,2,2,"Fir Park, Motherwell",,Tawanda Maswanhise,ZIM,Motherwell,FWD,1,,1,,0,0,,,Goal: 45+1'
+P004,P005,2025-08-30,Scottish Premiership,Matchday 4,Motherwell,Kilmarnock,2,2,"Fir Park, Motherwell",,Emmanuel Longelo,ENG,Motherwell,DEF,1,,1,,0,0,,,Goal: 62'
+P004,OPP_DAN,2025-08-30,Scottish Premiership,Matchday 4,Motherwell,Kilmarnock,2,2,"Fir Park, Motherwell",,Djenario Daniels,ENG,Kilmarnock,MID,1,,1,,0,0,,,Goal: 19'
+P004,OPP_STA_K,2025-08-30,Scottish Premiership,Matchday 4,Motherwell,Kilmarnock,2,2,"Fir Park, Motherwell",,George Stanger,SCO,Kilmarnock,DEF,1,,1,,0,0,,,Goal: 81'
+P005,P008,2025-09-13,Scottish Premiership,Matchday 5,Dundee,Motherwell,1,1,"Dens Park, Dundee",,Tawanda Maswanhise,ZIM,Motherwell,FWD,1,,1,,0,0,,,Goal: 33'
+LC006,P016,2025-09-20,Scottish League Cup,Quarter-Final,Aberdeen,Motherwell,0,1,"Pittodrie, Aberdeen",10533,Regan Charles-Cook,ENG,Motherwell,MID,1,,1,,0,0,,,Goal: 63'
+P006,P001,2025-09-27,Scottish Premiership,Matchday 6,Motherwell,Aberdeen,2,0,"Fir Park, Motherwell",,Calum Ward,SCO,Motherwell,GK,1,90,0,,0,0,,,
+P006,P005,2025-09-27,Scottish Premiership,Matchday 6,Motherwell,Aberdeen,2,0,"Fir Park, Motherwell",,Emmanuel Longelo,ENG,Motherwell,DEF,1,,0,,0,0,,,
+P006,P018,2025-09-27,Scottish Premiership,Matchday 6,Motherwell,Aberdeen,2,0,"Fir Park, Motherwell",,Stephen Welsh,SCO,Motherwell,DEF,1,,0,,0,0,,,On loan from Celtic
+P006,P016,2025-09-27,Scottish Premiership,Matchday 6,Motherwell,Aberdeen,2,0,"Fir Park, Motherwell",,Regan Charles-Cook,ENG,Motherwell,MID,1,,0,,0,0,,,
+P006,P014,2025-09-27,Scottish Premiership,Matchday 6,Motherwell,Aberdeen,2,0,"Fir Park, Motherwell",,Ibrahim Sa'id,GHA,Motherwell,MID,1,,0,,0,0,,,
+P006,P008,2025-09-27,Scottish Premiership,Matchday 6,Motherwell,Aberdeen,2,0,"Fir Park, Motherwell",,Tawanda Maswanhise,ZIM,Motherwell,FWD,1,,0,,0,0,,,
+P006,P011,2025-09-27,Scottish Premiership,Matchday 6,Motherwell,Aberdeen,2,0,"Fir Park, Motherwell",,Apostolos Stamatelopoulos,GRE,Motherwell,FWD,1,,1,,0,0,,,Goal: 90+7' (penalty)
+P006,P006,2025-09-27,Scottish Premiership,Matchday 6,Motherwell,Aberdeen,2,0,"Fir Park, Motherwell",,Lukas Fadinger,AUT,Motherwell,MID,1,,0,,0,0,,,
+P006,P007,2025-09-27,Scottish Premiership,Matchday 6,Motherwell,Aberdeen,2,0,"Fir Park, Motherwell",,Elliot Watt,SCO,Motherwell,MID,1,,0,,0,0,,,
+P006,P002,2025-09-27,Scottish Premiership,Matchday 6,Motherwell,Aberdeen,2,0,"Fir Park, Motherwell",,Johnny Koutroumbis,GRE,Motherwell,DEF,1,,1,,0,0,,,Goal: 90+2'
+P007,P011,2025-10-05,Scottish Premiership,Matchday 7,Celtic,Motherwell,3,2,"Celtic Park, Glasgow",,Apostolos Stamatelopoulos,GRE,Motherwell,FWD,1,,2,,0,0,,,Goals: 40' and 56' (pen)
+P007,OPP_IHE,2025-10-05,Scottish Premiership,Matchday 7,Celtic,Motherwell,3,2,"Celtic Park, Glasgow",,Kelechi Iheanacho,NGA,Celtic,FWD,1,,1,,0,0,,,Goal: 28' (pen)
+P007,OPP_MAE,2025-10-05,Scottish Premiership,Matchday 7,Celtic,Motherwell,3,2,"Celtic Park, Glasgow",,Daizen Maeda,JPN,Celtic,FWD,1,,1,,0,0,,,Goal: 90+2'
+P008,P008,2025-10-18,Scottish Premiership,Matchday 8,Motherwell,Falkirk,1,2,"Fir Park, Motherwell",,Tawanda Maswanhise,ZIM,Motherwell,FWD,1,,1,,0,0,,,Goal: first half (exact minute unconfirmed)
+P008,OPP_CAL,2025-10-18,Scottish Premiership,Matchday 8,Motherwell,Falkirk,1,2,"Fir Park, Motherwell",,Calvin Miller,SCO,Falkirk,MID,1,,1,,0,0,,,Goal (second half)
+P008,OPP_ARS,2025-10-18,Scottish Premiership,Matchday 8,Motherwell,Falkirk,1,2,"Fir Park, Motherwell",,Scott Arfield,SCO,Falkirk,MID,0,,1,,0,0,,,Goal as substitute
+P009,,2025-10-25,Scottish Premiership,Matchday 9,Livingston,Motherwell,1,2,"Almondvale, Livingston",,,,,,,,,,,,,,No confirmed player-level data for this match
+P010,P008,2025-10-29,Scottish Premiership,Matchday 10,Motherwell,Dundee United,2,0,"Fir Park, Motherwell",,Tawanda Maswanhise,ZIM,Motherwell,FWD,1,,1,,0,0,,,Goal: 42'
+P010,P007,2025-10-29,Scottish Premiership,Matchday 10,Motherwell,Dundee United,2,0,"Fir Park, Motherwell",,Elliot Watt,SCO,Motherwell,MID,1,,1,,0,0,,,Goal: 77'
+LC007,P017,2025-11-01,Scottish League Cup,Semi-Final,Motherwell,St Mirren,1,4,"Hampden Park, Glasgow",,Callum Hendry,SCO,Motherwell,FWD,1,,1,,0,0,,,Goal: 83'
+LC007,OPP_MAN,2025-11-01,Scottish League Cup,Semi-Final,Motherwell,St Mirren,1,4,"Hampden Park, Glasgow",,Mikael Mandron,FRA,St Mirren,FWD,1,,2,,0,0,,,Goals: 25' and 89'
+LC007,OPP_NLU,2025-11-01,Scottish League Cup,Semi-Final,Motherwell,St Mirren,1,4,"Hampden Park, Glasgow",,Daniel N'Lundulu,FRA,St Mirren,FWD,1,,1,,0,0,,,Goal: 40'
+LC007,OPP_KIN_SM,2025-11-01,Scottish League Cup,Semi-Final,Motherwell,St Mirren,1,4,"Hampden Park, Glasgow",,Richard King,SCO,St Mirren,MID,1,,1,,0,0,,,Goal: 86'
+P011,P010,2025-11-09,Scottish Premiership,Matchday 11,Aberdeen,Motherwell,1,1,"Pittodrie, Aberdeen",,Elijah Just,SCO,Motherwell,MID,1,,1,,0,0,,,Goal: 64'
+P011,OPP_KAR,2025-11-09,Scottish Premiership,Matchday 11,Aberdeen,Motherwell,1,1,"Pittodrie, Aberdeen",,Jesper Karlsson,SWE,Aberdeen,FWD,1,,1,,0,0,,,Goal: 61'
+P012,P008,2025-11-22,Scottish Premiership,Matchday 12,Kilmarnock,Motherwell,1,3,"BBSP Stadium, Kilmarnock",,Tawanda Maswanhise,ZIM,Motherwell,FWD,1,,2,,0,0,,,Goals: 16' and 26'
+P012,P011,2025-11-22,Scottish Premiership,Matchday 12,Kilmarnock,Motherwell,1,3,"BBSP Stadium, Kilmarnock",,Apostolos Stamatelopoulos,GRE,Motherwell,FWD,1,,1,,0,0,,,Goal: 68' (pen)
+P012,OPP_TIF,2025-11-22,Scottish Premiership,Matchday 12,Kilmarnock,Motherwell,1,3,"BBSP Stadium, Kilmarnock",,Scott Tiffoney,SCO,Kilmarnock,FWD,1,,1,,0,0,,,Goal: 49'
+P013,P008,2025-11-25,Scottish Premiership,Matchday 13,Motherwell,Hibernian,2,0,"Fir Park, Motherwell",6585,Tawanda Maswanhise,ZIM,Motherwell,FWD,1,,1,,0,0,,,Goal: 19' (pen)
+P013,P010,2025-11-25,Scottish Premiership,Matchday 13,Motherwell,Hibernian,2,0,"Fir Park, Motherwell",6585,Elijah Just,SCO,Motherwell,MID,1,,1,,0,0,,,Goal: 22'
+P014,,2025-11-29,Scottish Premiership,Matchday 14,Motherwell,Heart of Midlothian,0,0,"Fir Park, Motherwell",,,,,,,,,,,,,,No confirmed player-level data for this match
+SC001,OPP_HIL,2025-11-29,Scottish Cup,Round 3,Clyde,Motherwell,2,2,"Broadwood Stadium, Cumbernauld",,James Hilton,SCO,Clyde,MID,1,,1,,0,0,,,Goal in 90 mins (minute unconfirmed)
+SC001,OPP_SCU,2025-11-29,Scottish Cup,Round 3,Clyde,Motherwell,2,2,"Broadwood Stadium, Cumbernauld",,Liam Scullion,SCO,Clyde,FWD,1,,1,,0,0,,,Goal in 90 mins (minute unconfirmed)
+P015,,2025-12-03,Scottish Premiership,Matchday 15,Falkirk,Motherwell,0,0,"Falkirk Stadium, Falkirk",,,,,,,,,,,,,,No confirmed player-level data for this match
+P016,,2025-12-06,Scottish Premiership,Matchday 16,Motherwell,Livingston,3,0,"Fir Park, Motherwell",,,,,,,,,,,,,,No confirmed player-level data for this match
+P017,,2025-12-13,Scottish Premiership,Matchday 17,Dundee United,Motherwell,0,0,"Tannadice, Dundee",,,,,,,,,,,,,,No confirmed player-level data for this match
+P018,P009,2025-12-20,Scottish Premiership,Matchday 18,Motherwell,Dundee,1,0,"Fir Park, Motherwell",,Callum Slattery,SCO,Motherwell,MID,1,,1,,0,0,,,Goal: 82'
+P019,OPP_AAS,2025-12-27,Scottish Premiership,Matchday 19,Rangers,Motherwell,1,0,"Ibrox, Glasgow",,Thelo Aasgaard,NOR,Rangers,MID,1,,1,,0,0,,,Goal: 67'
+P020,P001,2025-12-30,Scottish Premiership,Matchday 20,Motherwell,Celtic,2,0,"Fir Park, Motherwell",11435,Calum Ward,SCO,Motherwell,GK,1,90,0,,0,0,,,
+P020,P002,2025-12-30,Scottish Premiership,Matchday 20,Motherwell,Celtic,2,0,"Fir Park, Motherwell",11435,Johnny Koutroumbis,GRE,Motherwell,DEF,1,90,0,,0,0,,,
+P020,P004,2025-12-30,Scottish Premiership,Matchday 20,Motherwell,Celtic,2,0,"Fir Park, Motherwell",11435,Paul McGinn,SCO,Motherwell,DEF,1,90,0,,0,0,,,
+P020,P012,2025-12-30,Scottish Premiership,Matchday 20,Motherwell,Celtic,2,0,"Fir Park, Motherwell",11435,Stephen O'Donnell,SCO,Motherwell,DEF,1,90,0,,0,0,,,Captain
+P020,P013,2025-12-30,Scottish Premiership,Matchday 20,Motherwell,Celtic,2,0,"Fir Park, Motherwell",11435,Tom Sparrow,ENG,Motherwell,DEF,1,90,0,,0,0,,,
+P020,P007,2025-12-30,Scottish Premiership,Matchday 20,Motherwell,Celtic,2,0,"Fir Park, Motherwell",11435,Elliot Watt,SCO,Motherwell,MID,1,90,1,,0,0,,,Goal: 58'
+P020,P015,2025-12-30,Scottish Premiership,Matchday 20,Motherwell,Celtic,2,0,"Fir Park, Motherwell",11435,Oscar Priestman,ENG,Motherwell,MID,1,90,0,,0,0,,,
+P020,P006,2025-12-30,Scottish Premiership,Matchday 20,Motherwell,Celtic,2,0,"Fir Park, Motherwell",11435,Lukas Fadinger,AUT,Motherwell,MID,1,90,0,,0,0,,,
+P020,P009,2025-12-30,Scottish Premiership,Matchday 20,Motherwell,Celtic,2,0,"Fir Park, Motherwell",11435,Callum Slattery,SCO,Motherwell,MID,1,90,0,,0,0,,,
+P020,P010,2025-12-30,Scottish Premiership,Matchday 20,Motherwell,Celtic,2,0,"Fir Park, Motherwell",11435,Elijah Just,SCO,Motherwell,MID,1,90,0,,0,0,,,
+P020,P014,2025-12-30,Scottish Premiership,Matchday 20,Motherwell,Celtic,2,0,"Fir Park, Motherwell",11435,Ibrahim Sa'id,GHA,Motherwell,FWD,1,90,1,,0,0,,,Goal: 14'
+P021,P008,2026-01-03,Scottish Premiership,Matchday 21,Motherwell,St Mirren,2,0,"Fir Park, Motherwell",,Tawanda Maswanhise,ZIM,Motherwell,FWD,1,,1,,0,0,,,Goal (minute unconfirmed)
+P021,P007,2026-01-03,Scottish Premiership,Matchday 21,Motherwell,St Mirren,2,0,"Fir Park, Motherwell",,Elliot Watt,SCO,Motherwell,MID,1,,1,,0,0,,,Goal (minute unconfirmed)
+P022,P008,2026-01-10,Scottish Premiership,Matchday 22,Hibernian,Motherwell,1,1,"Easter Road, Edinburgh",,Tawanda Maswanhise,ZIM,Motherwell,FWD,1,,1,,0,0,,,Goal: 10'. Assist: E. Just (unconfirmed)
+P022,OPP_BOW,2026-01-10,Scottish Premiership,Matchday 22,Hibernian,Motherwell,1,1,"Easter Road, Edinburgh",,Kieron Bowie,SCO,Hibernian,FWD,1,,1,,0,0,,,Goal (minute unconfirmed)
+SC002,,2026-01-18,Scottish Cup,Round 4,St Johnstone,Motherwell,,,"McDiarmid Park, Perth",,,,,,,,,,,,,,No confirmed player-level data for this match
+P023,P001,2026-01-24,Scottish Premiership,Matchday 23,Motherwell,Kilmarnock,4,0,"Fir Park, Motherwell",6243,Calum Ward,SCO,Motherwell,GK,1,90,0,,0,0,,,
+P023,P013,2026-01-24,Scottish Premiership,Matchday 23,Motherwell,Kilmarnock,4,0,"Fir Park, Motherwell",6243,Tom Sparrow,ENG,Motherwell,DEF,1,90,0,,0,0,,,
+P023,P012,2026-01-24,Scottish Premiership,Matchday 23,Motherwell,Kilmarnock,4,0,"Fir Park, Motherwell",6243,Stephen O'Donnell,SCO,Motherwell,DEF,1,90,0,,0,0,,,Captain
+P023,P004,2026-01-24,Scottish Premiership,Matchday 23,Motherwell,Kilmarnock,4,0,"Fir Park, Motherwell",6243,Paul McGinn,SCO,Motherwell,DEF,1,90,0,,0,0,,,
+P023,P005,2026-01-24,Scottish Premiership,Matchday 23,Motherwell,Kilmarnock,4,0,"Fir Park, Motherwell",6243,Emmanuel Longelo,ENG,Motherwell,DEF,1,90,0,,0,0,,,
+P023,P015,2026-01-24,Scottish Premiership,Matchday 23,Motherwell,Kilmarnock,4,0,"Fir Park, Motherwell",6243,Oscar Priestman,ENG,Motherwell,MID,1,90,0,,0,0,,,
+P023,P006,2026-01-24,Scottish Premiership,Matchday 23,Motherwell,Kilmarnock,4,0,"Fir Park, Motherwell",6243,Lukas Fadinger,AUT,Motherwell,MID,1,90,1,,0,0,,,Goal: 82'
+P023,P014,2026-01-24,Scottish Premiership,Matchday 23,Motherwell,Kilmarnock,4,0,"Fir Park, Motherwell",6243,Ibrahim Sa'id,GHA,Motherwell,MID,1,90,1,,0,0,,,Goal: 56'
+P023,P010,2026-01-24,Scottish Premiership,Matchday 23,Motherwell,Kilmarnock,4,0,"Fir Park, Motherwell",6243,Elijah Just,SCO,Motherwell,MID,1,90,1,,0,0,,,Goal: 29'
+P023,P009,2026-01-24,Scottish Premiership,Matchday 23,Motherwell,Kilmarnock,4,0,"Fir Park, Motherwell",6243,Callum Slattery,SCO,Motherwell,MID,1,90,0,,0,0,,,
+P023,P008,2026-01-24,Scottish Premiership,Matchday 23,Motherwell,Kilmarnock,4,0,"Fir Park, Motherwell",6243,Tawanda Maswanhise,ZIM,Motherwell,FWD,1,90,1,,0,0,,,Goal: 45+1'
+P024,P008,2026-01-31,Scottish Premiership,Matchday 24,Livingston,Motherwell,0,2,"Almondvale, Livingston",,Tawanda Maswanhise,ZIM,Motherwell,FWD,1,,2,,0,0,,,Brace: both in first half
+P025,P018,2026-02-11,Scottish Premiership,Matchday 25,Motherwell,Rangers,1,1,"Fir Park, Motherwell",,Stephen Welsh,SCO,Motherwell,DEF,1,,1,,0,0,,,Late equaliser. Motherwell finished with 10 men (red card holder unconfirmed).
+P025,OPP_RAS,2026-02-11,Scottish Premiership,Matchday 25,Motherwell,Rangers,1,1,"Fir Park, Motherwell",,Nicolas Raskin,BEL,Rangers,MID,1,,1,,0,0,,,Opened scoring
+P026,P010,2026-02-15,Scottish Premiership,Matchday 26,Motherwell,Aberdeen,2,0,"Fir Park, Motherwell",,Elijah Just,SCO,Motherwell,MID,1,,1,,0,0,,,Goal: 28'
+P026,OPP_MCT_OG,2026-02-15,Scottish Premiership,Matchday 26,Motherwell,Aberdeen,2,0,"Fir Park, Motherwell",,Tom McIntyre,SCO,Aberdeen,DEF,1,,0,,0,0,,,Own goal: 90+3' (credited to Motherwell)
+SC003,OPP_NIS,2026-02-18,Scottish Cup,Round 5,Aberdeen,Motherwell,2,0,"Pittodrie, Aberdeen",,Kevin Nisbet,SCO,Aberdeen,FWD,1,,1,,0,0,,,Goal (minute unconfirmed)
+SC003,OPP_SHI,2026-02-18,Scottish Cup,Round 5,Aberdeen,Motherwell,2,0,"Pittodrie, Aberdeen",,Graeme Shinnie,SCO,Aberdeen,MID,1,,1,,0,0,,,Goal (minute unconfirmed)
+P027,P010,2026-02-21,Scottish Premiership,Matchday 27,St Mirren,Motherwell,0,5,"SMISA Stadium, Paisley",,Elijah Just,SCO,Motherwell,MID,1,,1,,0,0,,,Opening goal (inside 15')
+P027,P008,2026-02-21,Scottish Premiership,Matchday 27,St Mirren,Motherwell,0,5,"SMISA Stadium, Paisley",,Tawanda Maswanhise,ZIM,Motherwell,FWD,1,,1,,0,0,,,Penalty before half-time
+P027,P014,2026-02-21,Scottish Premiership,Matchday 27,St Mirren,Motherwell,0,5,"SMISA Stadium, Paisley",,Ibrahim Sa'id,GHA,Motherwell,MID,1,,1,,0,0,,,Goal: ~49'
+P027,P005,2026-02-21,Scottish Premiership,Matchday 27,St Mirren,Motherwell,0,5,"SMISA Stadium, Paisley",,Emmanuel Longelo,ENG,Motherwell,DEF,1,,1,,0,0,,,Goal (4th goal of the match)
+P027,P019,2026-02-21,Scottish Premiership,Matchday 27,St Mirren,Motherwell,0,5,"SMISA Stadium, Paisley",,Eythor Bjorgolfsson,ISL,Motherwell,MID,1,,1,,0,0,,,Goal (5th goal of the match). Winter signing.
+P028,P008,2026-02-28,Scottish Premiership,Matchday 28,Motherwell,Dundee United,2,0,"Fir Park, Motherwell",8054,Tawanda Maswanhise,ZIM,Motherwell,FWD,1,,2,,0,0,,,Goals: 37' (pen) and 46' (deflected)
+P029,P009,2026-03-07,Scottish Premiership,Matchday 29,Dundee,Motherwell,2,1,"Dens Park, Dundee",6304,Callum Slattery,SCO,Motherwell,MID,1,,1,,0,0,,,Goal: 78'
+P029,OPP_YOG,2026-03-07,Scottish Premiership,Matchday 29,Dundee,Motherwell,2,1,"Dens Park, Dundee",6304,Tony Yogane,NGA,Dundee,FWD,1,,1,,0,0,,,Goal: 32'
+P029,OPP_ROB_D,2026-03-07,Scottish Premiership,Matchday 29,Dundee,Motherwell,2,1,"Dens Park, Dundee",6304,Finlay Robertson,SCO,Dundee,MID,1,,1,,0,0,,,Goal: 84'
+P030,OPP_IHE,2026-03-14,Scottish Premiership,Matchday 30,Celtic,Motherwell,3,1,"Celtic Park, Glasgow",,Kelechi Iheanacho,NGA,Celtic,FWD,1,,1,,0,0,,,Scorer (minute unconfirmed)
+P030,OPP_MAE,2026-03-14,Scottish Premiership,Matchday 30,Celtic,Motherwell,3,1,"Celtic Park, Glasgow",,Daizen Maeda,JPN,Celtic,FWD,1,,1,,0,0,,,Scorer (minute unconfirmed)
+P031,,2026-03-21,Scottish Premiership,Matchday 31,Motherwell,Hibernian,0,0,"Fir Park, Motherwell",,,,,,,,,,,,,,No confirmed player-level data for this match
+P032,P007,2026-04-04,Scottish Premiership,Matchday 32,Motherwell,Falkirk,2,3,"Fir Park, Motherwell",,Elliot Watt,SCO,Motherwell,MID,1,,1,,0,0,,,Goal: 34'
+P032,P008,2026-04-04,Scottish Premiership,Matchday 32,Motherwell,Falkirk,2,3,"Fir Park, Motherwell",,Tawanda Maswanhise,ZIM,Motherwell,FWD,1,,1,,0,0,,,Goal: ~90+' (last kick)
+P032,OPP_STW,2026-04-04,Scottish Premiership,Matchday 32,Motherwell,Falkirk,2,3,"Fir Park, Motherwell",,Barney Stewart,SCO,Falkirk,DEF,1,,1,,0,0,,,Goal: ~3-4' (free kick)
+P032,OPP_BRO_F,2026-04-04,Scottish Premiership,Matchday 32,Motherwell,Falkirk,2,3,"Fir Park, Motherwell",,Ben Broggio,SCO,Falkirk,FWD,1,,1,,0,0,,,Goal (restored Falkirk lead before half-time)
+P032,OPP_CAL,2026-04-04,Scottish Premiership,Matchday 32,Motherwell,Falkirk,2,3,"Fir Park, Motherwell",,Calvin Miller,SCO,Falkirk,MID,1,,1,,0,0,,,Goal: ~60+' (penalty)
+P033,P005,2026-04-11,Scottish Premiership,Matchday 33,Heart of Midlothian,Motherwell,3,1,"Tynecastle, Edinburgh",18800,Emmanuel Longelo,ENG,Motherwell,DEF,1,,1,,0,0,,,Goal: second half opener for Motherwell
+P033,OPP_BRA,2026-04-11,Scottish Premiership,Matchday 33,Heart of Midlothian,Motherwell,3,1,"Tynecastle, Edinburgh",18800,Claudio Braga,POR,Heart of Midlothian,MID,1,,1,,0,0,,,Equaliser
+P033,OPP_SHA,2026-04-11,Scottish Premiership,Matchday 33,Heart of Midlothian,Motherwell,3,1,"Tynecastle, Edinburgh",18800,Lawrence Shankland,SCO,Heart of Midlothian,FWD,1,,1,,0,0,,,Penalty (gave Hearts lead)
+P033,OPP_KAB,2026-04-11,Scottish Premiership,Matchday 33,Heart of Midlothian,Motherwell,3,1,"Tynecastle, Edinburgh",18800,Pierre Landry Kabore,CIV,Heart of Midlothian,MID,1,,1,,0,0,,,Late third goal
+P034,P006,2026-04-26,Scottish Premiership,Championship Group – Matchday 34,Rangers,Motherwell,2,3,"Ibrox, Glasgow",,Lukas Fadinger,AUT,Motherwell,MID,1,,1,,0,0,,,Goal: early opener
+P034,P005,2026-04-26,Scottish Premiership,Championship Group – Matchday 34,Rangers,Motherwell,2,3,"Ibrox, Glasgow",,Emmanuel Longelo,ENG,Motherwell,DEF,1,,2,,0,0,,,Goals: first half + 90+' winner (second deflected)
+P034,OPP_CHE,2026-04-26,Scottish Premiership,Championship Group – Matchday 34,Rangers,Motherwell,2,3,"Ibrox, Glasgow",,Youssef Chermiti,POR,Rangers,FWD,1,,1,,0,0,,,Pulled back to 2-2
+P034,OPP_RAS,2026-04-26,Scottish Premiership,Championship Group – Matchday 34,Rangers,Motherwell,2,3,"Ibrox, Glasgow",,Nicolas Raskin,BEL,Rangers,MID,1,,1,,0,0,,,Second equaliser at 2-2
+P035,OPP_CAR,2026-05-02,Scottish Premiership,Championship Group – Matchday 35,Falkirk,Motherwell,1,0,"Falkirk Stadium, Falkirk",,Henry Cartwright,ENG,Falkirk,FWD,1,,1,,0,0,,,Goal: 63'
+P036,OPP_KIN_OG,2026-05-09,Scottish Premiership,Championship Group – Matchday 36,Motherwell,Heart of Midlothian,1,1,"Fir Park, Motherwell",,Stephen Kingsley,SCO,Heart of Midlothian,DEF,1,,0,,0,0,,,Own goal: 25' (credited to Motherwell)
+P036,OPP_SHA,2026-05-09,Scottish Premiership,Championship Group – Matchday 36,Motherwell,Heart of Midlothian,1,1,"Fir Park, Motherwell",,Lawrence Shankland,SCO,Heart of Midlothian,FWD,1,,1,,0,0,,,Goal: 43'
+P037,P001,2026-05-13,Scottish Premiership,Championship Group – Matchday 37,Motherwell,Celtic,2,3,"Fir Park, Motherwell",,Calum Ward,SCO,Motherwell,GK,1,90,0,,0,0,,,
+P037,P003,2026-05-13,Scottish Premiership,Championship Group – Matchday 37,Motherwell,Celtic,2,3,"Fir Park, Motherwell",,Liam Gordon,SCO,Motherwell,DEF,1,90,1,,0,0,,,Goal: 85'
+P037,P012,2026-05-13,Scottish Premiership,Championship Group – Matchday 37,Motherwell,Celtic,2,3,"Fir Park, Motherwell",,Stephen O'Donnell,SCO,Motherwell,DEF,1,90,0,,0,0,,,Captain
+P037,P018,2026-05-13,Scottish Premiership,Championship Group – Matchday 37,Motherwell,Celtic,2,3,"Fir Park, Motherwell",,Stephen Welsh,SCO,Motherwell,DEF,1,90,0,,0,0,,,
+P037,P005,2026-05-13,Scottish Premiership,Championship Group – Matchday 37,Motherwell,Celtic,2,3,"Fir Park, Motherwell",,Emmanuel Longelo,ENG,Motherwell,DEF,1,90,0,,0,0,,,
+P037,P007,2026-05-13,Scottish Premiership,Championship Group – Matchday 37,Motherwell,Celtic,2,3,"Fir Park, Motherwell",,Elliot Watt,SCO,Motherwell,MID,1,90,1,,0,0,,,Goal: 17'
+P037,P009,2026-05-13,Scottish Premiership,Championship Group – Matchday 37,Motherwell,Celtic,2,3,"Fir Park, Motherwell",,Callum Slattery,SCO,Motherwell,MID,1,90,0,,0,0,,,
+P037,P015,2026-05-13,Scottish Premiership,Championship Group – Matchday 37,Motherwell,Celtic,2,3,"Fir Park, Motherwell",,Oscar Priestman,ENG,Motherwell,MID,1,90,0,,0,0,,,
+P037,P014,2026-05-13,Scottish Premiership,Championship Group – Matchday 37,Motherwell,Celtic,2,3,"Fir Park, Motherwell",,Ibrahim Sa'id,GHA,Motherwell,MID,1,90,0,,0,0,,,
+P037,P008,2026-05-13,Scottish Premiership,Championship Group – Matchday 37,Motherwell,Celtic,2,3,"Fir Park, Motherwell",,Tawanda Maswanhise,ZIM,Motherwell,FWD,1,90,0,,0,0,,,
+P037,P010,2026-05-13,Scottish Premiership,Championship Group – Matchday 37,Motherwell,Celtic,2,3,"Fir Park, Motherwell",,Elijah Just,SCO,Motherwell,FWD,1,90,0,,0,0,,,
+P037,OPP_MAE,2026-05-13,Scottish Premiership,Championship Group – Matchday 37,Motherwell,Celtic,2,3,"Fir Park, Motherwell",,Daizen Maeda,JPN,Celtic,FWD,1,,1,,0,0,,,Goal: 41'
+P037,OPP_NYG,2026-05-13,Scottish Premiership,Championship Group – Matchday 37,Motherwell,Celtic,2,3,"Fir Park, Motherwell",,Benjamin Nygren,SWE,Celtic,MID,1,,1,,0,0,,,Goal: 58'
+P037,OPP_IHE,2026-05-13,Scottish Premiership,Championship Group – Matchday 37,Motherwell,Celtic,2,3,"Fir Park, Motherwell",,Kelechi Iheanacho,NGA,Celtic,FWD,1,,1,,0,0,,,Goal: 90+9' (VAR penalty – highly controversial)
+P038,,2026-05-16,Scottish Premiership,Championship Group – Matchday 38,Hibernian,Motherwell,,,"Easter Road, Edinburgh",,,,,,,,,,,,,,No confirmed player-level data for this match
