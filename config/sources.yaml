@@ -1,0 +1,88 @@
+# Monitored source registry. Loaded into the `sources` table at startup
+# (upsert by name) and used to schedule polling jobs.
+#
+# tier weights: OFFICIAL 1.00 | TIER1 0.85-0.90 | TIER2 0.60-0.70 | TIER3 0.40
+# parser: module name under manager_watch.monitor.parsers
+sources:
+  - name: Motherwell FC Official
+    publisher: motherwellfc.co.uk
+    url: https://www.motherwellfc.co.uk/news/
+    kind: html
+    tier: OFFICIAL
+    weight: 1.00
+    poll_seconds: 300
+    parser: official_site
+
+  - name: Motherwell FC RSS
+    publisher: motherwellfc.co.uk
+    url: https://www.motherwellfc.co.uk/feed/
+    kind: rss
+    tier: OFFICIAL
+    weight: 1.00
+    poll_seconds: 300
+    parser: rss
+
+  - name: BBC Sport Motherwell
+    publisher: bbc.co.uk
+    url: https://www.bbc.co.uk/sport/football/teams/motherwell
+    kind: html
+    tier: TIER1
+    weight: 0.90
+    poll_seconds: 300
+    parser: bbc
+
+  - name: Sky Sports Motherwell
+    publisher: skysports.com
+    url: https://www.skysports.com/motherwell-news
+    kind: html
+    tier: TIER1
+    weight: 0.85
+    poll_seconds: 600
+    parser: sky
+
+  - name: Wikipedia Motherwell FC revisions
+    publisher: en.wikipedia.org
+    url: "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Motherwell%20F.C.|List%20of%20Motherwell%20F.C.%20managers&rvprop=timestamp|comment|ids&rvlimit=10&format=json"
+    kind: api
+    tier: TIER2
+    weight: 0.60
+    poll_seconds: 900
+    parser: wikipedia_rev
+
+  - name: Daily Record Motherwell
+    publisher: dailyrecord.co.uk
+    url: https://www.dailyrecord.co.uk/all-about/motherwell-fc
+    kind: html
+    tier: TIER2
+    weight: 0.70
+    poll_seconds: 900
+    parser: tag_page
+
+  - name: The Herald Motherwell
+    publisher: heraldscotland.com
+    url: https://www.heraldscotland.com/sport/football/motherwell/
+    kind: html
+    tier: TIER2
+    weight: 0.70
+    poll_seconds: 900
+    parser: tag_page
+
+  - name: Google News Motherwell manager
+    publisher: news.google.com
+    url: 'https://news.google.com/rss/search?q=%22Motherwell%22+manager&hl=en-GB&gl=GB&ceid=GB:en'
+    kind: rss
+    tier: TIER2
+    weight: 0.60
+    poll_seconds: 600
+    parser: rss
+
+  # Optional/degradable: requires a self-hosted RSS bridge (RSSHub/Nitter).
+  # Leave url empty to disable.
+  - name: Motherwell FC X feed
+    publisher: x.com/MotherwellFC
+    url: ""
+    kind: social
+    tier: OFFICIAL
+    weight: 1.00
+    poll_seconds: 300
+    parser: rss
