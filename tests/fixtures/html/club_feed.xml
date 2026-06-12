@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+<channel>
+  <title>Motherwell FC</title>
+  <link>https://www.motherwellfc.co.uk</link>
+  <item>
+    <title>Motherwell appoint Jane Doe as new manager</title>
+    <link>https://www.motherwellfc.co.uk/news/2026/06/club-statement-new-manager/</link>
+    <pubDate>Thu, 11 Jun 2026 09:00:00 GMT</pubDate>
+    <description>The club is delighted to confirm the appointment.</description>
+  </item>
+  <item>
+    <title>Ticket information for Saturday</title>
+    <link>https://www.motherwellfc.co.uk/news/2026/06/tickets/</link>
+    <pubDate>Wed, 10 Jun 2026 12:00:00 GMT</pubDate>
+    <description>Briefing for travelling supporters.</description>
+  </item>
+</channel>
+</rss>

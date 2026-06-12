@@ -1,0 +1,32 @@
+services:
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: manager_watch
+      POSTGRES_PASSWORD: manager_watch
+      POSTGRES_DB: manager_watch
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U manager_watch"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  app:
+    build: .
+    command: manager-watch run
+    environment:
+      MW_DATABASE_URL: postgresql+psycopg://manager_watch:manager_watch@db:5432/manager_watch
+      MW_ALERT_WEBHOOK_URL: ${MW_ALERT_WEBHOOK_URL:-}
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - ./config:/app/config:ro
+      - ./output:/app/output
+
+volumes:
+  pgdata:

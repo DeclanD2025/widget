@@ -1,0 +1,18 @@
+# League name -> domestic tier (1 = top flight). Used by career.py to compute
+# a manager's career trajectory. Extend as new leagues appear in stint data.
+leagues:
+  "Scottish Premiership": 1
+  "Scottish Championship": 2
+  "Scottish League One": 3
+  "Scottish League Two": 4
+  "Premier League": 1
+  "Championship": 2
+  "League One": 3
+  "League Two": 4
+  "National League": 5
+  "Eredivisie": 1
+  "Eerste Divisie": 2
+  "Allsvenskan": 1
+  "Superettan": 2
+  "League of Ireland Premier Division": 1
+  "NIFL Premiership": 1

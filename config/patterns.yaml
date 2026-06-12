@@ -1,0 +1,104 @@
+# Rule tables for the trigger engine. All regexes are applied
+# case-insensitively to "headline + first 300 chars of body".
+#
+# Order of evaluation (trigger/rules.py):
+#   1. item must mention a club alias, else IRRELEVANT
+#   2. any exclusion match  -> SPECULATION
+#   3. any confirmation match -> CONFIRMATION (or CANDIDATE if no name found)
+#   4. otherwise IRRELEVANT
+# interim patterns never block; they set is_interim=true.
+
+club_aliases:
+  - motherwell
+  - "the steelmen"
+
+confirmation:
+  - id: appoint_v1
+    pattern: "\\b(appoints?|appointed|names?|named|unveils?|unveiled|confirms?|confirmed)\\b.{0,60}\\b(as\\s+)?(new\\s+)?(manager|head coach|boss)\\b"
+  - id: appoint_v2
+    pattern: "\\b(manager|head coach|boss)\\b.{0,40}\\b(appointed|named|unveiled|confirmed)\\b"
+  - id: appoint_v3
+    pattern: "\\bnew (manager|head coach) of motherwell\\b"
+  - id: appoint_v4
+    pattern: "\\bwelcomes?\\b.{0,40}\\bas (its |their |our )?(new )?(manager|head coach)\\b"
+
+exclusion:
+  - id: speculation_v1
+    pattern: "\\b(linked|favourites?|favorites?|frontrunner|front-runner|in talks|shortlist(s|ed)?|targets?|targeted|odds|set to|close to|expected to|poised|interview(s|ed)?|approach(es|ed)?|candidates?|rumours?|rumors?|reports? (claim|suggest))\\b"
+  - id: question_headline
+    pattern: "\\?\\s*$"
+    headline_only: true
+  - id: departure_v1
+    pattern: "\\b(sacked|dismissed|leaves|departs|parted company|resigns?|resigned)\\b"
+
+interim:
+  - id: interim_v1
+    pattern: "\\b(interim|caretaker|temporary)\\b"
+
+# Capitalised tokens never accepted as part of a manager name.
+name_stoplist:
+  - motherwell
+  - fir
+  - park
+  - scottish
+  - premiership
+  - championship
+  - league
+  - cup
+  - united
+  - city
+  - county
+  - rangers
+  - celtic
+  - hearts
+  - hibernian
+  - aberdeen
+  - kilmarnock
+  - dundee
+  - livingston
+  - johnstone
+  - mirren
+  - ross
+  - fc
+  - f.c
+  - bbc
+  - sky
+  - sport
+  - sports
+  - news
+  - monday
+  - tuesday
+  - wednesday
+  - thursday
+  - friday
+  - saturday
+  - sunday
+  - january
+  - february
+  - march
+  - april
+  - may
+  - june
+  - july
+  - august
+  - september
+  - october
+  - november
+  - december
+
+# Style keywords used by the research pipeline to harvest supporting quotes.
+style_keywords:
+  pattern: "\\b(press|pressing|possession|direct|counter|build.?up|front foot|aggressive|compact)\\b"
+
+# Departure-reason extraction for career history.
+departure_reasons:
+  - id: sacked
+    pattern: "\\b(sacked|dismissed|relieved of (his|her|their) duties)\\b"
+  - id: mutual_consent
+    pattern: "\\b(parted company|mutual consent)\\b"
+  - id: resigned
+    pattern: "\\bresign(s|ed)?\\b"
+
+# Youth/academy flags for player case studies.
+academy_keywords:
+  pattern: "\\b(academy graduate|youth product|came through the (ranks|academy))\\b"
