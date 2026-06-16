@@ -78,6 +78,21 @@ export const SESSIONS: Session[] = [
     drillRefs: [ref('weak-foot-fence'), ref('both-feet-finishing'), ref('gate-dribbles')],
   },
   {
+    id: 'fitness',
+    name: 'Strong & Safe',
+    mode: 'fitness',
+    emoji: '',
+    blurb: 'Fun moves that build injury-proof ankles, knees and core.',
+    isCustom: false,
+    drillRefs: [
+      ref('jump-and-stick'),
+      ref('flamingo-balance'),
+      ref('side-shuffle'),
+      ref('calf-raises'),
+      ref('superhero-plank'),
+    ],
+  },
+  {
     id: 'matchday',
     name: 'Matchday Challenge',
     mode: 'matchday',

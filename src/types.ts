@@ -37,6 +37,7 @@ export type ModeKey =
   | 'fence'
   | 'weakFoot'
   | 'matchday'
+  | 'fitness'
   | 'custom'
 
 export interface Drill {

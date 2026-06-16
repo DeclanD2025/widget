@@ -12,6 +12,12 @@ import {
   Wind,
   Flame,
   Sparkles,
+  Rabbit,
+  Bird,
+  PawPrint,
+  MoveHorizontal,
+  ChevronsUp,
+  Shield,
   type LucideIcon,
   type LucideProps,
 } from 'lucide-react'
@@ -39,6 +45,12 @@ export const DRILL_ICON: Record<string, LucideIcon> = {
   'shuttle-sprints': Wind,
   'two-goal-rondo': Flame,
   'combo-dribble-pass-finish': Sparkles,
+  'jump-and-stick': Rabbit,
+  'flamingo-balance': Bird,
+  'bear-crawl': PawPrint,
+  'side-shuffle': MoveHorizontal,
+  'calf-raises': ChevronsUp,
+  'superhero-plank': Shield,
 }
 
 export function SkillIcon({ skill, ...props }: { skill: SkillKey } & LucideProps) {
