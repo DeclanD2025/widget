@@ -117,6 +117,86 @@ export const SKILL_GUIDES: SkillGuide[] = [
     },
   },
   {
+    id: 'fake-shot',
+    name: 'Fake Shot',
+    difficulty: 'Starter',
+    what: 'Wind up like you\'re shooting, then drag the ball across to beat the defender.',
+    steps: [
+      'Pull your leg back big — really sell the shot.',
+      'At the last second, step over or roll the ball across your body with the inside of your foot.',
+      'Push into the space the defender left and go.',
+    ],
+    tip: 'The bigger and more believable the wind-up, the more the defender freezes. Then explode the other way.',
+    diagram: {
+      kind: 'move',
+      footPart: 'Fake the shot, drag across with inside foot',
+      arrows: [
+        { x1: 0.5, y1: 0.55, x2: 0.52, y2: 0.18, dashed: true },
+        { x1: 0.5, y1: 0.6, x2: 0.26, y2: 0.62, curve: -0.3 },
+      ],
+    },
+  },
+  {
+    id: 'la-croqueta',
+    name: 'La Croqueta',
+    difficulty: 'Tricky',
+    what: 'A quick shift of the ball from one foot to the other to slip between defenders.',
+    steps: [
+      'As a defender lunges in, push the ball sideways with the inside of one foot...',
+      '...straight into the inside of your other foot.',
+      'Two fast touches, then knock it past them and accelerate.',
+    ],
+    tip: 'Iniesta\'s favourite. Keep it low, quick and close — both touches in a blink.',
+    diagram: {
+      kind: 'move',
+      footPart: 'Inside of one foot to the inside of the other',
+      arrows: [
+        { x1: 0.46, y1: 0.6, x2: 0.6, y2: 0.58 },
+        { x1: 0.6, y1: 0.58, x2: 0.5, y2: 0.22, curve: 0.2 },
+      ],
+    },
+  },
+  {
+    id: 'roulette',
+    name: 'Roulette (Maradona Turn)',
+    difficulty: 'Pro',
+    what: 'A 360° spin over the ball to turn away from pressure and keep it shielded.',
+    steps: [
+      'Put one foot on top of the ball and start to spin.',
+      'As you turn, drag the ball with the sole of your other foot.',
+      'Complete the full spin and come out the other side, ball glued to your feet.',
+    ],
+    tip: 'Use your body to shield the ball as you spin. Practise the footwork slowly before adding speed.',
+    diagram: {
+      kind: 'move',
+      footPart: 'Two soles, dragging the ball through a full spin',
+      arrows: [
+        { x1: 0.5, y1: 0.5, x2: 0.74, y2: 0.7, curve: 0.7 },
+        { x1: 0.74, y1: 0.7, x2: 0.3, y2: 0.55, curve: -0.7 },
+      ],
+    },
+  },
+  {
+    id: 'rainbow-flick',
+    name: 'Rainbow Flick',
+    difficulty: 'Pro',
+    what: 'Flick the ball up and over your head (and a defender) from behind.',
+    steps: [
+      'Trap the ball between your front foot\'s heel and your back foot.',
+      'Roll it up the back of your front leg with your back foot...',
+      '...then flick that back heel up to send the ball arcing over your head.',
+    ],
+    tip: 'A showstopper — tricky and best in space. Master the roll-up first, the flick comes later.',
+    diagram: {
+      kind: 'move',
+      footPart: 'Roll up the leg, flick with the back heel',
+      arrows: [
+        { x1: 0.5, y1: 0.72, x2: 0.5, y2: 0.5 },
+        { x1: 0.5, y1: 0.5, x2: 0.5, y2: 0.16, curve: 0.5 },
+      ],
+    },
+  },
+  {
     id: 'rabona',
     name: 'Rabona',
     difficulty: 'Pro',

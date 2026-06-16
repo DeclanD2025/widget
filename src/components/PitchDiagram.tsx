@@ -1,3 +1,4 @@
+import { useId } from 'react'
 import type { PitchDiagramSpec } from '../data/tactics'
 
 const W = 300
@@ -5,12 +6,13 @@ const H = 190
 
 // A horizontal football pitch with positioned players, arrows and lines.
 export default function PitchDiagram({ spec, className }: { spec: PitchDiagramSpec; className?: string }) {
+  const uid = useId().replace(/:/g, '')
   const X = (x: number) => x * W
   const Y = (y: number) => y * H
   return (
     <svg viewBox={`0 0 ${W} ${H}`} className={className}>
       <defs>
-        <marker id="pdArrow" markerWidth="6" markerHeight="6" refX="4.5" refY="3" orient="auto">
+        <marker id={`${uid}-arr`} markerWidth="6" markerHeight="6" refX="4.5" refY="3" orient="auto">
           <path d="M0,0 L6,3 L0,6 Z" fill="#eafff3" />
         </marker>
       </defs>
@@ -40,9 +42,9 @@ export default function PitchDiagram({ spec, className }: { spec: PitchDiagramSp
         </g>
       ))}
 
-      {/* Arrows */}
+      {/* Arrows (animated flow toward the target) */}
       {spec.arrows?.map((a, i) => (
-        <line key={i} x1={X(a.x1)} y1={Y(a.y1)} x2={X(a.x2)} y2={Y(a.y2)} stroke={a.color ?? '#eafff3'} strokeWidth={2.4} strokeDasharray={a.dashed ? '4 3' : undefined} markerEnd="url(#pdArrow)" />
+        <line key={i} className="flow" x1={X(a.x1)} y1={Y(a.y1)} x2={X(a.x2)} y2={Y(a.y2)} stroke={a.color ?? '#eafff3'} strokeWidth={2.4} strokeDasharray="6 4" markerEnd={`url(#${uid}-arr)`} />
       ))}
 
       {/* Players */}

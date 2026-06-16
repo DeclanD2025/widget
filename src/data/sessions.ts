@@ -93,6 +93,21 @@ export const SESSIONS: Session[] = [
     ],
   },
   {
+    id: 'partner',
+    name: 'You & Me',
+    mode: 'partner',
+    emoji: '',
+    blurb: 'Drills to do together — passing, 1-2s, crossing and 1v1s.',
+    isCustom: false,
+    drillRefs: [
+      ref('pass-and-move'),
+      ref('reaction-call'),
+      ref('give-and-go'),
+      ref('cross-and-finish'),
+      ref('one-v-one'),
+    ],
+  },
+  {
     id: 'matchday',
     name: 'Matchday Challenge',
     mode: 'matchday',
