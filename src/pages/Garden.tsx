@@ -11,10 +11,11 @@ const LAYOUT_DRILLS = Object.keys(GARDEN_LAYOUTS)
 export default function Garden() {
   const [params] = useSearchParams()
   const initial = params.get('drill')
-  const [drillId, setDrillId] = useState(initial && GARDEN_LAYOUTS[initial] ? initial : 'cone-slalom')
+  // '' = plain garden overview; otherwise overlay the chosen drill.
+  const [drillId, setDrillId] = useState(initial && GARDEN_LAYOUTS[initial] ? initial : '')
 
-  const layout = GARDEN_LAYOUTS[drillId]
-  const drill = DRILL_BY_ID[drillId]
+  const layout = drillId ? GARDEN_LAYOUTS[drillId] : undefined
+  const drill = drillId ? DRILL_BY_ID[drillId] : undefined
 
   return (
     <Page title="My Garden" kicker="Bird's-eye pitch" back>
@@ -36,6 +37,14 @@ export default function Garden() {
 
       <h2 className="mb-2 mt-4 label">Show a drill on the pitch</h2>
       <div className="flex flex-wrap gap-2 pb-2">
+        <button
+          onClick={() => setDrillId('')}
+          className={`rounded-full border px-3 py-1.5 text-sm font-semibold transition ${
+            drillId === '' ? 'border-emerald-glow bg-emerald-glow/15 text-emerald-glow' : 'border-white/10 bg-white/5 text-white/70'
+          }`}
+        >
+          Garden only
+        </button>
         {LAYOUT_DRILLS.map((id) => (
           <button
             key={id}
@@ -50,7 +59,7 @@ export default function Garden() {
       </div>
 
       <p className="mt-2 text-center text-xs text-white/35">
-        Goal at the far end · fences both sides · tree on the right · play area by the house
+        A top-down map of Caiden's real garden. Pick a drill to see where to set up.
       </p>
     </Page>
   )
