@@ -1,0 +1,9 @@
+node_modules
+dist
+dist-ssr
+*.local
+.DS_Store
+node_modules/.tmp
+npm-debug.log*
+.vite
+*.tsbuildinfo
