@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { User, Target, Share, ChevronRight, Trash2, Volume2, VolumeX } from 'lucide-react'
+import { User, Target, Share, ChevronRight, Trash2, Volume2, VolumeX, BookOpen } from 'lucide-react'
 import Page from '../components/Page'
 import { db } from '../db/db'
 import { soundEnabled, setSoundEnabled } from '../lib/sound'
@@ -27,6 +27,20 @@ export default function Settings() {
       db.customSessions.clear(),
       db.garden.clear(),
     ])
+    try {
+      localStorage.removeItem('gb-onboarded')
+    } catch {
+      /* ignore */
+    }
+    location.href = '/'
+  }
+
+  function replayIntro() {
+    try {
+      localStorage.removeItem('gb-onboarded')
+    } catch {
+      /* ignore */
+    }
     location.href = '/'
   }
 
@@ -53,6 +67,11 @@ export default function Settings() {
           <span className="flex-1 font-semibold">Focus skills</span>
           <ChevronRight size={18} className="text-white/30" />
         </Link>
+        <button onClick={replayIntro} className="flex w-full items-center gap-3 px-4 py-4 text-left">
+          <BookOpen size={20} className="text-white/60" />
+          <span className="flex-1 font-semibold">Watch the intro again</span>
+          <ChevronRight size={18} className="text-white/30" />
+        </button>
       </div>
 
       <div className="card mt-4 flex gap-3 p-4 text-sm text-white/70">
