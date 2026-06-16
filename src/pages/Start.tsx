@@ -1,6 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { Play, Flame, Settings, Gamepad2, Target, BarChart3, MapPin } from 'lucide-react'
+import { Play, Flame, Settings, Gamepad2, Target, BarChart3, MapPin, GraduationCap } from 'lucide-react'
 import Page from '../components/Page'
 import { usePlayer, useSkills, useStreak } from '../hooks/useData'
 import { ovr, levelForXp } from '../lib/game'
@@ -27,6 +27,7 @@ export default function Start() {
     { to: '/modes', label: 'Training Modes', sub: 'Pick how you play', Icon: Gamepad2 },
     { to: '/garden', label: 'My Garden', sub: 'Bird\'s-eye drill maps', Icon: MapPin },
     { to: '/missions', label: 'Weekly Mission', sub: 'Challenges to smash', Icon: Target },
+    { to: '/learn', label: 'Academy', sub: 'Skills & football IQ', Icon: GraduationCap },
     { to: '/dashboard', label: 'My Stats', sub: 'Track your rise', Icon: BarChart3 },
   ]
 
