@@ -88,16 +88,12 @@ export function ovr(skills: SkillRow[]): number {
   return Math.round(total / skills.length)
 }
 
-/** FIFA-style card rarity from overall rating. */
-export function cardTier(ovrValue: number): {
-  label: string
-  ring: string
-  bg: string
-} {
-  if (ovrValue >= 85) return { label: 'Special', ring: 'ring-fuchsia-400', bg: 'from-fuchsia-500/30 to-purple-700/30' }
-  if (ovrValue >= 75) return { label: 'Gold', ring: 'ring-amber-300', bg: 'from-amber-400/30 to-yellow-700/30' }
-  if (ovrValue >= 60) return { label: 'Silver', ring: 'ring-slate-200', bg: 'from-slate-300/20 to-slate-600/30' }
-  return { label: 'Bronze', ring: 'ring-orange-400', bg: 'from-orange-500/25 to-orange-800/30' }
+/** EA-FC-style card rarity from overall rating. `grad` is a Tailwind gradient. */
+export function cardTier(ovrValue: number): { label: string; grad: string } {
+  if (ovrValue >= 85) return { label: 'Icon', grad: 'from-fuchsia-500/60 via-purple-700/40 to-base-800/60' }
+  if (ovrValue >= 75) return { label: 'Gold', grad: 'from-gold/70 via-gold-deep/40 to-base-800/70' }
+  if (ovrValue >= 60) return { label: 'Silver', grad: 'from-slate-300/40 via-slate-500/25 to-base-800/70' }
+  return { label: 'Bronze', grad: 'from-orange-600/45 via-amber-800/30 to-base-800/70' }
 }
 
 export function todayKey(d: Date = new Date()): string {

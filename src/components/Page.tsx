@@ -1,14 +1,16 @@
 import { motion } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
+import { ChevronLeft } from 'lucide-react'
 import type { ReactNode } from 'react'
 
 interface Props {
   title?: string
+  kicker?: string
   back?: boolean
   children: ReactNode
 }
 
-export default function Page({ title, back, children }: Props) {
+export default function Page({ title, kicker, back, children }: Props) {
   const nav = useNavigate()
   return (
     <motion.div
@@ -21,11 +23,16 @@ export default function Page({ title, back, children }: Props) {
       {(title || back) && (
         <header className="flex items-center gap-3 py-3">
           {back && (
-            <button onClick={() => nav(-1)} className="btn-ghost h-10 w-10 text-xl" aria-label="Back">
-              ←
+            <button onClick={() => nav(-1)} className="btn-ghost h-10 w-10" aria-label="Back">
+              <ChevronLeft size={22} />
             </button>
           )}
-          {title && <h1 className="text-2xl font-extrabold">{title}</h1>}
+          {title && (
+            <div>
+              {kicker && <div className="label">{kicker}</div>}
+              <h1 className="text-3xl font-extrabold leading-none">{title}</h1>
+            </div>
+          )}
         </header>
       )}
       {children}
