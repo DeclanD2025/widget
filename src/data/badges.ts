@@ -12,4 +12,5 @@ export const BADGE_DEFS: Omit<Badge, 'earnedAt'>[] = [
   { id: 'level-5', name: 'Rising Star', emoji: '⭐', description: 'Reach Level 5.' },
   { id: 'level-10', name: 'Garden Pro', emoji: '🏅', description: 'Reach Level 10.' },
   { id: 'pb-breaker', name: 'Record Breaker', emoji: '💥', description: 'Beat 10 personal bests.' },
+  { id: 'juggler', name: 'Juggler', emoji: '🤹', description: 'Hit 50+ in the keepy-up challenge.' },
 ]

@@ -100,6 +100,14 @@ export function todayKey(d: Date = new Date()): string {
   return d.toISOString().slice(0, 10)
 }
 
+/** Monday of the given date's week as YYYY-MM-DD. */
+export function weekStart(d: Date = new Date()): string {
+  const x = new Date(d)
+  const day = (x.getDay() + 6) % 7 // 0 = Monday
+  x.setDate(x.getDate() - day)
+  return todayKey(x)
+}
+
 /** Difference in whole days between two YYYY-MM-DD strings. */
 export function dayDiff(a: string, b: string): number {
   const da = new Date(a + 'T00:00:00')

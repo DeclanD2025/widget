@@ -11,6 +11,7 @@ import {
   Star,
   Trophy,
   Zap,
+  CircleDot,
   type LucideIcon,
 } from 'lucide-react'
 import Page from '../components/Page'
@@ -30,6 +31,7 @@ const BADGE_ICON: Record<string, LucideIcon> = {
   'level-5': Star,
   'level-10': Trophy,
   'pb-breaker': Zap,
+  juggler: CircleDot,
 }
 
 export default function Badges() {

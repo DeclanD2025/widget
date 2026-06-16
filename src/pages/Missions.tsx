@@ -1,15 +1,9 @@
-import { CalendarDays, Target, Zap, Footprints, Check, type LucideIcon } from 'lucide-react'
+import { Link } from 'react-router-dom'
+import { CalendarDays, Target, Zap, Footprints, Check, CircleDot, ChevronRight, type LucideIcon } from 'lucide-react'
 import Page from '../components/Page'
-import { useLogs } from '../hooks/useData'
+import { useLogs, useKeepyUppy, useKeepyUppyAllTimeBest } from '../hooks/useData'
 import { DRILL_BY_ID } from '../data/drills'
-import { todayKey } from '../lib/game'
-
-function weekStart(): string {
-  const d = new Date()
-  const day = (d.getDay() + 6) % 7
-  d.setDate(d.getDate() - day)
-  return todayKey(d)
-}
+import { weekStart } from '../lib/game'
 
 const WEEK_PLAN: [string, string][] = [
   ['Mon', 'Shooting'],
@@ -24,6 +18,10 @@ const WEEK_PLAN: [string, string][] = [
 export default function Missions() {
   const logs = useLogs(100)
   const start = weekStart()
+  const ku = useKeepyUppy(start)
+  const kuBest = useKeepyUppyAllTimeBest() ?? 0
+  const kuTries = ku?.attempts.length ?? 0
+  const kuDone = !!ku?.xpAwarded
 
   const thisWeek = (logs ?? []).filter((l) => l.day >= start)
   const days = new Set(thisWeek.map((l) => l.day)).size
@@ -43,6 +41,18 @@ export default function Missions() {
 
   return (
     <Page title="Missions" kicker="This week" back>
+      <Link to="/challenge" className="card card-hi mb-4 flex items-center gap-4 p-4 shadow-gold active:scale-[0.98]">
+        <span className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-gold/20 text-gold"><CircleDot size={26} /></span>
+        <div className="flex-1">
+          <div className="label text-gold">Weekly challenge</div>
+          <div className="text-lg font-extrabold leading-tight">Keepy-Up · Best of 3</div>
+          <div className="text-xs text-white/55">
+            {kuDone ? `Done — best ${ku?.best}` : kuTries > 0 ? `${3 - kuTries} tries left · best ${ku?.best}` : 'Tap to start · 3 tries'} · all-time {kuBest}
+          </div>
+        </div>
+        <ChevronRight size={20} className="shrink-0 text-white/30" />
+      </Link>
+
       <div className="space-y-3">
         {missions.map((m) => {
           const done = m.progress >= m.target
