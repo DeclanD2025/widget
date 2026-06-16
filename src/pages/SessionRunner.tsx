@@ -3,6 +3,8 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, Play, Pause, Check, Plus, Minus } from 'lucide-react'
 import ProgressRing from '../components/ProgressRing'
+import GardenPitch from '../components/GardenPitch'
+import { GARDEN_LAYOUTS } from '../data/gardenLayouts'
 import { DrillIcon } from '../components/icons'
 import { SESSION_BY_ID } from '../data/sessions'
 import { DRILL_BY_ID } from '../data/drills'
@@ -116,9 +118,15 @@ export default function SessionRunner() {
         {phase === 'intro' && (
           <motion.div key="intro" initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -30 }} className="flex flex-1 flex-col">
             <div className="flex flex-1 flex-col justify-center">
-              <div className="mx-auto grid h-20 w-20 place-items-center rounded-2xl bg-emerald-glow/15 text-emerald-glow">
-                <DrillIcon drillId={drill.id} size={40} />
-              </div>
+              {GARDEN_LAYOUTS[drill.id] ? (
+                <div className="card card-hi mx-auto overflow-hidden p-2">
+                  <GardenPitch layout={GARDEN_LAYOUTS[drill.id]} className="block h-44 w-auto" />
+                </div>
+              ) : (
+                <div className="mx-auto grid h-20 w-20 place-items-center rounded-2xl bg-emerald-glow/15 text-emerald-glow">
+                  <DrillIcon drillId={drill.id} size={40} />
+                </div>
+              )}
               <h1 className="mt-4 text-center text-3xl font-extrabold">{drill.name}</h1>
               <div className="mt-2 flex flex-wrap justify-center gap-2">
                 {drill.equipment.map((e) => (
