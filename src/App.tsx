@@ -16,6 +16,9 @@ import KeepyUppy from './pages/KeepyUppy'
 import DrillDetail from './pages/DrillDetail'
 import Settings from './pages/Settings'
 import Garden from './pages/Garden'
+import Learn from './pages/Learn'
+import SkillGuide from './pages/SkillGuide'
+import TacticGuide from './pages/TacticGuide'
 
 export default function App() {
   const location = useLocation()
@@ -35,6 +38,9 @@ export default function App() {
           <Route path="/session/:id" element={<SessionRunner />} />
           <Route path="/done" element={<Done />} />
           <Route path="/garden" element={<Garden />} />
+          <Route path="/learn" element={<Learn />} />
+          <Route path="/learn/skill/:id" element={<SkillGuide />} />
+          <Route path="/learn/tactic/:id" element={<TacticGuide />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/badges" element={<Badges />} />
           <Route path="/missions" element={<Missions />} />
