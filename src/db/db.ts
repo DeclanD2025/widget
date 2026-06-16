@@ -18,6 +18,22 @@ export interface Counters {
 
 export type MetaRecord = MetaStreak | Counters
 
+export interface Point {
+  x: number
+  y: number
+}
+
+/** A photo of the garden plus the tapped grass corners used to flatten it. */
+export interface Garden {
+  id: 'garden'
+  imageDataUrl: string
+  /** Corners (TL, TR, BR, BL) in displayed-image coordinate space. */
+  corners: [Point, Point, Point, Point]
+  dispW: number
+  dispH: number
+  savedAt: string
+}
+
 export class BallerDB extends Dexie {
   player!: Table<Player, string>
   skills!: Table<SkillRow, string>
@@ -27,6 +43,7 @@ export class BallerDB extends Dexie {
   meta!: Table<MetaRecord, string>
   focusGoals!: Table<FocusGoal, string>
   customSessions!: Table<Session, string>
+  garden!: Table<Garden, string>
 
   constructor() {
     super('garden-baller')
@@ -39,6 +56,9 @@ export class BallerDB extends Dexie {
       meta: 'key',
       focusGoals: 'skillKey',
       customSessions: 'id',
+    })
+    this.version(2).stores({
+      garden: 'id',
     })
   }
 }

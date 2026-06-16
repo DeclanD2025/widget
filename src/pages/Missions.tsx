@@ -1,24 +1,24 @@
+import { CalendarDays, Target, Zap, Footprints, Check, type LucideIcon } from 'lucide-react'
 import Page from '../components/Page'
 import { useLogs } from '../hooks/useData'
 import { DRILL_BY_ID } from '../data/drills'
 import { todayKey } from '../lib/game'
 
-// Monday of the current week as YYYY-MM-DD.
 function weekStart(): string {
   const d = new Date()
-  const day = (d.getDay() + 6) % 7 // 0 = Monday
+  const day = (d.getDay() + 6) % 7
   d.setDate(d.getDate() - day)
   return todayKey(d)
 }
 
-const WEEK_PLAN = [
-  ['Mon', '🎯 Shooting'],
-  ['Tue', '🌀 Dribbling'],
-  ['Wed', '🧱 Fence passing'],
-  ['Thu', '🦶 Weak foot'],
-  ['Fri', '🏆 Full 30'],
-  ['Sat', '⚽ Matchday'],
-  ['Sun', '😴 Rest / Quick 10'],
+const WEEK_PLAN: [string, string][] = [
+  ['Mon', 'Shooting'],
+  ['Tue', 'Dribbling'],
+  ['Wed', 'Fence passing'],
+  ['Thu', 'Weak foot'],
+  ['Fri', 'Full 30'],
+  ['Sat', 'Matchday'],
+  ['Sun', 'Rest / Quick 10'],
 ]
 
 export default function Missions() {
@@ -34,39 +34,42 @@ export default function Missions() {
   const pbs = thisWeek.reduce((sum, l) => sum + l.drillResults.filter((r) => r.beatPB).length, 0)
   const weakFootDays = thisWeek.filter((l) => l.sessionId === 'weakFoot').length
 
-  const missions = [
-    { emoji: '📅', text: 'Train 5 days this week', progress: days, target: 5 },
-    { emoji: '🎯', text: 'Score 30 goals', progress: goals, target: 30 },
-    { emoji: '💥', text: 'Beat 2 personal bests', progress: pbs, target: 2 },
-    { emoji: '🦶', text: 'Do a Weak Foot Day', progress: weakFootDays, target: 1 },
+  const missions: { Icon: LucideIcon; text: string; progress: number; target: number }[] = [
+    { Icon: CalendarDays, text: 'Train 5 days this week', progress: days, target: 5 },
+    { Icon: Target, text: 'Score 30 goals', progress: goals, target: 30 },
+    { Icon: Zap, text: 'Beat 2 personal bests', progress: pbs, target: 2 },
+    { Icon: Footprints, text: 'Do a Weak Foot Day', progress: weakFootDays, target: 1 },
   ]
 
   return (
-    <Page title="Weekly Missions" back>
+    <Page title="Missions" kicker="This week" back>
       <div className="space-y-3">
         {missions.map((m) => {
           const done = m.progress >= m.target
           const pct = Math.min(100, Math.round((m.progress / m.target) * 100))
           return (
-            <div key={m.text} className={`card p-4 ${done ? 'ring-2 ring-pitch-light' : ''}`}>
-              <div className="flex items-center justify-between">
-                <span className="font-bold">{m.emoji} {m.text}</span>
-                <span className="text-sm font-bold tabular-nums">{done ? '✅' : `${m.progress}/${m.target}`}</span>
+            <div key={m.text} className={`card card-hi p-4 ${done ? 'shadow-emerald' : ''}`}>
+              <div className="flex items-center gap-3">
+                <span className={`grid h-9 w-9 shrink-0 place-items-center rounded-lg ${done ? 'bg-emerald-glow/20 text-emerald-glow' : 'bg-white/5 text-white/60'}`}>
+                  {done ? <Check size={18} strokeWidth={3} /> : <m.Icon size={18} />}
+                </span>
+                <span className="flex-1 font-semibold">{m.text}</span>
+                <span className="num text-sm font-bold text-white/60">{done ? 'Done' : `${m.progress}/${m.target}`}</span>
               </div>
-              <div className="mt-2 h-2.5 overflow-hidden rounded-full bg-white/10">
-                <div className="h-full rounded-full bg-pitch-light transition-all" style={{ width: `${pct}%` }} />
+              <div className="mt-3 h-2 overflow-hidden rounded-full bg-white/10">
+                <div className="h-full rounded-full bg-emerald-glow transition-all" style={{ width: `${pct}%` }} />
               </div>
             </div>
           )
         })}
       </div>
 
-      <h2 className="mb-2 mt-8 text-sm font-bold uppercase tracking-widest text-white/60">This week's plan</h2>
+      <h2 className="mb-2 mt-8 label">This week's plan</h2>
       <div className="card divide-y divide-white/10">
         {WEEK_PLAN.map(([day, label]) => (
           <div key={day} className="flex items-center justify-between px-4 py-3">
-            <span className="font-bold text-white/70">{day}</span>
-            <span>{label}</span>
+            <span className="num font-bold uppercase text-white/60">{day}</span>
+            <span className="font-medium">{label}</span>
           </div>
         ))}
       </div>

@@ -9,6 +9,22 @@ import { SKILL_KEYS } from '../types'
 export async function ensureSeed(): Promise<void> {
   const now = new Date().toISOString()
 
+  // Single player: Caiden, a 10-year-old aspiring footballer.
+  const player = await db.player.get('me')
+  if (!player) {
+    await db.player.put({
+      id: 'me',
+      name: 'Caiden',
+      age: 10,
+      strongFoot: 'R',
+      colour: '#1fd17a',
+      avatar: '',
+      level: 1,
+      xp: 0,
+      createdAt: now,
+    })
+  }
+
   const skillCount = await db.skills.count()
   if (skillCount === 0) {
     await db.skills.bulkAdd(

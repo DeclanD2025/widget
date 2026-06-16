@@ -4,34 +4,37 @@ export default {
   theme: {
     extend: {
       colors: {
-        pitch: {
-          dark: '#052e16',
-          DEFAULT: '#15803d',
-          light: '#22c55e',
-          line: 'rgba(255,255,255,0.12)',
+        // Deep stadium-night base
+        base: {
+          900: '#070b09',
+          800: '#0b110e',
+          700: '#111814',
         },
-        baller: {
-          gold: '#fbbf24',
-          ink: '#0a0f0a',
+        // Glass surfaces use white/black alpha in classes; these are accents.
+        emerald: {
+          glow: '#1fd17a',
         },
+        gold: {
+          DEFAULT: '#f4c95d',
+          deep: '#caa23f',
+        },
+        ink: '#04070500',
       },
       fontFamily: {
-        display: ['"Baloo 2"', 'system-ui', 'sans-serif'],
-        body: ['system-ui', 'sans-serif'],
+        display: ['"Saira Condensed"', 'system-ui', 'sans-serif'],
+        body: ['Inter', 'system-ui', 'sans-serif'],
+      },
+      letterSpacing: {
+        display: '0.01em',
       },
       boxShadow: {
-        card: '0 10px 30px -8px rgba(0,0,0,0.45)',
-        glow: '0 0 24px rgba(34,197,94,0.55)',
+        card: '0 18px 40px -20px rgba(0,0,0,0.8)',
+        gold: '0 0 0 1px rgba(244,201,93,0.35), 0 10px 30px -10px rgba(244,201,93,0.25)',
+        emerald: '0 0 0 1px rgba(31,209,122,0.35), 0 12px 30px -12px rgba(31,209,122,0.35)',
       },
-      keyframes: {
-        pop: {
-          '0%': { transform: 'scale(0.8)', opacity: '0' },
-          '60%': { transform: 'scale(1.08)', opacity: '1' },
-          '100%': { transform: 'scale(1)' },
-        },
-      },
-      animation: {
-        pop: 'pop 0.35s ease-out',
+      backgroundImage: {
+        'gold-grad': 'linear-gradient(135deg, #f8d97a 0%, #f4c95d 45%, #c89a36 100%)',
+        'card-grad': 'linear-gradient(160deg, rgba(255,255,255,0.07), rgba(255,255,255,0.02))',
       },
     },
   },

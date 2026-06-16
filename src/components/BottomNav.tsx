@@ -1,32 +1,33 @@
 import { NavLink } from 'react-router-dom'
+import { Home, Dumbbell, BarChart3, Medal, MapPin } from 'lucide-react'
 
 const TABS = [
-  { to: '/', label: 'Home', emoji: '🏠', end: true },
-  { to: '/today', label: 'Today', emoji: '⚽', end: false },
-  { to: '/dashboard', label: 'Stats', emoji: '📊', end: false },
-  { to: '/badges', label: 'Badges', emoji: '🏅', end: false },
-  { to: '/profile', label: 'Player', emoji: '👤', end: false },
+  { to: '/', label: 'Home', Icon: Home, end: true },
+  { to: '/today', label: 'Train', Icon: Dumbbell, end: false },
+  { to: '/garden', label: 'Garden', Icon: MapPin, end: false },
+  { to: '/dashboard', label: 'Stats', Icon: BarChart3, end: false },
+  { to: '/badges', label: 'Awards', Icon: Medal, end: false },
 ]
 
 export default function BottomNav() {
   return (
-    <nav className="safe-bottom fixed inset-x-0 bottom-0 z-40 border-t border-white/10 bg-pitch-dark/90 backdrop-blur">
+    <nav className="safe-bottom fixed inset-x-0 bottom-0 z-40 border-t border-white/10 bg-base-900/80 backdrop-blur-xl">
       <div className="mx-auto flex max-w-md items-stretch justify-between px-2 pt-1.5">
-        {TABS.map((t) => (
+        {TABS.map(({ to, label, Icon, end }) => (
           <NavLink
-            key={t.to}
-            to={t.to}
-            end={t.end}
+            key={to}
+            to={to}
+            end={end}
             className={({ isActive }) =>
-              `flex flex-1 flex-col items-center gap-0.5 rounded-2xl px-1 py-1.5 text-[11px] font-semibold transition ${
-                isActive ? 'text-pitch-light' : 'text-white/55'
+              `flex flex-1 flex-col items-center gap-1 rounded-xl px-1 py-1.5 text-[10px] font-semibold uppercase tracking-wider transition ${
+                isActive ? 'text-gold' : 'text-white/40'
               }`
             }
           >
             {({ isActive }) => (
               <>
-                <span className={`text-2xl transition-transform ${isActive ? 'scale-110' : ''}`}>{t.emoji}</span>
-                <span>{t.label}</span>
+                <Icon size={22} strokeWidth={isActive ? 2.4 : 2} className={isActive ? 'drop-shadow-[0_0_8px_rgba(244,201,93,0.5)]' : ''} />
+                <span>{label}</span>
               </>
             )}
           </NavLink>

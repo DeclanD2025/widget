@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import { useMemo } from 'react'
 
-const COLOURS = ['#fbbf24', '#22c55e', '#38bdf8', '#f472b6', '#f87171', '#a78bfa']
+const COLOURS = ['#f4c95d', '#1fd17a', '#ffffff', '#46e79a', '#caa23f', '#d4dbd7']
 
 /** A burst of confetti for celebrations. Pure CSS/Framer — no canvas needed. */
 export default function Confetti({ count = 60 }: { count?: number }) {

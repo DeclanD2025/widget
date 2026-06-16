@@ -1,5 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
+import { Play, Flame, Settings, Gamepad2, Target, BarChart3, MapPin } from 'lucide-react'
 import Page from '../components/Page'
 import { usePlayer, useSkills, useStreak } from '../hooks/useData'
 import { ovr, levelForXp } from '../lib/game'
@@ -10,97 +11,78 @@ export default function Start() {
   const skills = useSkills()
   const streak = useStreak()
 
-  // First run — send the player into onboarding.
-  if (player === undefined || skills === undefined) {
+  if (!player || !skills) {
     return (
       <Page>
-        <div className="grid h-[70vh] place-items-center text-white/50">Loading…</div>
-      </Page>
-    )
-  }
-
-  if (player === null) {
-    return (
-      <Page>
-        <div className="flex min-h-[80vh] flex-col items-center justify-center text-center">
-          <motion.div
-            initial={{ scale: 0.6, rotate: -20, opacity: 0 }}
-            animate={{ scale: 1, rotate: 0, opacity: 1 }}
-            transition={{ type: 'spring', stiffness: 160 }}
-            className="text-8xl"
-          >
-            ⚽
-          </motion.div>
-          <h1 className="mt-4 text-4xl font-extrabold">Garden Baller</h1>
-          <p className="mt-2 max-w-xs text-white/70">
-            Train like a pro using just your garden, goals, fences, cones and a ball.
-          </p>
-          <button onClick={() => nav('/profile')} className="btn-primary mt-8 w-full max-w-xs py-4 text-xl">
-            Create my player ⚡
-          </button>
-        </div>
+        <div className="grid h-[70vh] place-items-center text-white/40">Loading…</div>
       </Page>
     )
   }
 
   const rating = ovr(skills)
-  const { level } = levelForXp(player.xp)
+  const { level, intoLevel, span } = levelForXp(player.xp)
+  const pct = Math.round((intoLevel / span) * 100)
+
+  const tiles = [
+    { to: '/modes', label: 'Training Modes', sub: 'Pick how you play', Icon: Gamepad2 },
+    { to: '/garden', label: 'My Garden', sub: 'Set up your pitch', Icon: MapPin },
+    { to: '/missions', label: 'Weekly Mission', sub: 'Challenges to smash', Icon: Target },
+    { to: '/dashboard', label: 'My Stats', sub: 'Track your rise', Icon: BarChart3 },
+  ]
 
   return (
     <Page>
       <div className="flex items-center justify-between py-2">
         <div>
-          <div className="text-sm text-white/60">Welcome back,</div>
-          <div className="text-2xl font-extrabold">{player.name || 'Baller'} {player.avatar}</div>
+          <div className="label">Welcome back</div>
+          <div className="num text-3xl font-extrabold uppercase">{player.name}</div>
         </div>
         <div className="flex items-center gap-2">
-          <div className="flex items-center gap-1 rounded-full bg-white/10 px-3 py-1.5 font-bold">
-            🔥 <span className="tabular-nums">{streak?.currentStreak ?? 0}</span>
+          <div className="flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 font-bold">
+            <Flame size={16} className="text-gold" />
+            <span className="num">{streak?.currentStreak ?? 0}</span>
           </div>
-          <Link to="/settings" className="grid h-10 w-10 place-items-center rounded-full bg-white/10 text-xl" aria-label="Settings">⚙️</Link>
+          <Link to="/settings" className="btn-ghost h-10 w-10" aria-label="Settings">
+            <Settings size={18} />
+          </Link>
         </div>
       </div>
 
-      <div className="card mt-2 flex items-center justify-between p-4">
+      <div className="card card-hi mt-2 flex items-center justify-between p-5">
         <div>
-          <div className="text-xs uppercase tracking-widest text-white/50">Rating</div>
-          <div className="text-5xl font-extrabold tabular-nums">{rating}</div>
+          <div className="label">Rating</div>
+          <div className="num text-6xl font-extrabold leading-none text-gold">{rating}</div>
         </div>
+        <div className="h-12 w-px bg-white/10" />
         <div className="text-right">
-          <div className="text-xs uppercase tracking-widest text-white/50">Level</div>
-          <div className="text-5xl font-extrabold tabular-nums">{level}</div>
+          <div className="label">Level {level}</div>
+          <div className="num text-6xl font-extrabold leading-none">{level}</div>
         </div>
+      </div>
+
+      <div className="mt-2 px-1">
+        <div className="h-1.5 overflow-hidden rounded-full bg-white/10">
+          <div className="h-full rounded-full bg-gold-grad" style={{ width: `${pct}%` }} />
+        </div>
+        <div className="mt-1 text-right text-[11px] font-medium text-white/45">{intoLevel} / {span} XP</div>
       </div>
 
       <motion.button
-        whileTap={{ scale: 0.96 }}
+        whileTap={{ scale: 0.97 }}
         onClick={() => nav('/today')}
-        className="btn-primary mt-4 w-full py-6 text-2xl"
+        className="btn-emerald mt-4 w-full py-5 text-2xl font-extrabold uppercase"
       >
-        ▶︎ Train Now
+        <Play size={26} fill="currentColor" /> Train Now
       </motion.button>
 
       <div className="mt-4 grid grid-cols-2 gap-3">
-        <Link to="/modes" className="card flex flex-col gap-1 p-4 active:scale-95">
-          <span className="text-3xl">🎮</span>
-          <span className="font-bold">Training Modes</span>
-          <span className="text-xs text-white/60">Pick how you play</span>
-        </Link>
-        <Link to="/missions" className="card flex flex-col gap-1 p-4 active:scale-95">
-          <span className="text-3xl">🎯</span>
-          <span className="font-bold">Weekly Mission</span>
-          <span className="text-xs text-white/60">Challenges to smash</span>
-        </Link>
-        <Link to="/dashboard" className="card flex flex-col gap-1 p-4 active:scale-95">
-          <span className="text-3xl">📊</span>
-          <span className="font-bold">My Stats</span>
-          <span className="text-xs text-white/60">Watch yourself improve</span>
-        </Link>
-        <Link to="/badges" className="card flex flex-col gap-1 p-4 active:scale-95">
-          <span className="text-3xl">🏅</span>
-          <span className="font-bold">Badges</span>
-          <span className="text-xs text-white/60">Trophies & unlocks</span>
-        </Link>
+        {tiles.map(({ to, label, sub, Icon }) => (
+          <Link key={to} to={to} className="card card-hi flex flex-col gap-2 p-4 active:scale-[0.97]">
+            <Icon size={26} className="text-emerald-glow" />
+            <span className="font-bold leading-tight">{label}</span>
+            <span className="text-xs text-white/45">{sub}</span>
+          </Link>
+        ))}
       </div>
     </Page>
   )

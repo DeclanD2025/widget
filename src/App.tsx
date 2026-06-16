@@ -14,6 +14,7 @@ import Badges from './pages/Badges'
 import Missions from './pages/Missions'
 import DrillDetail from './pages/DrillDetail'
 import Settings from './pages/Settings'
+import Garden from './pages/Garden'
 
 export default function App() {
   const location = useLocation()
@@ -32,6 +33,7 @@ export default function App() {
           <Route path="/custom" element={<CustomBuilder />} />
           <Route path="/session/:id" element={<SessionRunner />} />
           <Route path="/done" element={<Done />} />
+          <Route path="/garden" element={<Garden />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/badges" element={<Badges />} />
           <Route path="/missions" element={<Missions />} />

@@ -14,19 +14,14 @@ body,
 
 body {
   margin: 0;
-  font-family: 'Baloo 2', system-ui, sans-serif;
-  color: #f0fdf4;
-  background-color: #052e16;
-  /* Pitch stripes + soft vignette */
+  font-family: Inter, system-ui, sans-serif;
+  color: #e8edea;
+  background-color: #070b09;
+  /* Stadium-night: faint pitch light from the top, deep vignette below. */
   background-image:
-    radial-gradient(120% 80% at 50% 0%, rgba(34, 197, 94, 0.18), transparent 60%),
-    repeating-linear-gradient(
-      0deg,
-      rgba(255, 255, 255, 0.035) 0px,
-      rgba(255, 255, 255, 0.035) 56px,
-      transparent 56px,
-      transparent 112px
-    );
+    radial-gradient(110% 70% at 50% -10%, rgba(31, 209, 122, 0.14), transparent 55%),
+    radial-gradient(90% 60% at 50% 120%, rgba(244, 201, 93, 0.05), transparent 60%);
+  background-attachment: fixed;
   -webkit-user-select: none;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
@@ -41,17 +36,44 @@ body {
   padding-bottom: calc(env(safe-area-inset-bottom) + 0.5rem);
 }
 
-@layer components {
-  .card {
-    @apply rounded-3xl bg-white/5 backdrop-blur shadow-card border border-white/10;
+@layer base {
+  h1,
+  h2,
+  h3 {
+    font-family: 'Saira Condensed', system-ui, sans-serif;
+    letter-spacing: 0.01em;
   }
+  .num {
+    font-family: 'Saira Condensed', system-ui, sans-serif;
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+@layer components {
+  /* Glassy surface with a soft top highlight */
+  .card {
+    @apply relative rounded-2xl border border-white/10 bg-card-grad shadow-card backdrop-blur-xl;
+  }
+  .card-hi::before {
+    content: '';
+    @apply pointer-events-none absolute inset-x-0 top-0 h-px rounded-t-2xl bg-gradient-to-r from-transparent via-white/30 to-transparent;
+  }
+
   .btn {
-    @apply rounded-2xl font-bold text-center transition active:scale-95 select-none;
+    @apply inline-flex items-center justify-center gap-2 rounded-xl font-semibold tracking-wide transition active:scale-[0.97] select-none;
   }
   .btn-primary {
-    @apply btn bg-pitch-light text-baller-ink shadow-glow;
+    @apply btn bg-gold-grad text-base-900 shadow-gold;
+  }
+  .btn-emerald {
+    @apply btn text-base-900 shadow-emerald;
+    background-image: linear-gradient(135deg, #46e79a, #1fd17a 55%, #119d5b);
   }
   .btn-ghost {
-    @apply btn bg-white/10 text-white;
+    @apply btn border border-white/10 bg-white/5 text-white/90;
+  }
+
+  .label {
+    @apply text-[11px] font-semibold uppercase tracking-[0.18em] text-white/45;
   }
 }

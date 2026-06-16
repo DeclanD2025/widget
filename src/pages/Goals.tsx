@@ -1,16 +1,9 @@
+import { Check } from 'lucide-react'
 import Page from '../components/Page'
 import { db } from '../db/db'
 import { useFocusGoals } from '../hooks/useData'
-import { SKILL_LABELS } from '../types'
-
-const EMOJI: Record<string, string> = {
-  shooting: '🎯',
-  passing: '🧱',
-  dribbling: '🌀',
-  fitness: '💨',
-  weakFoot: '🦶',
-  control: '🎈',
-}
+import { SKILL_LABELS, type SkillKey } from '../types'
+import { SkillIcon } from '../components/icons'
 
 export default function Goals() {
   const goals = useFocusGoals()
@@ -20,20 +13,24 @@ export default function Goals() {
   }
 
   return (
-    <Page title="What to improve" back>
-      <p className="mb-3 text-white/60">Tap the skills you most want to get better at. We'll suggest sessions to match.</p>
+    <Page title="Focus" kicker="What to improve" back>
+      <p className="mb-3 text-white/55">Pick the skills Caiden most wants to sharpen. Sessions get tuned to match.</p>
       <div className="grid grid-cols-2 gap-3">
         {(goals ?? []).map((g) => (
           <button
             key={g.skillKey}
             onClick={() => toggle(g.skillKey, g.selected)}
-            className={`card flex flex-col items-center gap-2 p-5 transition active:scale-95 ${
-              g.selected ? 'ring-2 ring-pitch-light bg-pitch-light/15' : ''
+            className={`card card-hi relative flex flex-col items-center gap-2 p-5 transition active:scale-[0.97] ${
+              g.selected ? 'shadow-emerald' : ''
             }`}
           >
-            <span className="text-4xl">{EMOJI[g.skillKey]}</span>
-            <span className="font-bold">{SKILL_LABELS[g.skillKey]}</span>
-            {g.selected && <span className="text-xs font-bold text-pitch-light">★ Focus</span>}
+            {g.selected && (
+              <span className="absolute right-3 top-3 grid h-6 w-6 place-items-center rounded-full bg-emerald-glow text-base-900">
+                <Check size={15} strokeWidth={3} />
+              </span>
+            )}
+            <SkillIcon skill={g.skillKey as SkillKey} size={30} className={g.selected ? 'text-emerald-glow' : 'text-white/70'} />
+            <span className="font-bold">{SKILL_LABELS[g.skillKey as SkillKey]}</span>
           </button>
         ))}
       </div>
