@@ -26,9 +26,6 @@ export default defineConfig({
       },
       workbox: {
         globPatterns: ['**/*.{js,css,html,svg,png,woff2}'],
-        // The sample garden photo is large and only used as an optional demo —
-        // keep it out of the offline precache to keep the install lean.
-        globIgnores: ['**/garden-sample.png'],
       },
     }),
   ],

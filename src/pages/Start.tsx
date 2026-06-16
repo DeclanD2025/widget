@@ -25,7 +25,7 @@ export default function Start() {
 
   const tiles = [
     { to: '/modes', label: 'Training Modes', sub: 'Pick how you play', Icon: Gamepad2 },
-    { to: '/garden', label: 'My Garden', sub: 'Set up your pitch', Icon: MapPin },
+    { to: '/garden', label: 'My Garden', sub: 'Bird\'s-eye drill maps', Icon: MapPin },
     { to: '/missions', label: 'Weekly Mission', sub: 'Challenges to smash', Icon: Target },
     { to: '/dashboard', label: 'My Stats', sub: 'Track your rise', Icon: BarChart3 },
   ]

@@ -78,10 +78,9 @@ export const GARDEN_LAYOUTS: Record<string, GardenLayout> = {
   },
   'target-shooting': {
     cones: [],
-    goals: [{ x: 0.5, y: 0.1, w: 0.34 }],
     targets: [
-      { x: 0.37, y: 0.1 },
-      { x: 0.63, y: 0.1 },
+      { x: 0.4, y: 0.08 },
+      { x: 0.6, y: 0.08 },
     ],
     path: [
       { x: 0.5, y: 0.75 },
@@ -95,7 +94,6 @@ export const GARDEN_LAYOUTS: Record<string, GardenLayout> = {
       { x: 0.5, y: 0.55 },
       { x: 0.5, y: 0.4 },
     ],
-    goals: [{ x: 0.5, y: 0.1, w: 0.34 }],
     path: [
       { x: 0.5, y: 0.85 },
       { x: 0.4, y: 0.7 },
@@ -107,10 +105,8 @@ export const GARDEN_LAYOUTS: Record<string, GardenLayout> = {
   },
   'two-goal-rondo': {
     cones: [],
-    goals: [
-      { x: 0.5, y: 0.1, w: 0.32 },
-      { x: 0.5, y: 0.9, w: 0.32 },
-    ],
+    // The far goal is the garden's permanent goal; add a second at the house end.
+    goals: [{ x: 0.5, y: 0.88, w: 0.32 }],
     path: [
       { x: 0.5, y: 0.82 },
       { x: 0.45, y: 0.5 },
