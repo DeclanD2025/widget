@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { Clock, ChevronRight } from 'lucide-react'
+import { Clock, ChevronRight, Users } from 'lucide-react'
 import type { Session } from '../types'
 import { DrillIcon } from './icons'
 
@@ -23,7 +23,14 @@ export default function SessionCard({ session, featured }: { session: Session; f
         <DrillIcon drillId={lead} size={24} />
       </span>
       <span className="flex-1">
-        <span className="block text-lg font-bold leading-tight">{session.name}</span>
+        <span className="flex items-center gap-2 text-lg font-bold leading-tight">
+          {session.name}
+          {session.mode === 'partner' && (
+            <span className="inline-flex items-center gap-1 rounded-full bg-gold/15 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-gold">
+              <Users size={11} /> 2P
+            </span>
+          )}
+        </span>
         <span className="block text-sm text-white/55">{session.blurb}</span>
         <span className="mt-1 flex items-center gap-1.5 text-xs font-semibold text-white/45">
           <Clock size={13} /> ~{minutes} min · {session.drillRefs.length} drills

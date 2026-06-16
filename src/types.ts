@@ -38,6 +38,7 @@ export type ModeKey =
   | 'weakFoot'
   | 'matchday'
   | 'fitness'
+  | 'partner'
   | 'custom'
 
 export interface Drill {
@@ -55,6 +56,8 @@ export interface Drill {
   durationSec: number
   /** Level required before this drill card unlocks. 0 = available from the start. */
   unlockLevel: number
+  /** Needs a second person (e.g. a parent) to do it. */
+  partner?: boolean
 }
 
 /** A single drill inside a session, with its target tuned to a difficulty tier. */

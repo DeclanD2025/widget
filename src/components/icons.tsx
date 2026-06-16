@@ -18,6 +18,11 @@ import {
   MoveHorizontal,
   ChevronsUp,
   Shield,
+  Users,
+  ArrowRightLeft,
+  Send,
+  Swords,
+  Megaphone,
   type LucideIcon,
   type LucideProps,
 } from 'lucide-react'
@@ -51,6 +56,12 @@ export const DRILL_ICON: Record<string, LucideIcon> = {
   'side-shuffle': MoveHorizontal,
   'calf-raises': ChevronsUp,
   'superhero-plank': Shield,
+  'pass-and-move': Users,
+  'give-and-go': ArrowRightLeft,
+  'cross-and-finish': Send,
+  'one-v-one': Swords,
+  'reaction-call': Megaphone,
+  'head-tennis': Users,
 }
 
 export function SkillIcon({ skill, ...props }: { skill: SkillKey } & LucideProps) {
