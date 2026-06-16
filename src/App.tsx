@@ -1,6 +1,8 @@
+import { useState } from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
 import { AnimatePresence } from 'framer-motion'
 import BottomNav from './components/BottomNav'
+import Onboarding from './components/Onboarding'
 import Start from './pages/Start'
 import Profile from './pages/Profile'
 import Goals from './pages/Goals'
@@ -24,6 +26,17 @@ export default function App() {
   const location = useLocation()
   // Hide the tab bar while running a drill or celebrating, for a focused, full-screen feel.
   const hideNav = /^\/(session|done)/.test(location.pathname)
+
+  // Show the welcome tutorial the first time Caiden opens the app.
+  const [onboarded, setOnboarded] = useState(() => {
+    try {
+      return localStorage.getItem('gb-onboarded') === '1'
+    } catch {
+      return true
+    }
+  })
+
+  if (!onboarded) return <Onboarding onDone={() => setOnboarded(true)} />
 
   return (
     <div className="mx-auto min-h-full max-w-md pb-24">
