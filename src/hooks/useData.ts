@@ -43,3 +43,14 @@ export function useCustomSessions() {
 export function useBests() {
   return useLiveQuery(() => db.bests.toArray(), [])
 }
+
+export function useKeepyUppy(weekStart: string) {
+  return useLiveQuery(() => db.keepyUppy.get(weekStart), [weekStart])
+}
+
+export function useKeepyUppyAllTimeBest() {
+  return useLiveQuery(async () => {
+    const all = await db.keepyUppy.toArray()
+    return all.reduce((m, r) => Math.max(m, r.best), 0)
+  }, [])
+}

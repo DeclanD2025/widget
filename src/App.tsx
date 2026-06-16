@@ -12,6 +12,7 @@ import Done from './pages/Done'
 import Dashboard from './pages/Dashboard'
 import Badges from './pages/Badges'
 import Missions from './pages/Missions'
+import KeepyUppy from './pages/KeepyUppy'
 import DrillDetail from './pages/DrillDetail'
 import Settings from './pages/Settings'
 import Garden from './pages/Garden'
@@ -37,6 +38,7 @@ export default function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/badges" element={<Badges />} />
           <Route path="/missions" element={<Missions />} />
+          <Route path="/challenge" element={<KeepyUppy />} />
           <Route path="/drills/:id" element={<DrillDetail />} />
           <Route path="/settings" element={<Settings />} />
         </Routes>

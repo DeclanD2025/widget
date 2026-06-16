@@ -34,6 +34,15 @@ export interface Garden {
   savedAt: string
 }
 
+/** A week's best-of-3 keepy-up challenge. */
+export interface KeepyUppy {
+  weekStart: string // YYYY-MM-DD (Monday)
+  attempts: number[]
+  best: number
+  xpAwarded: boolean
+  updatedAt: string
+}
+
 export class BallerDB extends Dexie {
   player!: Table<Player, string>
   skills!: Table<SkillRow, string>
@@ -44,6 +53,7 @@ export class BallerDB extends Dexie {
   focusGoals!: Table<FocusGoal, string>
   customSessions!: Table<Session, string>
   garden!: Table<Garden, string>
+  keepyUppy!: Table<KeepyUppy, string>
 
   constructor() {
     super('garden-baller')
@@ -59,6 +69,9 @@ export class BallerDB extends Dexie {
     })
     this.version(2).stores({
       garden: 'id',
+    })
+    this.version(3).stores({
+      keepyUppy: 'weekStart',
     })
   }
 }
