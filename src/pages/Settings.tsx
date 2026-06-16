@@ -1,9 +1,19 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { User, Target, Share, ChevronRight, Trash2 } from 'lucide-react'
+import { User, Target, Share, ChevronRight, Trash2, Volume2, VolumeX } from 'lucide-react'
 import Page from '../components/Page'
 import { db } from '../db/db'
+import { soundEnabled, setSoundEnabled } from '../lib/sound'
 
 export default function Settings() {
+  const [sound, setSound] = useState(soundEnabled())
+
+  function toggleSound() {
+    const next = !sound
+    setSound(next)
+    setSoundEnabled(next)
+  }
+
   async function resetProgress() {
     if (!confirm('Reset ALL progress? This cannot be undone.')) return
     await Promise.all([
@@ -22,6 +32,16 @@ export default function Settings() {
 
   return (
     <Page title="Settings" back>
+      <div className="card mb-4">
+        <button onClick={toggleSound} className="flex w-full items-center gap-3 px-4 py-4">
+          {sound ? <Volume2 size={20} className="text-emerald-glow" /> : <VolumeX size={20} className="text-white/50" />}
+          <span className="flex-1 text-left font-semibold">Sound effects & whistles</span>
+          <span className={`relative h-7 w-12 rounded-full transition ${sound ? 'bg-emerald-glow' : 'bg-white/15'}`}>
+            <span className={`absolute top-1 h-5 w-5 rounded-full bg-white transition-all ${sound ? 'left-6' : 'left-1'}`} />
+          </span>
+        </button>
+      </div>
+
       <div className="card divide-y divide-white/10">
         <Link to="/profile" className="flex items-center gap-3 px-4 py-4">
           <User size={20} className="text-white/60" />
