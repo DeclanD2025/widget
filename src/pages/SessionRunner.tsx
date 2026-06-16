@@ -12,6 +12,7 @@ import { useCustomSessions } from '../hooks/useData'
 import { completeSession, type RunDrill } from '../lib/complete'
 import { useRunStore } from '../store/run'
 import { isHigherBetter } from '../lib/game'
+import { whistle, beep, longWhistle, pop } from '../lib/sound'
 import type { Session } from '../types'
 
 type Phase = 'intro' | 'timer' | 'score'
@@ -48,12 +49,15 @@ export default function SessionRunner() {
     if (phase !== 'timer' || paused) return
     tick.current = setInterval(() => {
       setRemaining((r) => {
-        if (r <= 1) {
+        const next = r - 1
+        if (next <= 0) {
           clearInterval(tick.current)
+          longWhistle()
           setPhase('score')
           return 0
         }
-        return r - 1
+        if (next <= 3) beep()
+        return next
       })
     }, 1000)
     return () => clearInterval(tick.current)
@@ -77,6 +81,7 @@ export default function SessionRunner() {
     setRemaining(current!.durationSec)
     setPaused(false)
     setPhase('timer')
+    whistle()
   }
 
   function quit() {
@@ -163,7 +168,7 @@ export default function SessionRunner() {
               <button onClick={() => setPaused((p) => !p)} className="btn-ghost flex-1 py-4 text-lg">
                 {paused ? <><Play size={20} /> Resume</> : <><Pause size={20} /> Pause</>}
               </button>
-              <button onClick={() => { clearInterval(tick.current); setPhase('score') }} className="btn-emerald flex-1 py-4 text-lg">
+              <button onClick={() => { clearInterval(tick.current); longWhistle(); setPhase('score') }} className="btn-emerald flex-1 py-4 text-lg">
                 <Check size={20} /> Done
               </button>
             </div>
@@ -179,9 +184,9 @@ export default function SessionRunner() {
             </p>
 
             <div className="mt-8 flex items-center gap-6">
-              <button onClick={() => setScore((s) => Math.max(0, s - 1))} className="btn-ghost grid h-16 w-16 place-items-center"><Minus size={28} /></button>
+              <button onClick={() => { pop(); setScore((s) => Math.max(0, s - 1)) }} className="btn-ghost grid h-16 w-16 place-items-center"><Minus size={28} /></button>
               <div className="num w-28 text-center text-7xl font-extrabold text-gold">{score}</div>
-              <button onClick={() => setScore((s) => s + 1)} className="btn-emerald grid h-16 w-16 place-items-center"><Plus size={28} /></button>
+              <button onClick={() => { pop(); setScore((s) => s + 1) }} className="btn-emerald grid h-16 w-16 place-items-center"><Plus size={28} /></button>
             </div>
             <div className="mt-2 text-sm text-white/45">{higherBetter ? (drill.scoreType === 'goals' ? 'goals scored' : 'reps / passes') : 'seconds'}</div>
 

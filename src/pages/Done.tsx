@@ -6,6 +6,7 @@ import Confetti from '../components/Confetti'
 import SkillBar from '../components/SkillBar'
 import { useRunStore } from '../store/run'
 import { useSkills } from '../hooks/useData'
+import { cheer, fanfare } from '../lib/sound'
 import type { SkillKey } from '../types'
 
 export default function Done() {
@@ -15,7 +16,12 @@ export default function Done() {
   const skills = useSkills()
 
   useEffect(() => {
-    if (!summary) nav('/', { replace: true })
+    if (!summary) {
+      nav('/', { replace: true })
+      return
+    }
+    if (summary.leveledUp) fanfare()
+    else cheer()
   }, [summary, nav])
 
   if (!summary || !skills) return null

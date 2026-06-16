@@ -6,6 +6,7 @@ import Confetti from '../components/Confetti'
 import { weekStart } from '../lib/game'
 import { useKeepyUppy, useKeepyUppyAllTimeBest } from '../hooks/useData'
 import { saveKeepyUppyProgress, finishKeepyUppy, type KeepyUppyResult } from '../lib/keepyuppy'
+import { pop, cheer, fanfare } from '../lib/sound'
 
 export default function KeepyUppy() {
   const wk = weekStart()
@@ -26,7 +27,10 @@ export default function KeepyUppy() {
     if (next.length >= 3) {
       const r = await finishKeepyUppy(wk, next)
       setResult(r)
+      if (r.beat) fanfare()
+      else cheer()
     } else {
+      pop()
       await saveKeepyUppyProgress(wk, next)
     }
   }
