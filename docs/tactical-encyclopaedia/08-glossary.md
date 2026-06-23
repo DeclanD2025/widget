@@ -37,9 +37,13 @@ chapter where a concept is explained in full.
 ### F
 - **False 9** — a centre-forward who drops into midfield to create space and overloads.
   *(Ch. 07)*
+- **Field tilt** — share of final-third touches; a measure of territorial dominance, often
+  truer than possession %. *(Ch. 13)*
 - **Final third** — the attacking third of the pitch. *(Ch. 00)*
 
 ### G
+- **Game state** — how the current score reshapes both teams' tactics (leading teams drop
+  off, trailing teams commit forward). *(Ch. 17)*
 - **Gegenpressing** — see counterpress. *(Ch. 02)*
 - **Give-and-go (one-two / wall pass)** — pass and run past your marker to receive again.
   *(Ch. 03)*
@@ -58,6 +62,8 @@ chapter where a concept is explained in full.
 ### L
 - **Libero / sweeper** — a spare defender behind the defensive line. *(Ch. 07)*
 - **Line-breaking pass** — a pass that eliminates opponents by going through a line. *(Ch. 03)*
+- **Line of engagement** — the height up the pitch at which the defending team starts to
+  press; watching it creep up or get pushed back reveals momentum. *(Ch. 12, 17)*
 - **Low block** — defending deep in your own third. *(Ch. 02, 04)*
 
 ### M
@@ -78,8 +84,12 @@ chapter where a concept is explained in full.
   create superiorities. *(Ch. 02)*
 - **PPDA** (passes allowed per defensive action) — a pressing-intensity metric; lower =
   more aggressive pressing. *(Ch. 09)*
-- **Press trigger** — the cue that launches a coordinated press. *(Ch. 04)*
+- **Press resistance** — a team's (or player's) ability to keep the ball and play forward
+  when pressed. *(Ch. 12, 15)*
+- **Press trigger** — the cue that launches a coordinated press. *(Ch. 04, 12)*
 - **Pivot** — the deepest midfielder who screens the defence and distributes. *(Ch. 07)*
+- **Provocation (in build-up)** — deliberately holding the ball near your own goal to bait
+  the press in, then breaking it to access the space behind. *(Ch. 12)*
 
 ### R
 - **Regista** — a deep-lying playmaker who dictates tempo from in front of the defence.
@@ -116,9 +126,11 @@ chapter where a concept is explained in full.
 
 ### X
 - **xG (expected goals)** — the probability a given chance is scored; the standard measure
-  of chance quality. *(Ch. 09)*
+  of chance quality. *(Ch. 09, 13)*
+- **xGOT (expected goals on target / post-shot xG)** — the probability a shot is scored given
+  where it ended up; measures finishing and shot-stopping. *(Ch. 13)*
 - **xT (expected threat)** — a model valuing each action by how much it raises the chance of
-  scoring soon after. *(Ch. 09)*
+  scoring soon after. *(Ch. 09, 13)*
 
 ### Z
 - **Zone 14** — the central area at the top of the box; the prime playmaking square. *(Ch. 00)*
