@@ -9,6 +9,7 @@ import type {
   FocusGoal,
   Session,
 } from '../types'
+import type { CalibrationProfile, VisionRecordingRecord, VisionShotSummary } from '../lib/vision/types'
 
 export interface Counters {
   key: 'counters'
@@ -54,6 +55,9 @@ export class BallerDB extends Dexie {
   customSessions!: Table<Session, string>
   garden!: Table<Garden, string>
   keepyUppy!: Table<KeepyUppy, string>
+  visionCalibrations!: Table<CalibrationProfile, string>
+  visionShots!: Table<VisionShotSummary, string>
+  visionRecordings!: Table<VisionRecordingRecord, string>
 
   constructor() {
     super('garden-baller')
@@ -72,6 +76,13 @@ export class BallerDB extends Dexie {
     })
     this.version(3).stores({
       keepyUppy: 'weekStart',
+    })
+    this.version(4).stores({
+      visionCalibrations: 'id, updatedAt',
+      visionShots: 'id, timestamp, outcome, qualityScore',
+    })
+    this.version(5).stores({
+      visionRecordings: 'id, timestamp, durationMs, sizeBytes',
     })
   }
 }

@@ -1,0 +1,11 @@
+{
+  "id": "movenet-lightning",
+  "source": "https://tfhub.dev/google/tfjs-model/movenet/singlepose/lightning/4",
+  "fromTFHub": true,
+  "vendoredAt": "2026-06-24T16:39:34.930Z",
+  "files": [
+    "model.json",
+    "weights.bin"
+  ],
+  "purpose": "Local MoveNet single-pose player tracking"
+}

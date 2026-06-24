@@ -25,9 +25,9 @@ export default defineConfig({
         ],
       },
       workbox: {
-        globPatterns: ['**/*.{js,css,html,svg,png,woff2}'],
-        // Allow the aerial garden photo (~3.5MB) to be precached for offline use.
-        maximumFileSizeToCacheInBytes: 4 * 1024 * 1024,
+        globPatterns: ['**/*.{js,css,html,svg,png,woff2,json,bin}'],
+        // Allow the aerial garden photo and local Vision model shards to be precached.
+        maximumFileSizeToCacheInBytes: 24 * 1024 * 1024,
       },
     }),
   ],

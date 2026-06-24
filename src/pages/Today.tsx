@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Wrench, Star } from 'lucide-react'
+import { Camera, Wrench, Star } from 'lucide-react'
 import Page from '../components/Page'
 import SessionCard from '../components/SessionCard'
 import { SESSIONS, SESSION_BY_ID } from '../data/sessions'
@@ -32,6 +32,16 @@ export default function Today() {
         <Link to="/goals" className="text-sm font-semibold text-emerald-glow">Set focus →</Link>
       </div>
       <SessionCard session={rec} featured />
+
+      <Link to="/vision" className="card card-hi mt-3 flex items-center gap-3 p-4 active:scale-[0.98]">
+        <span className="grid h-11 w-11 place-items-center rounded-xl bg-emerald-glow/15 text-emerald-glow">
+          <Camera size={21} />
+        </span>
+        <span className="min-w-0 flex-1">
+          <span className="block font-extrabold">Open Garden Baller Vision</span>
+          <span className="block text-sm text-white/45">Camera overlay for shooting practice</span>
+        </span>
+      </Link>
 
       <h2 className="mb-2 mt-6 label">More sessions</h2>
       <div className="space-y-3">

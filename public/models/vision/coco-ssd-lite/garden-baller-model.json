@@ -1,0 +1,11 @@
+{
+  "id": "coco-ssd-lite",
+  "source": "https://storage.googleapis.com/tfjs-models/savedmodel/ssdlite_mobilenet_v2/model.json",
+  "fromTFHub": false,
+  "vendoredAt": "2026-06-24T16:39:38.456Z",
+  "files": [
+    "model.json",
+    "weights.bin"
+  ],
+  "purpose": "Local COCO-SSD person and sports-ball object detection"
+}

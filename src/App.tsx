@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { lazy, Suspense, useState } from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
 import { AnimatePresence } from 'framer-motion'
 import BottomNav from './components/BottomNav'
@@ -22,10 +22,13 @@ import Learn from './pages/Learn'
 import SkillGuide from './pages/SkillGuide'
 import TacticGuide from './pages/TacticGuide'
 
+const VisionPage = lazy(() => import('./features/vision/VisionPage'))
+
 export default function App() {
   const location = useLocation()
   // Hide the tab bar while running a drill or celebrating, for a focused, full-screen feel.
-  const hideNav = /^\/(session|done)/.test(location.pathname)
+  const isVision = /^\/vision/.test(location.pathname)
+  const hideNav = /^\/(session|done)/.test(location.pathname) || isVision
 
   // Show the welcome tutorial the first time Caiden opens the app.
   const [onboarded, setOnboarded] = useState(() => {
@@ -39,7 +42,7 @@ export default function App() {
   if (!onboarded) return <Onboarding onDone={() => setOnboarded(true)} />
 
   return (
-    <div className="mx-auto min-h-full max-w-md pb-24">
+    <div className={`mx-auto min-h-full ${isVision ? 'max-w-7xl pb-0' : 'max-w-md pb-24'}`}>
       <AnimatePresence mode="wait">
         <Routes location={location} key={location.pathname.split('/')[1] || 'home'}>
           <Route path="/" element={<Start />} />
@@ -54,6 +57,14 @@ export default function App() {
           <Route path="/learn" element={<Learn />} />
           <Route path="/learn/skill/:id" element={<SkillGuide />} />
           <Route path="/learn/tactic/:id" element={<TacticGuide />} />
+          <Route
+            path="/vision"
+            element={
+              <Suspense fallback={<div className="safe-top p-5 text-center font-semibold text-white/45">Loading Vision...</div>}>
+                <VisionPage />
+              </Suspense>
+            }
+          />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/badges" element={<Badges />} />
           <Route path="/missions" element={<Missions />} />

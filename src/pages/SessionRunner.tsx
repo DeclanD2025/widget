@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
-import { X, Play, Pause, Check, Plus, Minus } from 'lucide-react'
+import { X, Play, Pause, Check, Plus, Minus, Camera } from 'lucide-react'
 import ProgressRing from '../components/ProgressRing'
 import GardenPitch from '../components/GardenPitch'
 import { GARDEN_LAYOUTS } from '../data/gardenLayouts'
@@ -149,6 +149,11 @@ export default function SessionRunner() {
               <p className="mt-4 text-center font-semibold text-white/65">
                 Target: {higherBetter ? `get ${current.target}` : `beat ${current.target}s`} · {fmt(current.durationSec)} on the clock
               </p>
+              {drill.primarySkill === 'shooting' && (
+                <Link to={`/vision?drill=${drill.id}&session=${session.id}`} className="btn-ghost mt-4 w-full py-3 text-sm">
+                  <Camera size={17} /> Open Vision Mode
+                </Link>
+              )}
             </div>
             <button onClick={startDrill} className="btn-emerald mb-6 w-full py-5 text-2xl font-extrabold uppercase">
               <Play size={24} fill="currentColor" /> Start drill
