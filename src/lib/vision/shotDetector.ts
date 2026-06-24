@@ -12,17 +12,37 @@ import type {
   VisionFrame,
 } from './types'
 
-type DetectorState = 'idle' | 'armed' | 'tracking-shot' | 'cooldown'
+type DetectorState = 'idle' | 'armed' | 'candidate-shot' | 'tracking-shot' | 'cooldown'
 
-const START_SPEED_PX_PER_SEC = 360
-const START_ACCEL_PX_PER_SEC2 = 1500
-const MIN_SHOT_DURATION_MS = 160
+const MIN_START_SPEED_PX_PER_SEC = 520
+const MIN_START_ACCEL_PX_PER_SEC2 = 2200
+const CANDIDATE_CONFIRM_MS = 140
+const MIN_SHOT_DURATION_MS = 260
 const MAX_SHOT_DURATION_MS = 4200
-const SLOW_SPEED_PX_PER_SEC = 92
+const SLOW_SPEED_PX_PER_SEC = 115
 const COOLDOWN_MS = 850
 
 function last<T>(items: T[]): T | undefined {
   return items[items.length - 1]
+}
+
+function segmentSpeeds(trail: BallObservation[]): number[] {
+  const speeds: number[] = []
+  for (let i = 1; i < trail.length; i++) {
+    const dt = Math.max(16, trail[i].timestamp - trail[i - 1].timestamp) / 1000
+    speeds.push(distance(trail[i - 1], trail[i]) / dt)
+  }
+  return speeds
+}
+
+function dynamicStartSpeed(frame?: VisionFrame): number {
+  if (!frame) return MIN_START_SPEED_PX_PER_SEC
+  return Math.max(MIN_START_SPEED_PX_PER_SEC, Math.hypot(frame.width, frame.height) * 0.38)
+}
+
+function dynamicStartAcceleration(frame?: VisionFrame): number {
+  if (!frame) return MIN_START_ACCEL_PX_PER_SEC2
+  return Math.max(MIN_START_ACCEL_PX_PER_SEC2, Math.hypot(frame.width, frame.height) * 1.45)
 }
 
 export class ShotDetector {
@@ -30,6 +50,7 @@ export class ShotDetector {
   private activeTrail: BallObservation[] = []
   private startedAt = 0
   private endedAt = 0
+  private candidateStartedAt = 0
   private playerAtShot?: PlayerTrack
   private contactPoint?: BallObservation
   private lastCompleted?: ShotEvent
@@ -57,12 +78,30 @@ export class ShotDetector {
       this.state = 'armed'
     }
 
-    if (this.state === 'armed' && this.shouldStart(ball, player)) {
-      this.state = 'tracking-shot'
-      this.startedAt = ball.lastSeenAt
+    if (this.state === 'armed' && this.isShotCandidate(ball, player, goal, frame)) {
+      this.state = 'candidate-shot'
+      this.candidateStartedAt = frame.timestamp
       this.playerAtShot = player
       this.contactPoint = ball.trail[ball.trail.length - 2] ?? last(ball.trail)
       this.activeTrail = ball.trail.slice(-8)
+      return undefined
+    }
+
+    if (this.state === 'candidate-shot') {
+      const latest = last(ball.trail)
+      if (latest && (this.activeTrail.length === 0 || last(this.activeTrail)?.timestamp !== latest.timestamp)) {
+        this.activeTrail.push(latest)
+      }
+      if (!this.isShotCandidate(ball, this.playerAtShot ?? player, goal, frame)) {
+        this.state = 'armed'
+        this.activeTrail = []
+        this.candidateStartedAt = 0
+        return undefined
+      }
+      if (frame.timestamp - this.candidateStartedAt >= CANDIDATE_CONFIRM_MS && this.hasSeparatedFromPlayer(ball, this.playerAtShot ?? player)) {
+        this.state = 'tracking-shot'
+        this.startedAt = this.candidateStartedAt
+      }
       return undefined
     }
 
@@ -111,13 +150,37 @@ export class ShotDetector {
     return this.lastCompleted
   }
 
-  private shouldStart(ball: BallTrack, player?: PlayerTrack): boolean {
-    if (ball.trail.length < 3) return false
+  private isShotCandidate(ball: BallTrack, player?: PlayerTrack, goal?: GoalTrack, frame?: VisionFrame): boolean {
+    if (ball.trail.length < 5) return false
+    if (ball.confidence.score < 0.28) return false
+    if (player?.state === 'lost') return false
     const foot = player?.footPosition
-    const ballWasNearPlayer = foot ? distance(foot, ball.center) < Math.max(player.box.height * 0.55, 90) : true
-    const movingAway = foot ? magnitude(subtract(ball.center, foot)) > magnitude(subtract(ball.trail[ball.trail.length - 3], foot)) + 8 : true
-    const suddenKick = ball.speedPxPerSec > START_SPEED_PX_PER_SEC || ball.accelerationPxPerSec2 > START_ACCEL_PX_PER_SEC2
-    return ball.confidence.score > 0.18 && ballWasNearPlayer && movingAway && suddenKick
+    const recent = ball.trail.slice(-5)
+    const recentSpeeds = segmentSpeeds(recent)
+    const fastFrames = recentSpeeds.filter((speed) => speed > dynamicStartSpeed(frame)).length
+    const speedOk = ball.speedPxPerSec > dynamicStartSpeed(frame) || fastFrames >= 2
+    const accelerationOk = ball.accelerationPxPerSec2 > dynamicStartAcceleration(frame)
+    const nearPlayerRecently = foot ? recent.some((point) => distance(foot, point) < Math.max(player.box.height * 0.55, 95)) : true
+    const movingAway = foot ? distance(foot, ball.center) > distance(foot, recent[0]) + Math.max(24, player.box.height * 0.08) : true
+    const goalDirectionOk = goal ? this.isMovingTowardGoal(recent, goal) : true
+    return nearPlayerRecently && movingAway && goalDirectionOk && (speedOk || accelerationOk)
+  }
+
+  private hasSeparatedFromPlayer(ball: BallTrack, player?: PlayerTrack): boolean {
+    if (!player?.footPosition) return true
+    const currentDistance = distance(player.footPosition, ball.center)
+    const separationNeeded = Math.max(90, player.box.height * 0.42)
+    return currentDistance > separationNeeded
+  }
+
+  private isMovingTowardGoal(trail: BallObservation[], goal: GoalTrack): boolean {
+    if (!goal.calibrated || !goal.centre || trail.length < 3) return true
+    const start = trail[0]
+    const end = last(trail)!
+    const movement = subtract(end, start)
+    const target = subtract(goal.centre, start)
+    const denom = Math.max(1, magnitude(movement) * magnitude(target))
+    return (movement.x * target.x + movement.y * target.y) / denom > 0.08
   }
 
   private finish(goal: GoalTrack, profile: CalibrationProfile | undefined, endedAt: number, reason: string): ShotEvent | undefined {
@@ -169,6 +232,7 @@ export class ShotDetector {
     this.lastCompleted = shot
     this.activeTrail = []
     this.startedAt = 0
+    this.candidateStartedAt = 0
     this.playerAtShot = undefined
     this.contactPoint = undefined
     this.state = 'cooldown'

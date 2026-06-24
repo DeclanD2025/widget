@@ -25,16 +25,15 @@ function last<T>(items: T[]): T {
 
 export function estimateSpeed(trail: BallObservation[], metresPerPixel?: number): SpeedEstimate {
   if (trail.length < 2) return { pixelsPerSecond: 0, confidence: confidence(0, ['Not enough ball trail']) }
-  let peak = 0
   const segmentSpeeds: number[] = []
 
   for (let i = 1; i < trail.length; i++) {
     const dt = Math.max(16, trail[i].timestamp - trail[i - 1].timestamp) / 1000
     const speed = distance(trail[i - 1], trail[i]) / dt
     segmentSpeeds.push(speed)
-    peak = Math.max(peak, speed)
   }
 
+  const robustSpeed = robustShotSpeed(segmentSpeeds)
   const averageConfidence = trail.reduce((sum, p) => sum + p.confidence, 0) / trail.length
   const durationMs = last(trail).timestamp - trail[0].timestamp
   const speedConfidence = combineConfidence([
@@ -43,14 +42,23 @@ export function estimateSpeed(trail: BallObservation[], metresPerPixel?: number)
     { score: clamp01(durationMs / 450), weight: 0.16, reason: 'Shot duration' },
     { score: metresPerPixel ? 0.86 : 0.38, weight: 0.14, reason: metresPerPixel ? 'Calibrated metres available' : 'Pixel speed only' },
   ])
-  const pixelsPerSecond = Math.round(peak)
-  const metresPerSecond = metresPerPixel ? peak * metresPerPixel : undefined
+  const pixelsPerSecond = Math.round(robustSpeed)
+  const metresPerSecond = metresPerPixel ? robustSpeed * metresPerPixel : undefined
   return {
     pixelsPerSecond,
     metresPerSecond,
     kmh: metresPerSecond ? Math.round(metresPerSecond * 3.6) : undefined,
     confidence: speedConfidence,
   }
+}
+
+function robustShotSpeed(speeds: number[]): number {
+  if (speeds.length === 0) return 0
+  const sorted = [...speeds].sort((a, b) => a - b)
+  const p75 = sorted[Math.min(sorted.length - 1, Math.floor(sorted.length * 0.75))]
+  const p90 = sorted[Math.min(sorted.length - 1, Math.floor(sorted.length * 0.9))]
+  const average = sorted.reduce((sum, speed) => sum + speed, 0) / sorted.length
+  return Math.min(p90, Math.max(p75, average * 1.18))
 }
 
 export function estimateDistance(trail: BallObservation[], profile?: CalibrationProfile): DistanceEstimate {
@@ -135,13 +143,14 @@ export function estimateAccuracy(trail: BallObservation[], goal: GoalTrack, outc
 }
 
 export function estimatePower(speed: SpeedEstimate, distanceEstimate: DistanceEstimate, durationMs: number): PowerEstimate {
-  const speedComponent = speed.kmh ? clamp01(speed.kmh / 55) : clamp01(speed.pixelsPerSecond / 1200)
-  const distanceComponent = distanceEstimate.metres ? clamp01(distanceEstimate.metres / 14) : clamp01(distanceEstimate.pixels / 520)
-  const urgency = clamp01(1 - durationMs / 3600)
-  const score = Math.round((speedComponent * 0.58 + distanceComponent * 0.22 + urgency * 0.2) * 100)
+  const speedComponent = speed.kmh ? clamp01((speed.kmh - 12) / 46) : clamp01((speed.pixelsPerSecond - 260) / 1450)
+  const distanceComponent = distanceEstimate.metres ? clamp01(distanceEstimate.metres / 18) : clamp01(distanceEstimate.pixels / 760)
+  const urgency = clamp01(1 - durationMs / 2600)
+  const calibrationPenalty = speed.kmh ? 1 : 0.72
+  const score = Math.round((speedComponent * 0.72 + distanceComponent * 0.18 + urgency * 0.1) * 100 * calibrationPenalty)
   return {
     score,
-    label: score >= 86 ? 'Rocket' : score >= 66 ? 'High' : score >= 38 ? 'Medium' : 'Low',
+    label: score >= 88 ? 'Rocket' : score >= 70 ? 'High' : score >= 42 ? 'Medium' : 'Low',
     confidence: combineConfidence([
       { score: speed.confidence.score, weight: 0.55, reason: 'Speed confidence' },
       { score: distanceEstimate.confidence.score, weight: 0.25, reason: 'Distance confidence' },

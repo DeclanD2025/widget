@@ -78,6 +78,8 @@ function tapLabel(mode: VisionTapMode): string {
       return 'Tap right post top'
     case 'goal-centre':
       return 'Tap goal centre'
+    case 'goal-box':
+      return 'Tap one goal corner'
     case 'target-bottomLeft':
       return 'Tap bottom-left target'
     case 'target-bottomRight':
@@ -88,6 +90,29 @@ function tapLabel(mode: VisionTapMode): string {
       return 'Tap top-right target'
     case 'target-centre':
       return 'Tap centre target'
+  }
+}
+
+function goalFromBox(a: Point2D, b: Point2D): GoalCalibration {
+  const left = Math.min(a.x, b.x)
+  const right = Math.max(a.x, b.x)
+  const top = Math.min(a.y, b.y)
+  const bottom = Math.max(a.y, b.y)
+  const width = right - left
+  const height = bottom - top
+  return {
+    leftPostBase: { x: left, y: bottom },
+    rightPostBase: { x: right, y: bottom },
+    leftPostTop: { x: left, y: top },
+    rightPostTop: { x: right, y: top },
+    centre: { x: left + width / 2, y: top + height / 2 },
+    targetZones: {
+      bottomLeft: { x: left + width * 0.2, y: bottom - height * 0.18 },
+      bottomRight: { x: right - width * 0.2, y: bottom - height * 0.18 },
+      topLeft: { x: left + width * 0.2, y: top + height * 0.2 },
+      topRight: { x: right - width * 0.2, y: top + height * 0.2 },
+      centre: { x: left + width / 2, y: top + height / 2 },
+    },
   }
 }
 
@@ -167,6 +192,7 @@ export default function VisionPage() {
   const [profileName, setProfileName] = useState('Garden goal')
   const [knownMetres, setKnownMetres] = useState('3.66')
   const [fixedIpad, setFixedIpad] = useState(true)
+  const [goalBoxAnchor, setGoalBoxAnchor] = useState<Point2D>()
 
   const modeRef = useRef(mode)
   const profileRef = useRef(profile)
@@ -396,7 +422,7 @@ export default function VisionPage() {
       drawVisionOverlay(canvas, nextState, {
         goal: goalRef.current,
         groundPlane: groundRef.current,
-        activeTapLabel: tapLabel(tapModeRef.current),
+        activeTapLabel: tapModeRef.current === 'goal-box' && goalBoxAnchor ? 'Tap opposite goal corner' : tapLabel(tapModeRef.current),
         profile: currentProfile,
       })
 
@@ -454,8 +480,18 @@ export default function VisionPage() {
       setGroundPlane((current) => [...(current.length >= 4 ? [] : current), point].slice(0, 4))
       return
     }
+    if (currentMode === 'goal-box') {
+      if (!goalBoxAnchor) {
+        setGoalBoxAnchor(point)
+        return
+      }
+      setGoal(goalFromBox(goalBoxAnchor, point))
+      setGoalBoxAnchor(undefined)
+      setTapMode('select-player')
+      return
+    }
     setGoal((current) => goalWithTap(current, currentMode, point))
-  }, [])
+  }, [goalBoxAnchor])
 
   const saveCalibration = useCallback(() => {
     const frame = stateRef.current?.frame ?? { width: canvasRef.current?.width ?? 0, height: canvasRef.current?.height ?? 0 }

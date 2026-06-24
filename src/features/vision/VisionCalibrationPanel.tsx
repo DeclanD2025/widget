@@ -106,6 +106,13 @@ export default function VisionCalibrationPanel({
           <Target size={16} className="text-emerald-glow" /> Goal points
         </div>
         <div className="grid grid-cols-2 gap-2">
+          <button
+            onClick={() => onTapModeChange('goal-box')}
+            className={`btn-ghost justify-between px-3 py-2 text-sm ${tapMode === 'goal-box' ? 'border-emerald-glow/60 bg-emerald-glow/15 text-emerald-glow' : ''}`}
+          >
+            Quick goal box
+            {goal.leftPostBase && goal.rightPostBase && goal.leftPostTop && goal.rightPostTop && <Check size={15} />}
+          </button>
           {GOAL_TOOLS.map((tool) => (
             <button
               key={tool.mode}
@@ -180,7 +187,7 @@ export default function VisionCalibrationPanel({
       </div>
 
       <p className="mt-3 text-xs text-white/42">
-        Mode: {mode}. Use goal width or two marked ground points for the known distance.
+        Mode: {mode}. Re-lock the goal with Quick goal box when the iPad moves. Garden corners are optional for richer distance estimates.
       </p>
     </div>
   )

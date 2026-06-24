@@ -9,6 +9,7 @@ export type VisionTapMode =
   | 'goal-leftPostTop'
   | 'goal-rightPostTop'
   | 'goal-centre'
+  | 'goal-box'
   | 'target-bottomLeft'
   | 'target-bottomRight'
   | 'target-topLeft'

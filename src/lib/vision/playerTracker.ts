@@ -2,7 +2,29 @@ import { combineConfidence, confidence } from './confidence'
 import { angleDeg, boxArea, boxCenter, distance, midpoint, pointInBox, subtract } from './geometry'
 import type { BallTrack, BoundingBox, Detection, PlayerTrack, Point2D, PoseKeypoint, VisionFrame } from './types'
 
-const MAX_LOST_FRAMES = 24
+const MAX_LOST_FRAMES = 12
+const SELECTED_MAX_LOST_FRAMES = 8
+const MIN_PERSON_SCORE = 0.34
+
+function lerp(a: number, b: number, alpha: number): number {
+  return a + (b - a) * alpha
+}
+
+function smoothPoint(previous: Point2D, next: Point2D, alpha: number): Point2D {
+  return {
+    x: lerp(previous.x, next.x, alpha),
+    y: lerp(previous.y, next.y, alpha),
+  }
+}
+
+function smoothBox(previous: BoundingBox, next: BoundingBox, alpha: number): BoundingBox {
+  return {
+    x: lerp(previous.x, next.x, alpha),
+    y: lerp(previous.y, next.y, alpha),
+    width: lerp(previous.width, next.width, alpha),
+    height: lerp(previous.height, next.height, alpha),
+  }
+}
 
 function bottomCentre(box: BoundingBox): Point2D {
   return { x: box.x + box.width / 2, y: box.y + box.height }
@@ -22,6 +44,26 @@ function estimateFootPosition(box: BoundingBox, keypoints: PoseKeypoint[]): Poin
 function detectionScore(detection: Detection): number {
   const poseScore = detection.keypoints?.length ? detection.keypoints.reduce((sum, kp) => sum + kp.score, 0) / detection.keypoints.length : 0
   return Math.max(detection.score, poseScore)
+}
+
+function isHumanLike(detection: Detection, frame: VisionFrame): boolean {
+  if (!detection.box) return false
+  const score = detectionScore(detection)
+  if (score < MIN_PERSON_SCORE) return false
+  const { width, height } = detection.box
+  if (width <= 12 || height <= 28) return false
+  const aspect = width / Math.max(1, height)
+  if (aspect < 0.16 || aspect > 0.92) return false
+  const area = boxArea(detection.box)
+  const frameArea = frame.width * frame.height
+  if (area < frameArea * 0.006 || area > frameArea * 0.72) return false
+  if (detection.source === 'pose-model') {
+    const keypoints = detection.keypoints ?? []
+    const strongKeypoints = keypoints.filter((kp) => kp.score > 0.28).length
+    const lowerBody = keypoints.some((kp) => ['left_ankle', 'right_ankle', 'left_knee', 'right_knee', 'left_hip', 'right_hip'].includes(kp.name) && kp.score > 0.22)
+    return strongKeypoints >= 5 && lowerBody
+  }
+  return detection.score >= 0.46
 }
 
 export class PlayerTracker {
@@ -55,7 +97,7 @@ export class PlayerTracker {
   }
 
   update(detections: Detection[], frame: VisionFrame, ball?: BallTrack): PlayerTrack | undefined {
-    const people = detections.filter((detection) => detection.label === 'person' && detection.box)
+    const people = detections.filter((detection) => detection.label === 'person' && detection.box && isHumanLike(detection, frame))
     const best = this.choosePlayer(people, frame)
     if (best) {
       const next = this.trackFromDetection(best, this.current, this.selectedByUser)
@@ -90,10 +132,11 @@ export class PlayerTracker {
 
     if (!this.current) return undefined
     const lostFrames = this.current.lostFrames + 1
-    if (lostFrames > MAX_LOST_FRAMES) {
+    const maxLost = this.selectedByUser ? SELECTED_MAX_LOST_FRAMES : MAX_LOST_FRAMES
+    if (lostFrames > maxLost) {
       this.current = {
         ...this.current,
-        confidence: confidence(0.08, ['Player lost']),
+        confidence: confidence(0.04, [this.selectedByUser ? 'Caiden left frame or body lock lost' : 'Player lost']),
         state: 'lost',
         lostFrames,
       }
@@ -113,7 +156,7 @@ export class PlayerTracker {
       ...this.current,
       box,
       center: predictedCentre,
-      confidence: confidence(Math.max(0.12, this.current.confidence.score * 0.86), ['Predicted after missed person detection']),
+      confidence: confidence(Math.max(0.08, this.current.confidence.score * (this.selectedByUser ? 0.62 : 0.76)), ['Briefly predicting player position']),
       state: 'predicted',
       lostFrames,
     }
@@ -123,25 +166,36 @@ export class PlayerTracker {
   private choosePlayer(people: Detection[], frame: VisionFrame): Detection | undefined {
     if (people.length === 0) return undefined
     const centre = { x: frame.width / 2, y: frame.height / 2 }
-    return people
+    const ranked = people
       .map((person) => {
         const box = person.box!
         const personCentre = person.center ?? boxCenter(box)
-        const continuity = this.current ? Math.max(0, 1 - distance(personCentre, this.current.center) / Math.max(frame.width, frame.height)) : 0.45
+        const maxFollowDistance = this.current ? Math.max(this.current.box.height * 0.85, Math.min(frame.width, frame.height) * 0.18) : Math.max(frame.width, frame.height)
+        const continuityDistance = this.current ? distance(personCentre, this.current.center) : 0
+        const continuity = this.current ? Math.max(0, 1 - continuityDistance / maxFollowDistance) : 0.45
+        const sizeRatio = this.current ? boxArea(box) / Math.max(1, boxArea(this.current.box)) : 1
         const centrality = Math.max(0, 1 - distance(personCentre, centre) / Math.max(frame.width, frame.height))
         const sizeScore = Math.min(1, boxArea(box) / Math.max(1, frame.width * frame.height * 0.28))
         const selectedBoost = this.selectedByUser && this.current ? 0.2 : 0
+        const selectedMismatch = this.selectedByUser && this.current && (continuityDistance > maxFollowDistance || sizeRatio < 0.42 || sizeRatio > 2.35)
         return {
           person,
-          rank: detectionScore(person) * 0.45 + continuity * 0.25 + centrality * 0.15 + sizeScore * 0.15 + selectedBoost,
+          rank: selectedMismatch ? -1 : detectionScore(person) * 0.42 + continuity * 0.32 + centrality * 0.1 + sizeScore * 0.12 + selectedBoost,
         }
       })
-      .sort((a, b) => b.rank - a.rank)[0]?.person
+      .sort((a, b) => b.rank - a.rank)
+
+    const best = ranked[0]
+    if (!best || best.rank < (this.selectedByUser && this.current ? 0.5 : 0.46)) return undefined
+    return best.person
   }
 
   private trackFromDetection(detection: Detection, previous: PlayerTrack | undefined, selectedByUser: boolean): PlayerTrack {
-    const box = detection.box!
-    const centre = detection.center ?? boxCenter(box)
+    const rawBox = detection.box!
+    const rawCentre = detection.center ?? boxCenter(rawBox)
+    const alpha = previous ? (selectedByUser ? 0.34 : 0.46) : 1
+    const box = previous ? smoothBox(previous.box, rawBox, alpha) : rawBox
+    const centre = previous ? smoothPoint(previous.center, rawCentre, alpha) : rawCentre
     const dt = previous ? Math.max(16, detection.timestamp - previous.lastSeenAt) / 1000 : 1
     const velocity = previous ? { x: (centre.x - previous.center.x) / dt, y: (centre.y - previous.center.y) / dt } : { x: 0, y: 0 }
     const keypoints = detection.keypoints ?? []

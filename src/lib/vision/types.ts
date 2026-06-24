@@ -295,7 +295,7 @@ export interface VisionDebugInfo {
   playerLostCount: number
   ballLostCount: number
   calibrationCompleteness: number
-  shotDetectorState: 'idle' | 'armed' | 'tracking-shot' | 'cooldown'
+  shotDetectorState: 'idle' | 'armed' | 'candidate-shot' | 'tracking-shot' | 'cooldown'
   processingMode: PerformanceMode
   rawCoordinates: {
     player?: Point2D

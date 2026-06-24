@@ -72,7 +72,7 @@ export function drawVisionOverlay(canvas: HTMLCanvasElement, state: VisionEngine
     if (point) drawPoint(ctx, point, label.replace(/[a-z]/g, '').slice(0, 2) || 'T', '#60a5fa')
   })
 
-  if (state.player) {
+  if (state.player && state.player.state !== 'lost') {
     const { box, confidence, keypoints, footPosition } = state.player
     ctx.lineWidth = 4
     ctx.strokeStyle = confidence.band === 'high' ? '#1fd17a' : confidence.band === 'medium' ? '#f4c95d' : '#fb923c'
@@ -90,8 +90,14 @@ export function drawVisionOverlay(canvas: HTMLCanvasElement, state: VisionEngine
     if (footPosition) drawPoint(ctx, footPosition, 'feet', '#ffffff')
   }
 
-  if (state.ball) {
-    const trail = state.ball.trail
+  if (state.player?.state === 'lost') {
+    ctx.font = '800 16px system-ui'
+    ctx.fillStyle = 'rgba(248, 250, 252, 0.86)'
+    ctx.fillText('Caiden lock lost', 18, 64)
+  }
+
+  if (state.ball && state.ball.state !== 'lost') {
+    const trail = state.ball.trail.slice(-36)
     if (trail.length > 1) {
       ctx.beginPath()
       trail.forEach((point, index) => {
