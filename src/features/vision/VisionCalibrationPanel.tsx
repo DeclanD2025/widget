@@ -1,7 +1,7 @@
-import { Check, Crosshair, Save, Target } from 'lucide-react'
+import { Check, Crosshair, ScanSearch, Save, Target } from 'lucide-react'
 import type { Dispatch, SetStateAction } from 'react'
 import { calibrationCompleteness } from '../../lib/vision/calibration'
-import type { GoalCalibration, PerformanceMode, Point2D } from '../../lib/vision/types'
+import type { GoalAutoSuggestion, GoalCalibration, PerformanceMode, Point2D } from '../../lib/vision/types'
 import type { VisionTapMode } from './VisionControls'
 
 interface Props {
@@ -12,6 +12,7 @@ interface Props {
   fixedIpad: boolean
   mode: PerformanceMode
   tapMode: VisionTapMode
+  goalSuggestion?: GoalAutoSuggestion
   onTapModeChange: (mode: VisionTapMode) => void
   onGoalChange: Dispatch<SetStateAction<GoalCalibration>>
   onGroundChange: Dispatch<SetStateAction<Point2D[]>>
@@ -19,6 +20,7 @@ interface Props {
   onKnownMetresChange: (value: string) => void
   onFixedIpadChange: (value: boolean) => void
   onSave: () => void
+  onUseGoalSuggestion: () => void
 }
 
 const GOAL_TOOLS: Array<{ mode: VisionTapMode; label: string }> = [
@@ -72,6 +74,7 @@ export default function VisionCalibrationPanel({
   fixedIpad,
   mode,
   tapMode,
+  goalSuggestion,
   onTapModeChange,
   onGoalChange,
   onGroundChange,
@@ -79,8 +82,10 @@ export default function VisionCalibrationPanel({
   onKnownMetresChange,
   onFixedIpadChange,
   onSave,
+  onUseGoalSuggestion,
 }: Props) {
   const completeness = calibrationCompleteness(goal, { groundPlane, knownMeasurement: undefined })
+  const suggestionReady = goalSuggestion && goalSuggestion.confidence.score >= 0.42
 
   return (
     <div className="card card-hi p-4">
@@ -100,6 +105,29 @@ export default function VisionCalibrationPanel({
           className="mt-1 w-full rounded-xl border border-white/10 bg-black/20 px-3 py-2 font-semibold outline-none focus:border-emerald-glow"
         />
       </label>
+
+      <div className={`mt-4 rounded-xl border p-3 ${goalSuggestion ? 'border-emerald-glow/25 bg-emerald-glow/10' : 'border-white/10 bg-white/[0.03]'}`}>
+        <div className="flex items-center justify-between gap-3">
+          <div className="min-w-0">
+            <div className="flex items-center gap-1.5 text-sm font-bold text-white/75">
+              <ScanSearch size={16} className={goalSuggestion?.status === 'locked' ? 'text-emerald-glow' : 'text-gold'} /> Auto goal
+            </div>
+            <div className="mt-1 text-xs font-semibold text-white/52">
+              {goalSuggestion
+                ? goalSuggestion.status === 'locked'
+                  ? goalSuggestion.applied
+                    ? 'Goal auto-lock active'
+                    : 'Goal suggestion ready'
+                  : 'Stabilising goal shape'
+                : 'Scanning for a white goal frame'}
+            </div>
+          </div>
+          <div className="num text-2xl font-extrabold text-gold">{goalSuggestion ? `${Math.round(goalSuggestion.confidence.score * 100)}%` : '--'}</div>
+        </div>
+        <button onClick={onUseGoalSuggestion} disabled={!suggestionReady} className="btn-ghost mt-3 w-full py-2 text-sm disabled:opacity-45">
+          <Check size={16} /> Use suggestion
+        </button>
+      </div>
 
       <div className="mt-4">
         <div className="mb-2 flex items-center gap-1.5 text-sm font-bold text-white/75">
@@ -187,7 +215,7 @@ export default function VisionCalibrationPanel({
       </div>
 
       <p className="mt-3 text-xs text-white/42">
-        Mode: {mode}. Re-lock the goal with Quick goal box when the iPad moves. Garden corners are optional for richer distance estimates.
+        Mode: {mode}. Auto goal tries to adapt when the iPad moves. Quick goal box and point tools remain available for correction.
       </p>
     </div>
   )

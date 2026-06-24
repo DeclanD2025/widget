@@ -1,10 +1,11 @@
 import { confidenceClass } from '../../lib/vision/confidence'
 import { goalMouthPolygon } from '../../lib/vision/goalTracker'
-import type { CalibrationProfile, GoalCalibration, Point2D, TrackingConfidence, VisionEngineState } from '../../lib/vision/types'
+import type { CalibrationProfile, GoalAutoSuggestion, GoalCalibration, Point2D, TrackingConfidence, VisionEngineState } from '../../lib/vision/types'
 
 interface OverlayDraft {
   goal: GoalCalibration
   groundPlane: Point2D[]
+  goalSuggestion?: GoalAutoSuggestion
   activeTapLabel?: string
   profile?: CalibrationProfile
 }
@@ -71,6 +72,20 @@ export function drawVisionOverlay(canvas: HTMLCanvasElement, state: VisionEngine
   Object.entries(draft.goal.targetZones).forEach(([label, point]) => {
     if (point) drawPoint(ctx, point, label.replace(/[a-z]/g, '').slice(0, 2) || 'T', '#60a5fa')
   })
+
+  if (draft.goalSuggestion && !draft.goalSuggestion.applied) {
+    const { box, confidence: goalConfidence, status } = draft.goalSuggestion
+    ctx.save()
+    ctx.setLineDash([10, 7])
+    ctx.lineWidth = 4
+    ctx.strokeStyle = status === 'locked' ? 'rgba(31, 209, 122, 0.92)' : 'rgba(244, 201, 93, 0.88)'
+    ctx.strokeRect(box.x, box.y, box.width, box.height)
+    ctx.setLineDash([])
+    ctx.font = '800 15px system-ui'
+    ctx.fillStyle = ctx.strokeStyle
+    ctx.fillText(`Goal suggestion ${Math.round(goalConfidence.score * 100)}%`, box.x, Math.max(20, box.y - 10))
+    ctx.restore()
+  }
 
   if (state.player && state.player.state !== 'lost') {
     const { box, confidence, keypoints, footPosition } = state.player

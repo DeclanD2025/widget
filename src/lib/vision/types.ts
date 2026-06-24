@@ -154,6 +154,18 @@ export interface GoalTrack {
   source: 'manual-calibration' | 'auto-detected' | 'missing'
 }
 
+export type GoalAutoStatus = 'scanning' | 'suggesting' | 'locked'
+
+export interface GoalAutoSuggestion {
+  status: GoalAutoStatus
+  goal: GoalCalibration
+  box: BoundingBox
+  confidence: TrackingConfidence
+  stableFrames: number
+  updatedAt: number
+  applied: boolean
+}
+
 export type GoalOutcome = 'goal' | 'miss-left' | 'miss-right' | 'over' | 'saved-blocked-unclear' | 'unknown'
 
 export type CurveDirection = 'left' | 'right' | 'none' | 'unclear'
@@ -333,6 +345,7 @@ export interface VisionEngineState {
   player?: PlayerTrack
   ball?: BallTrack
   goal: GoalTrack
+  goalSuggestion?: GoalAutoSuggestion
   autoSetup: VisionAutoSetupState
   activeShot?: ShotEvent
   lastShot?: ShotEvent

@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState, type Dispatch, type SetStateAction } from 'react'
 import { Link } from 'react-router-dom'
 import { ChevronLeft, ShieldCheck, Sparkles } from 'lucide-react'
 import VisionCamera from './VisionCamera'
@@ -19,6 +19,7 @@ import { BallTracker } from '../../lib/vision/ballTracker'
 import { PlayerTracker } from '../../lib/vision/playerTracker'
 import { ShotDetector } from '../../lib/vision/shotDetector'
 import { EMPTY_AUTO_SETUP_STATE, SessionAutoSetup } from '../../lib/vision/sessionAutoSetup'
+import { GoalAutoDetector } from '../../lib/vision/goalAutoDetector'
 import {
   deleteVisionRecording,
   loadActiveCalibrationProfile,
@@ -32,6 +33,7 @@ import {
 import type {
   CalibrationProfile,
   GoalCalibration,
+  GoalAutoSuggestion,
   KnownMeasurement,
   PerformanceMode,
   Point2D,
@@ -155,6 +157,19 @@ function buildKnownMeasurement(goal: GoalCalibration, groundPlane: Point2D[], me
   return { label: goal.leftPostBase && goal.rightPostBase ? 'Goal width' : 'Known garden distance', metres, imagePointA, imagePointB }
 }
 
+function hasLockedGoal(goal: GoalCalibration): boolean {
+  return Boolean(goal.leftPostBase && goal.rightPostBase && goal.centre)
+}
+
+function goalBoxesClose(previous: GoalAutoSuggestion | undefined, next: GoalAutoSuggestion): boolean {
+  if (!previous) return false
+  const previousCentre = { x: previous.box.x + previous.box.width / 2, y: previous.box.y + previous.box.height / 2 }
+  const nextCentre = { x: next.box.x + next.box.width / 2, y: next.box.y + next.box.height / 2 }
+  const centreDistance = Math.hypot(previousCentre.x - nextCentre.x, previousCentre.y - nextCentre.y)
+  const sizeDelta = Math.abs(previous.box.width - next.box.width) + Math.abs(previous.box.height - next.box.height)
+  return centreDistance < Math.max(24, next.box.width * 0.08) && sizeDelta < Math.max(30, (next.box.width + next.box.height) * 0.08)
+}
+
 export default function VisionPage() {
   const videoRef = useRef<HTMLVideoElement>(null)
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -178,6 +193,7 @@ export default function VisionPage() {
   const ballTrackerRef = useRef<BallTracker>()
   const shotDetectorRef = useRef<ShotDetector>()
   const autoSetupRef = useRef<SessionAutoSetup>()
+  const goalDetectorRef = useRef<GoalAutoDetector>()
 
   const [running, setRunning] = useState(false)
   const [mode, setMode] = useState<PerformanceMode>('balanced')
@@ -185,6 +201,7 @@ export default function VisionPage() {
   const [cameraError, setCameraError] = useState<{ error: CameraFailure; message: string }>()
   const [engineState, setEngineState] = useState<VisionEngineState>()
   const [autoSetupState, setAutoSetupState] = useState(EMPTY_AUTO_SETUP_STATE)
+  const [goalSuggestion, setGoalSuggestion] = useState<GoalAutoSuggestion>()
   const [lastShot, setLastShot] = useState<ShotEvent>()
   const [shots, setShots] = useState<VisionShotSummary[]>([])
   const [recordings, setRecordings] = useState<VisionRecordingSummary[]>([])
@@ -207,6 +224,8 @@ export default function VisionPage() {
   const fixedIpadRef = useRef(fixedIpad)
   const tapModeRef = useRef(tapMode)
   const goalBoxAnchorRef = useRef(goalBoxAnchor)
+  const manualGoalEditedRef = useRef(false)
+  const lastAutoGoalAppliedRef = useRef<GoalAutoSuggestion>()
 
   useEffect(() => {
     modeRef.current = mode
@@ -225,6 +244,7 @@ export default function VisionPage() {
     ballTrackerRef.current = new BallTracker()
     shotDetectorRef.current = new ShotDetector()
     autoSetupRef.current = new SessionAutoSetup()
+    goalDetectorRef.current = new GoalAutoDetector()
 
     checkVisionOfflinePack().then(setOfflinePack).catch(() => {})
 
@@ -322,8 +342,8 @@ export default function VisionPage() {
     else startLocalRecording()
   }, [startLocalRecording, stopLocalRecording])
 
-  const buildCurrentProfile = useCallback((frame: Pick<VisionFrame, 'width' | 'height'>): CalibrationProfile | undefined => {
-    const currentGoal = goalRef.current
+  const buildCurrentProfile = useCallback((frame: Pick<VisionFrame, 'width' | 'height'>, goalOverride?: GoalCalibration): CalibrationProfile | undefined => {
+    const currentGoal = goalOverride ?? goalRef.current
     const currentGround = groundRef.current
     const measurement = buildKnownMeasurement(currentGoal, currentGround, knownMetresRef.current)
     if (!currentGoal.leftPostBase && !currentGoal.rightPostBase && currentGround.length === 0) return profileRef.current
@@ -357,7 +377,8 @@ export default function VisionPage() {
     const ballTracker = ballTrackerRef.current
     const shotDetector = shotDetectorRef.current
     const autoSetup = autoSetupRef.current
-    if (!video || !canvas || !detection || !playerTracker || !ballTracker || !shotDetector || !autoSetup) return
+    const goalDetector = goalDetectorRef.current
+    if (!video || !canvas || !detection || !playerTracker || !ballTracker || !shotDetector || !autoSetup || !goalDetector) return
 
     if (video.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA && syncCanvasToVideo(video, canvas)) {
       const now = performance.now()
@@ -368,8 +389,25 @@ export default function VisionPage() {
       lastFrameTimeRef.current = now
       if (dt > 0) fpsRef.current = fpsRef.current ? fpsRef.current * 0.82 + (1000 / dt) * 0.18 : 1000 / dt
 
-      const currentProfile = buildCurrentProfile(frame)
-      const goalTrack = goalTrackFromProfile(currentProfile)
+      const rawGoalSuggestion = goalDetector.update(video, frame, false)
+      const shouldApplyAutoGoal = Boolean(
+        rawGoalSuggestion &&
+          rawGoalSuggestion.status === 'locked' &&
+          rawGoalSuggestion.confidence.score >= 0.66 &&
+          (!manualGoalEditedRef.current || !hasLockedGoal(goalRef.current)),
+      )
+      const activeGoalSuggestion = rawGoalSuggestion ? { ...rawGoalSuggestion, applied: shouldApplyAutoGoal } : undefined
+      const goalForFrame = shouldApplyAutoGoal && activeGoalSuggestion ? activeGoalSuggestion.goal : goalRef.current
+      if (shouldApplyAutoGoal && activeGoalSuggestion && !goalBoxesClose(lastAutoGoalAppliedRef.current, activeGoalSuggestion)) {
+        goalRef.current = activeGoalSuggestion.goal
+        lastAutoGoalAppliedRef.current = activeGoalSuggestion
+        setGoal(activeGoalSuggestion.goal)
+      }
+      const currentProfile = buildCurrentProfile(frame, goalForFrame)
+      const baseGoalTrack = goalTrackFromProfile(currentProfile)
+      const goalTrack = shouldApplyAutoGoal && activeGoalSuggestion
+        ? { ...baseGoalTrack, confidence: activeGoalSuggestion.confidence, source: 'auto-detected' as const }
+        : baseGoalTrack
       const detectionResult = await detection.detect(video, frame, modeRef.current)
       const setupBeforeTracking = autoSetup.update({
         detections: detectionResult.detections,
@@ -377,13 +415,14 @@ export default function VisionPage() {
         player: stateRef.current?.player,
         ball: stateRef.current?.ball,
         goal: goalTrack,
+        goalSuggestion: activeGoalSuggestion,
       })
       if (setupBeforeTracking.playerLock) {
         playerTracker.lockToDetection(setupBeforeTracking.playerLock)
       }
       const ball = ballTracker.update(detectionResult.detections, frame)
       const player = playerTracker.update(detectionResult.detections, frame, ball)
-      const setupState = autoSetup.describe({ player, ball, goal: goalTrack })
+      const setupState = autoSetup.describe({ player, ball, goal: goalTrack, goalSuggestion: activeGoalSuggestion })
       const completedShot = shotDetector.update({ ball, player, goal: goalTrack, profile: currentProfile, frame })
 
       if (completedShot) {
@@ -396,7 +435,7 @@ export default function VisionPage() {
 
       const warnings = [
         setupState.player.status === 'blocked' ? setupState.player.message : '',
-        setupState.goal.status === 'needs-manual' ? setupState.goal.message : '',
+        setupState.goal.status === 'scanning' || setupState.goal.status === 'locking' ? setupState.goal.message : '',
         ball?.state === 'lost' ? 'Camera lost the ball.' : '',
         player?.state === 'lost' ? 'Player tracking is weak.' : '',
         currentProfile?.camera.fixedIpadMode && detectionResult.detections.filter((detectionItem) => detectionItem.source === 'motion').length >= 4
@@ -435,6 +474,7 @@ export default function VisionPage() {
         player,
         ball,
         goal: goalTrack,
+        goalSuggestion: activeGoalSuggestion,
         autoSetup: setupState,
         lastShot: completedShot ?? lastShot,
         debug,
@@ -442,8 +482,9 @@ export default function VisionPage() {
       }
       stateRef.current = nextState
       drawVisionOverlay(canvas, nextState, {
-        goal: goalRef.current,
+        goal: goalForFrame,
         groundPlane: groundRef.current,
+        goalSuggestion: activeGoalSuggestion,
         activeTapLabel:
           tapModeRef.current === 'none'
             ? undefined
@@ -457,6 +498,7 @@ export default function VisionPage() {
         lastUiRef.current = now
         setEngineState(nextState)
         setAutoSetupState(setupState)
+        setGoalSuggestion(activeGoalSuggestion)
       }
     }
 
@@ -486,7 +528,11 @@ export default function VisionPage() {
     ballTrackerRef.current = new BallTracker()
     shotDetectorRef.current = new ShotDetector()
     autoSetupRef.current = new SessionAutoSetup()
+    goalDetectorRef.current = new GoalAutoDetector()
     setAutoSetupState(EMPTY_AUTO_SETUP_STATE)
+    setGoalSuggestion(undefined)
+    manualGoalEditedRef.current = false
+    lastAutoGoalAppliedRef.current = undefined
     setTapMode('none')
     runningRef.current = true
     setRunning(true)
@@ -515,6 +561,7 @@ export default function VisionPage() {
       return
     }
     if (currentMode === 'goal-box') {
+      manualGoalEditedRef.current = true
       if (!goalBoxAnchor) {
         setGoalBoxAnchor(point)
         return
@@ -524,8 +571,25 @@ export default function VisionPage() {
       setTapMode('none')
       return
     }
+    if (currentMode.startsWith('goal-') || currentMode.startsWith('target-')) manualGoalEditedRef.current = true
     setGoal((current) => goalWithTap(current, currentMode, point))
   }, [goalBoxAnchor])
+
+  const handleGoalChange = useCallback<Dispatch<SetStateAction<GoalCalibration>>>((nextGoal) => {
+    manualGoalEditedRef.current = true
+    setGoal(nextGoal)
+  }, [])
+
+  const useGoalSuggestion = useCallback(() => {
+    const suggestion = goalSuggestion
+    if (!suggestion) return
+    manualGoalEditedRef.current = false
+    lastAutoGoalAppliedRef.current = { ...suggestion, applied: true }
+    goalRef.current = suggestion.goal
+    setGoalSuggestion({ ...suggestion, applied: true })
+    setGoal(suggestion.goal)
+    setTapMode('none')
+  }, [goalSuggestion])
 
   const saveCalibration = useCallback(() => {
     const frame = stateRef.current?.frame ?? { width: canvasRef.current?.width ?? 0, height: canvasRef.current?.height ?? 0 }
@@ -654,12 +718,14 @@ export default function VisionPage() {
             mode={mode}
             tapMode={tapMode}
             onTapModeChange={setTapMode}
-            onGoalChange={setGoal}
+            goalSuggestion={goalSuggestion}
+            onGoalChange={handleGoalChange}
             onGroundChange={setGroundPlane}
             onProfileNameChange={setProfileName}
             onKnownMetresChange={setKnownMetres}
             onFixedIpadChange={setFixedIpad}
             onSave={saveCalibration}
+            onUseGoalSuggestion={useGoalSuggestion}
           />
           <VisionRecordingPanel
             recordings={recordings}

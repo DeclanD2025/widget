@@ -28,6 +28,13 @@ function playerStatusText(state?: VisionEngineState, autoSetup?: VisionAutoSetup
   return state?.player ? 'Detected' : 'Scanning'
 }
 
+function goalStatusText(state?: VisionEngineState, autoSetup?: VisionAutoSetupState): string {
+  if (autoSetup?.goal.status === 'locking') return 'Stabilising'
+  if (autoSetup?.goal.status === 'locked') return state?.goal.source === 'auto-detected' ? 'Auto locked' : 'Calibrated'
+  if (autoSetup?.goal.status === 'scanning') return 'Scanning'
+  return state?.goal.calibrated ? 'Calibrated' : 'Needs lock'
+}
+
 export default function VisionMetricsPanel({ state, autoSetup, lastShot, shots }: Props) {
   const feedback = buildShotFeedback(lastShot)
   const goals = shots.filter((shot) => shot.outcome === 'goal').length
@@ -75,7 +82,7 @@ export default function VisionMetricsPanel({ state, autoSetup, lastShot, shots }
           <div className={`rounded-xl border p-3 ${statusColour(Boolean(state?.goal.calibrated))}`}>
             <Goal size={17} />
             <div className="mt-1 text-xs font-bold uppercase">Goal</div>
-            <div className="text-sm font-extrabold">{autoSetup?.goal.status === 'locked' ? 'Calibrated' : 'Needs lock'}</div>
+            <div className="text-sm font-extrabold">{goalStatusText(state, autoSetup)}</div>
           </div>
           <div className={`rounded-xl border p-3 ${statusColour(Boolean(lastShot))}`}>
             <Zap size={17} />

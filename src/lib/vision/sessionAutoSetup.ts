@@ -1,6 +1,6 @@
 import { boxArea, boxCenter, distance } from './geometry'
 import { isHumanLikePlayerDetection, playerDetectionScore } from './playerTracker'
-import type { BallTrack, Detection, GoalTrack, PlayerTrack, VisionAutoSetupSignal, VisionAutoSetupState, VisionFrame } from './types'
+import type { BallTrack, Detection, GoalAutoSuggestion, GoalTrack, PlayerTrack, VisionAutoSetupSignal, VisionAutoSetupState, VisionFrame } from './types'
 
 const STABLE_LOCK_FRAMES = 6
 const STABLE_LOCK_AGE_MS = 420
@@ -34,6 +34,7 @@ export interface SessionAutoSetupInput {
   player?: PlayerTrack
   ball?: BallTrack
   goal?: GoalTrack
+  goalSuggestion?: GoalAutoSuggestion
 }
 
 export interface SessionAutoSetupResult {
@@ -93,10 +94,10 @@ export class SessionAutoSetup {
     }
   }
 
-  describe(input: Pick<SessionAutoSetupInput, 'player' | 'ball' | 'goal'>, playerSignal?: VisionAutoSetupSignal): VisionAutoSetupState {
+  describe(input: Pick<SessionAutoSetupInput, 'player' | 'ball' | 'goal' | 'goalSuggestion'>, playerSignal?: VisionAutoSetupSignal): VisionAutoSetupState {
     const player = playerSignal ?? this.describePlayer(input.player)
     const ball = this.describeBall(input.ball)
-    const goal = this.describeGoal(input.goal)
+    const goal = this.describeGoal(input.goal, input.goalSuggestion)
     const ready = player.status === 'locked' && goal.status === 'locked'
     const messages = [player.message, goal.message, ball.message].filter(Boolean).slice(0, 3)
 
@@ -173,8 +174,11 @@ export class SessionAutoSetup {
     return signal('locked', ball.confidence.score, 'Ball locked')
   }
 
-  private describeGoal(goal?: GoalTrack): VisionAutoSetupSignal {
-    if (!goal || !goal.calibrated) return signal('needs-manual', goal?.confidence.score ?? 0.1, 'Goal lock needed')
+  private describeGoal(goal?: GoalTrack, suggestion?: GoalAutoSuggestion): VisionAutoSetupSignal {
+    if (goal?.calibrated && goal.source === 'auto-detected') return signal('locked', goal.confidence.score, 'Goal auto-locked')
+    if (suggestion?.status === 'locked') return signal('locked', suggestion.confidence.score, suggestion.applied ? 'Goal auto-locked' : 'Goal suggestion ready')
+    if (suggestion?.status === 'suggesting') return signal('locking', suggestion.confidence.score, 'Stabilising goal suggestion')
+    if (!goal || !goal.calibrated) return signal('scanning', suggestion?.confidence.score ?? 0.12, 'Scanning for goal frame')
     return signal('locked', goal.confidence.score, 'Goal calibrated')
   }
 }
