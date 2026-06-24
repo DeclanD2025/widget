@@ -1,10 +1,11 @@
 import { Award, BadgeCheck, CircleAlert, Crosshair, Gauge, Goal, Target, Zap } from 'lucide-react'
 import { buildShotFeedback } from '../../lib/vision/feedback'
-import type { ShotEvent, VisionEngineState, VisionShotSummary } from '../../lib/vision/types'
+import type { ShotEvent, VisionAutoSetupSignal, VisionAutoSetupState, VisionEngineState, VisionShotSummary } from '../../lib/vision/types'
 import { ConfidencePill } from './VisionOverlay'
 
 interface Props {
   state?: VisionEngineState
+  autoSetup?: VisionAutoSetupState
   lastShot?: ShotEvent
   shots: VisionShotSummary[]
 }
@@ -13,7 +14,21 @@ function statusColour(active: boolean): string {
   return active ? 'border-emerald-glow/40 bg-emerald-glow/12 text-emerald-glow' : 'border-white/10 bg-white/[0.03] text-white/45'
 }
 
-export default function VisionMetricsPanel({ state, lastShot, shots }: Props) {
+function setupTone(signal?: VisionAutoSetupSignal): string {
+  if (!signal) return 'border-white/10 bg-white/[0.03] text-white/50'
+  if (signal.status === 'locked') return 'border-emerald-glow/30 bg-emerald-glow/10 text-emerald-glow'
+  if (signal.status === 'blocked' || signal.status === 'needs-manual') return 'border-gold/25 bg-gold/10 text-gold'
+  return 'border-white/10 bg-white/[0.03] text-white/58'
+}
+
+function playerStatusText(state?: VisionEngineState, autoSetup?: VisionAutoSetupState): string {
+  if (autoSetup?.player.status === 'blocked') return 'Frame busy'
+  if (autoSetup?.player.status === 'locking') return 'Stabilising'
+  if (autoSetup?.player.status === 'locked') return state?.player?.selectedByUser ? 'Manual lock' : 'Auto locked'
+  return state?.player ? 'Detected' : 'Scanning'
+}
+
+export default function VisionMetricsPanel({ state, autoSetup, lastShot, shots }: Props) {
   const feedback = buildShotFeedback(lastShot)
   const goals = shots.filter((shot) => shot.outcome === 'goal').length
   const fastest = shots.reduce<VisionShotSummary | undefined>((best, shot) => (!best || shot.speedPxPerSec > best.speedPxPerSec ? shot : best), undefined)
@@ -34,21 +49,33 @@ export default function VisionMetricsPanel({ state, lastShot, shots }: Props) {
           {state?.goal.confidence && <ConfidencePill label="Goal" score={state.goal.confidence} />}
         </div>
 
+        {autoSetup && (
+          <div className={`mt-3 rounded-xl border p-3 ${setupTone(autoSetup.player)}`}>
+            <div className="flex items-center justify-between gap-3">
+              <div>
+                <div className="text-[11px] font-bold uppercase tracking-wide text-white/45">Auto setup</div>
+                <div className="text-sm font-extrabold">{autoSetup.ready ? 'Session ready' : autoSetup.player.message}</div>
+              </div>
+              <div className="num text-lg font-extrabold">{Math.round(autoSetup.player.confidence * 100)}%</div>
+            </div>
+          </div>
+        )}
+
         <div className="mt-3 grid grid-cols-2 gap-2">
           <div className={`rounded-xl border p-3 ${statusColour(Boolean(state?.player && state.player.state !== 'lost'))}`}>
             <BadgeCheck size={17} />
             <div className="mt-1 text-xs font-bold uppercase">Player</div>
-            <div className="text-sm font-extrabold">{state?.player?.selectedByUser ? 'Tracking Caiden' : state?.player ? 'Detected' : 'Searching'}</div>
+            <div className="text-sm font-extrabold">{playerStatusText(state, autoSetup)}</div>
           </div>
           <div className={`rounded-xl border p-3 ${statusColour(Boolean(state?.ball && state.ball.state !== 'lost'))}`}>
             <Target size={17} />
             <div className="mt-1 text-xs font-bold uppercase">Ball</div>
-            <div className="text-sm font-extrabold">{state?.ball ? state.ball.state === 'lost' ? 'Lost' : 'Ball locked' : 'Searching'}</div>
+            <div className="text-sm font-extrabold">{autoSetup?.ball.status === 'locked' ? 'Ball locked' : state?.ball?.state === 'lost' ? 'Lost' : 'Scanning'}</div>
           </div>
           <div className={`rounded-xl border p-3 ${statusColour(Boolean(state?.goal.calibrated))}`}>
             <Goal size={17} />
             <div className="mt-1 text-xs font-bold uppercase">Goal</div>
-            <div className="text-sm font-extrabold">{state?.goal.calibrated ? 'Calibrated' : 'Needs points'}</div>
+            <div className="text-sm font-extrabold">{autoSetup?.goal.status === 'locked' ? 'Calibrated' : 'Needs lock'}</div>
           </div>
           <div className={`rounded-xl border p-3 ${statusColour(Boolean(lastShot))}`}>
             <Zap size={17} />

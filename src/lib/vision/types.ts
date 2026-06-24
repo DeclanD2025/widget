@@ -287,6 +287,22 @@ export interface ModelStatus {
   error?: string
 }
 
+export type VisionAutoSetupStatus = 'idle' | 'scanning' | 'locking' | 'locked' | 'needs-manual' | 'blocked'
+
+export interface VisionAutoSetupSignal {
+  status: VisionAutoSetupStatus
+  confidence: number
+  message: string
+}
+
+export interface VisionAutoSetupState {
+  player: VisionAutoSetupSignal
+  ball: VisionAutoSetupSignal
+  goal: VisionAutoSetupSignal
+  ready: boolean
+  messages: string[]
+}
+
 export interface VisionDebugInfo {
   fps: number
   frameSize: { width: number; height: number }
@@ -317,6 +333,7 @@ export interface VisionEngineState {
   player?: PlayerTrack
   ball?: BallTrack
   goal: GoalTrack
+  autoSetup: VisionAutoSetupState
   activeShot?: ShotEvent
   lastShot?: ShotEvent
   debug: VisionDebugInfo

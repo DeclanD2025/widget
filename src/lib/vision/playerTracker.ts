@@ -41,14 +41,14 @@ function estimateFootPosition(box: BoundingBox, keypoints: PoseKeypoint[]): Poin
   return bottomCentre(box)
 }
 
-function detectionScore(detection: Detection): number {
+export function playerDetectionScore(detection: Detection): number {
   const poseScore = detection.keypoints?.length ? detection.keypoints.reduce((sum, kp) => sum + kp.score, 0) / detection.keypoints.length : 0
   return Math.max(detection.score, poseScore)
 }
 
-function isHumanLike(detection: Detection, frame: VisionFrame): boolean {
+export function isHumanLikePlayerDetection(detection: Detection, frame: VisionFrame): boolean {
   if (!detection.box) return false
-  const score = detectionScore(detection)
+  const score = playerDetectionScore(detection)
   if (score < MIN_PERSON_SCORE) return false
   const { width, height } = detection.box
   if (width <= 12 || height <= 28) return false
@@ -96,9 +96,17 @@ export class PlayerTracker {
     this.manualPoint = undefined
   }
 
+  lockToDetection(detection: Detection, selectedByUser = false): void {
+    if (!detection.box) return
+    this.current = this.trackFromDetection(detection, undefined, selectedByUser)
+    this.selectedByUser = selectedByUser
+    this.manualPoint = undefined
+  }
+
   update(detections: Detection[], frame: VisionFrame, ball?: BallTrack): PlayerTrack | undefined {
-    const people = detections.filter((detection) => detection.label === 'person' && detection.box && isHumanLike(detection, frame))
-    const best = this.choosePlayer(people, frame)
+    const people = detections.filter((detection) => detection.label === 'person' && detection.box && isHumanLikePlayerDetection(detection, frame))
+    const canFollowDetections = Boolean(this.current && this.current.state !== 'lost') || (this.selectedByUser && !this.manualPoint)
+    const best = canFollowDetections ? this.choosePlayer(people, frame) : undefined
     if (best) {
       const next = this.trackFromDetection(best, this.current, this.selectedByUser)
       next.approachAngleDeg = ball ? angleDeg(subtract(ball.center, next.footPosition ?? next.center)) : undefined
@@ -180,7 +188,7 @@ export class PlayerTracker {
         const selectedMismatch = this.selectedByUser && this.current && (continuityDistance > maxFollowDistance || sizeRatio < 0.42 || sizeRatio > 2.35)
         return {
           person,
-          rank: selectedMismatch ? -1 : detectionScore(person) * 0.42 + continuity * 0.32 + centrality * 0.1 + sizeScore * 0.12 + selectedBoost,
+          rank: selectedMismatch ? -1 : playerDetectionScore(person) * 0.42 + continuity * 0.32 + centrality * 0.1 + sizeScore * 0.12 + selectedBoost,
         }
       })
       .sort((a, b) => b.rank - a.rank)
@@ -203,7 +211,7 @@ export class PlayerTracker {
     const confidenceValue = combineConfidence([
       { score: detection.score, weight: 0.48, reason: detection.source === 'pose-model' ? 'Pose model found player' : 'Object model found person' },
       { score: keypoints.length / 17, weight: 0.24, reason: keypoints.length ? 'Body keypoints visible' : 'No pose keypoints' },
-      { score: selectedByUser ? 0.85 : 0.58, weight: 0.18, reason: selectedByUser ? 'Caiden confirmed by tap' : 'Main player chosen automatically' },
+      { score: selectedByUser ? 0.85 : 0.64, weight: 0.18, reason: selectedByUser ? 'Caiden confirmed manually' : 'Auto setup locked main player' },
       { score: previous ? 0.8 : 0.55, weight: 0.1, reason: previous ? 'Track continuity' : 'New player track' },
     ])
 

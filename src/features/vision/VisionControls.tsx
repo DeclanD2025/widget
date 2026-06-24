@@ -1,7 +1,8 @@
-import { Activity, Crosshair, Gauge, Hand, LocateFixed, MousePointer2, Square, Target, Video, Zap } from 'lucide-react'
+import { Activity, Crosshair, Gauge, Hand, LocateFixed, Sparkles, Square, Target, Video, Zap, type LucideIcon } from 'lucide-react'
 import type { PerformanceMode } from '../../lib/vision/types'
 
 export type VisionTapMode =
+  | 'none'
   | 'select-player'
   | 'lock-ball'
   | 'goal-leftPostBase'
@@ -36,8 +37,9 @@ const MODE_OPTIONS: Array<{ value: PerformanceMode; label: string }> = [
   { value: 'lightweight', label: 'Light' },
 ]
 
-const TAP_TOOLS: Array<{ value: VisionTapMode; label: string; Icon: typeof MousePointer2 }> = [
-  { value: 'select-player', label: 'Caiden', Icon: Hand },
+const TAP_TOOLS: Array<{ value: VisionTapMode; label: string; Icon: LucideIcon }> = [
+  { value: 'none', label: 'Auto', Icon: Sparkles },
+  { value: 'select-player', label: 'Player', Icon: Hand },
   { value: 'lock-ball', label: 'Ball', Icon: LocateFixed },
   { value: 'ground-plane', label: 'Ground', Icon: Crosshair },
 ]
@@ -76,7 +78,7 @@ export default function VisionControls({
         </div>
       </div>
 
-      <div className="mt-3 grid grid-cols-3 gap-2">
+      <div className="mt-3 grid grid-cols-4 gap-2">
         {TAP_TOOLS.map(({ value, label, Icon }) => (
           <button
             key={value}
@@ -109,7 +111,7 @@ export default function VisionControls({
 
       <div className="mt-3 flex items-center gap-2 rounded-xl border border-white/10 bg-white/[0.03] p-2 text-xs text-white/50">
         <Gauge size={15} className="text-gold" />
-        <span>High loads models most often. Light uses motion and taps.</span>
+        <span>High checks models most often. Light favours motion tracking.</span>
         <Activity size={15} className="ml-auto text-emerald-glow" />
       </div>
     </div>

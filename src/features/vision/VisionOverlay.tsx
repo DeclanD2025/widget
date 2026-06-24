@@ -79,7 +79,7 @@ export function drawVisionOverlay(canvas: HTMLCanvasElement, state: VisionEngine
     ctx.strokeRect(box.x, box.y, box.width, box.height)
     ctx.font = '800 16px system-ui'
     ctx.fillStyle = ctx.strokeStyle
-    ctx.fillText(state.player.selectedByUser ? 'Tracking Caiden' : 'Player candidate', box.x, Math.max(18, box.y - 8))
+    ctx.fillText(state.player.selectedByUser ? 'Manual player lock' : 'Auto player lock', box.x, Math.max(18, box.y - 8))
 
     ctx.fillStyle = 'rgba(255,255,255,0.85)'
     keypoints.forEach((kp) => {

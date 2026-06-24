@@ -18,6 +18,7 @@ import { checkVisionOfflinePack, disposeVisionModels, type VisionOfflinePackStat
 import { BallTracker } from '../../lib/vision/ballTracker'
 import { PlayerTracker } from '../../lib/vision/playerTracker'
 import { ShotDetector } from '../../lib/vision/shotDetector'
+import { EMPTY_AUTO_SETUP_STATE, SessionAutoSetup } from '../../lib/vision/sessionAutoSetup'
 import {
   deleteVisionRecording,
   loadActiveCalibrationProfile,
@@ -62,34 +63,36 @@ function initialDebug(mode: PerformanceMode): VisionDebugInfo {
 
 function tapLabel(mode: VisionTapMode): string {
   switch (mode) {
+    case 'none':
+      return ''
     case 'select-player':
-      return 'Tap Caiden'
+      return 'Place player lock'
     case 'lock-ball':
-      return 'Tap the ball'
+      return 'Place ball lock'
     case 'ground-plane':
-      return 'Tap garden corner'
+      return 'Place garden corner'
     case 'goal-leftPostBase':
-      return 'Tap left post base'
+      return 'Place left post base'
     case 'goal-rightPostBase':
-      return 'Tap right post base'
+      return 'Place right post base'
     case 'goal-leftPostTop':
-      return 'Tap left post top'
+      return 'Place left post top'
     case 'goal-rightPostTop':
-      return 'Tap right post top'
+      return 'Place right post top'
     case 'goal-centre':
-      return 'Tap goal centre'
+      return 'Place goal centre'
     case 'goal-box':
-      return 'Tap one goal corner'
+      return 'Place one goal corner'
     case 'target-bottomLeft':
-      return 'Tap bottom-left target'
+      return 'Place bottom-left target'
     case 'target-bottomRight':
-      return 'Tap bottom-right target'
+      return 'Place bottom-right target'
     case 'target-topLeft':
-      return 'Tap top-left target'
+      return 'Place top-left target'
     case 'target-topRight':
-      return 'Tap top-right target'
+      return 'Place top-right target'
     case 'target-centre':
-      return 'Tap centre target'
+      return 'Place centre target'
   }
 }
 
@@ -174,12 +177,14 @@ export default function VisionPage() {
   const playerTrackerRef = useRef<PlayerTracker>()
   const ballTrackerRef = useRef<BallTracker>()
   const shotDetectorRef = useRef<ShotDetector>()
+  const autoSetupRef = useRef<SessionAutoSetup>()
 
   const [running, setRunning] = useState(false)
   const [mode, setMode] = useState<PerformanceMode>('balanced')
-  const [tapMode, setTapMode] = useState<VisionTapMode>('select-player')
+  const [tapMode, setTapMode] = useState<VisionTapMode>('none')
   const [cameraError, setCameraError] = useState<{ error: CameraFailure; message: string }>()
   const [engineState, setEngineState] = useState<VisionEngineState>()
+  const [autoSetupState, setAutoSetupState] = useState(EMPTY_AUTO_SETUP_STATE)
   const [lastShot, setLastShot] = useState<ShotEvent>()
   const [shots, setShots] = useState<VisionShotSummary[]>([])
   const [recordings, setRecordings] = useState<VisionRecordingSummary[]>([])
@@ -201,6 +206,7 @@ export default function VisionPage() {
   const knownMetresRef = useRef(knownMetres)
   const fixedIpadRef = useRef(fixedIpad)
   const tapModeRef = useRef(tapMode)
+  const goalBoxAnchorRef = useRef(goalBoxAnchor)
 
   useEffect(() => {
     modeRef.current = mode
@@ -210,13 +216,15 @@ export default function VisionPage() {
     knownMetresRef.current = knownMetres
     fixedIpadRef.current = fixedIpad
     tapModeRef.current = tapMode
-  }, [mode, profile, goal, groundPlane, knownMetres, fixedIpad, tapMode])
+    goalBoxAnchorRef.current = goalBoxAnchor
+  }, [mode, profile, goal, groundPlane, knownMetres, fixedIpad, tapMode, goalBoxAnchor])
 
   useEffect(() => {
     detectionRef.current = new DetectionEngine()
     playerTrackerRef.current = new PlayerTracker()
     ballTrackerRef.current = new BallTracker()
     shotDetectorRef.current = new ShotDetector()
+    autoSetupRef.current = new SessionAutoSetup()
 
     checkVisionOfflinePack().then(setOfflinePack).catch(() => {})
 
@@ -348,7 +356,8 @@ export default function VisionPage() {
     const playerTracker = playerTrackerRef.current
     const ballTracker = ballTrackerRef.current
     const shotDetector = shotDetectorRef.current
-    if (!video || !canvas || !detection || !playerTracker || !ballTracker || !shotDetector) return
+    const autoSetup = autoSetupRef.current
+    if (!video || !canvas || !detection || !playerTracker || !ballTracker || !shotDetector || !autoSetup) return
 
     if (video.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA && syncCanvasToVideo(video, canvas)) {
       const now = performance.now()
@@ -362,8 +371,19 @@ export default function VisionPage() {
       const currentProfile = buildCurrentProfile(frame)
       const goalTrack = goalTrackFromProfile(currentProfile)
       const detectionResult = await detection.detect(video, frame, modeRef.current)
+      const setupBeforeTracking = autoSetup.update({
+        detections: detectionResult.detections,
+        frame,
+        player: stateRef.current?.player,
+        ball: stateRef.current?.ball,
+        goal: goalTrack,
+      })
+      if (setupBeforeTracking.playerLock) {
+        playerTracker.lockToDetection(setupBeforeTracking.playerLock)
+      }
       const ball = ballTracker.update(detectionResult.detections, frame)
       const player = playerTracker.update(detectionResult.detections, frame, ball)
+      const setupState = autoSetup.describe({ player, ball, goal: goalTrack })
       const completedShot = shotDetector.update({ ball, player, goal: goalTrack, profile: currentProfile, frame })
 
       if (completedShot) {
@@ -375,7 +395,8 @@ export default function VisionPage() {
       }
 
       const warnings = [
-        !goalTrack.calibrated ? 'Goal is not calibrated yet.' : '',
+        setupState.player.status === 'blocked' ? setupState.player.message : '',
+        setupState.goal.status === 'needs-manual' ? setupState.goal.message : '',
         ball?.state === 'lost' ? 'Camera lost the ball.' : '',
         player?.state === 'lost' ? 'Player tracking is weak.' : '',
         currentProfile?.camera.fixedIpadMode && detectionResult.detections.filter((detectionItem) => detectionItem.source === 'motion').length >= 4
@@ -414,6 +435,7 @@ export default function VisionPage() {
         player,
         ball,
         goal: goalTrack,
+        autoSetup: setupState,
         lastShot: completedShot ?? lastShot,
         debug,
         warnings,
@@ -422,13 +444,19 @@ export default function VisionPage() {
       drawVisionOverlay(canvas, nextState, {
         goal: goalRef.current,
         groundPlane: groundRef.current,
-        activeTapLabel: tapModeRef.current === 'goal-box' && goalBoxAnchor ? 'Tap opposite goal corner' : tapLabel(tapModeRef.current),
+        activeTapLabel:
+          tapModeRef.current === 'none'
+            ? undefined
+            : tapModeRef.current === 'goal-box' && goalBoxAnchorRef.current
+              ? 'Place opposite goal corner'
+              : tapLabel(tapModeRef.current),
         profile: currentProfile,
       })
 
       if (now - lastUiRef.current > 150 || completedShot) {
         lastUiRef.current = now
         setEngineState(nextState)
+        setAutoSetupState(setupState)
       }
     }
 
@@ -454,7 +482,12 @@ export default function VisionPage() {
       await video.play().catch(() => {})
     }
     detectionRef.current?.reset()
-    shotDetectorRef.current?.reset()
+    playerTrackerRef.current = new PlayerTracker()
+    ballTrackerRef.current = new BallTracker()
+    shotDetectorRef.current = new ShotDetector()
+    autoSetupRef.current = new SessionAutoSetup()
+    setAutoSetupState(EMPTY_AUTO_SETUP_STATE)
+    setTapMode('none')
     runningRef.current = true
     setRunning(true)
     frameIndexRef.current = 0
@@ -468,6 +501,7 @@ export default function VisionPage() {
   const handleTap = useCallback((point: Point2D) => {
     const currentMode = tapModeRef.current
     const frame = stateRef.current?.frame ?? { index: 0, timestamp: performance.now(), width: canvasRef.current?.width ?? 720, height: canvasRef.current?.height ?? 1280 }
+    if (currentMode === 'none') return
     if (currentMode === 'select-player') {
       playerTrackerRef.current?.selectAt(point, stateRef.current?.detections ?? [])
       return
@@ -487,7 +521,7 @@ export default function VisionPage() {
       }
       setGoal(goalFromBox(goalBoxAnchor, point))
       setGoalBoxAnchor(undefined)
-      setTapMode('select-player')
+      setTapMode('none')
       return
     }
     setGoal((current) => goalWithTap(current, currentMode, point))
@@ -608,7 +642,7 @@ export default function VisionPage() {
         </div>
 
         <aside className="space-y-3">
-          <VisionMetricsPanel state={engineState} lastShot={lastShot} shots={shots} />
+          <VisionMetricsPanel state={engineState} autoSetup={engineState?.autoSetup ?? autoSetupState} lastShot={lastShot} shots={shots} />
           <VisionOfflinePanel status={offlinePack} onRefresh={refreshOfflinePack} />
           <VisionRawStatsPanel shots={shots} />
           <VisionCalibrationPanel
